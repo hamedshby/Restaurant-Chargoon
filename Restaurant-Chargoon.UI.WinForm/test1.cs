@@ -9,5 +9,7 @@ namespace Restaurant_Chargoon.UI.WinForm
     internal class test1
     {
         int a = 0;
+        int b = 0;
+        int c = 0;
     }
 }
