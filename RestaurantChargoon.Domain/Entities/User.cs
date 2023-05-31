@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantChargoon.Domain.Entities
 {
-	public class User
+	public class User: BaseEntity
 	{
         public string Name { get; set; }
         public string Family { get; set; }

@@ -15,4 +15,13 @@
     <None Remove="UserControls\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Unity" Version="5.11.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RestaurantChargoon.Domain\RestaurantChargoon.Domain.csproj" />
+    <ProjectReference Include="..\RestaurantChargoon.Services\RestaurantChargoon.Services.csproj" />
+  </ItemGroup>
+
 </Project>
