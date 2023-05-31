@@ -15,8 +15,4 @@
     <None Remove="UserControls\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Forms\" />
-  </ItemGroup>
-
 </Project>
