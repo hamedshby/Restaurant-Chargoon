@@ -9,15 +9,25 @@ namespace Restaurant_Chargoon.UI.WinForm
 			InitializeComponent();
 		}
 
-		private void button3_Click(object sender, EventArgs e)
-		{
+		
 
-		}
+        private void signinUser_Click(object sender, EventArgs e)
+        {
+			SigninUserFrom signinUser = new SigninUserFrom();
+			signinUser.ShowDialog();
 
-		private void signupUserBtn_Click(object sender, EventArgs e)
-		{
+        }
+
+        private void signupRestaurant_Click(object sender, EventArgs e)
+        {
+			SignUpRestaurantForm signUpRestaurant= new SignUpRestaurantForm();
+			signUpRestaurant.ShowDialog();
+        }
+
+        private void signupUserBtn_Click_1(object sender, EventArgs e)
+        {
 			SingupUserForm singupUserForm = new SingupUserForm();
 			singupUserForm.ShowDialog();
 		}
-	}
+    }
 }

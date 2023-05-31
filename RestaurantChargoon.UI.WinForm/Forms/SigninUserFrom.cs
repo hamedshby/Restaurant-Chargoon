@@ -26,5 +26,10 @@ namespace RestaurantChargoon.UI.WinForm.Forms
         {
 
         }
+
+        private void enter_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

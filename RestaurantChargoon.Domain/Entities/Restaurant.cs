@@ -3,7 +3,7 @@
 	public class Restaurant: BaseEntity
 	{
         public string RestaurantName { get; set; }
-		public string ManagerName { get; set; }
+		public string ManagerNationalCode { get; set; }
 		public string StartTime { get; set; }
 		public string EndTime { get; set; }
 		public string Address { get; set; }
