@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentResults" Version="3.15.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\RestaurantChargoon.Domain\RestaurantChargoon.Domain.csproj" />
     <ProjectReference Include="..\RestaurantChargoon.Infrastructure.EF\RestaurantChargoon.Infrastructure.EF.csproj" />
   </ItemGroup>

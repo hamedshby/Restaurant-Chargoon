@@ -1,5 +1,6 @@
 using RestaurantChargoon.Domain.Repositories;
 using RestaurantChargoon.Infrastructure.EF.Repositories;
+using RestaurantChargoon.UI.WinForm.Forms;
 using Unity;
 
 namespace Restaurant_Chargoon.UI.WinForm
@@ -17,12 +18,12 @@ namespace Restaurant_Chargoon.UI.WinForm
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-			container = new UnityContainer();
-			container.RegisterType(typeof(IGenericRepository<>), typeof(GenericRepository<>));			
-			Application.Run(container.Resolve<MainForm>());
+			//container = new UnityContainer();
+			//container.RegisterType(typeof(IGenericRepository<>), typeof(GenericRepository<>));			
+			//Application.Run(container.Resolve<SingupUserForm>());
 
 
-			//Application.Run(new MainForm());
+			Application.Run(new SingupUserForm());
         }
     }
 }

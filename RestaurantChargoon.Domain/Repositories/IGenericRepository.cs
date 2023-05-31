@@ -1,18 +1,20 @@
 ﻿using RestaurantChargoon.Domain.Entities;
+using FluentResults;
 
 namespace RestaurantChargoon.Domain.Repositories
 {
 	public interface IGenericRepository<T> where T : BaseEntity
 	{
-		Task<IEnumerable<T>> GetAllAsync();
+		IEnumerable<T> GetAll();
 
-		Task<T> GetByIdAsync(int id);
+		T GetById(int id);
 
-		Task<int> GetCountAsync();
+		int GetCount();
 
-		Task CreateAsync(T entity);
+		void Create(T entity);
 
 		void Update(T entity);
 		void Delete(T entity);
+		Task<Result<int>> Save();
 	}
 }

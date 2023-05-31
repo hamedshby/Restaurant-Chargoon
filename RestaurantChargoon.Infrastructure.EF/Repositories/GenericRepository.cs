@@ -1,43 +1,45 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentResults;
 using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Domain.Repositories;
 using RestaurantChargoon.Infrastructure.EF.Context;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace RestaurantChargoon.Infrastructure.EF.Repositories
 {
 	public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 	{
-		private readonly RestaurantDbContext _context;
+		private RestaurantDbContext _context;
 
-		public GenericRepository(RestaurantDbContext context)
+		public GenericRepository()
 		{
-			_context = context;
+			_context = new RestaurantDbContext();
 		}
 
-		public async Task<IEnumerable<T>> GetAllAsync()
+		public IEnumerable<T> GetAll()
 		{
-			var result = await _context.Set<T>().ToListAsync();
+			var result = _context.Set<T>().ToList();
 			return result;
 		}
 
-		public async Task<T> GetByIdAsync(int id)
+		public T GetById(int id)
 		{
-			var result = await _context.Set<T>().FindAsync(id);
+			var result = _context.Set<T>().Find(id);
 			return result;
 		}
 
 
-		public async Task<int> GetCountAsync()
+		public int GetCount()
 		{
-			var result = await _context.Set<T>().CountAsync();
+			var result = _context.Set<T>().Count();
 			return result;
 		}
 
-		public async Task CreateAsync(T entity)
+		public void Create(T entity)
 		{
-			await _context.Set<T>().AddAsync(entity);
+			_context.Set<T>().Add(entity);
 		}
 
 
@@ -52,5 +54,18 @@ namespace RestaurantChargoon.Infrastructure.EF.Repositories
 			_context.Set<T>().Remove(entity);
 		}
 
+		public async Task<Result<int>> Save()
+		{
+			Result<int> result=new Result<int>();
+			try
+			{
+				result =await _context.SaveChangesAsync();
+				return result;
+			}
+			catch(Exception ex)
+			{
+				return result.WithError(ex.Message);
+			}
+		}
 	}
 }

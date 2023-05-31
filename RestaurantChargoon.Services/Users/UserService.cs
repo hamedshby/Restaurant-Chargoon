@@ -1,26 +1,26 @@
-﻿using RestaurantChargoon.Domain.Entities;
-using RestaurantChargoon.Domain.Repositories;
+﻿using FluentResults;
+using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Infrastructure.EF.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RestaurantChargoon.Services.Users
 {
 	public class UserService
 	{
-		private readonly IGenericRepository<User> repository;
+		private GenericRepository<User> repository;
 
-		public UserService(IGenericRepository<User> repository)
+		public UserService()
 		{
-			this.repository = repository;
+			this.repository = new GenericRepository<User>();
 		}
 
 		public void Add(User user)
 		{
-			repository.CreateAsync(user).Wait();
+			repository.Create(user);
+		}
+
+		public async Task<Result<int>> Save()
+		{
+			return await repository.Save();
 		}
 	}
 }
