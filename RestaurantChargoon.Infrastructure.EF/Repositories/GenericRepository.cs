@@ -56,13 +56,13 @@ namespace RestaurantChargoon.Infrastructure.EF.Repositories
 
 		public async Task<Result<int>> Save()
 		{
-			Result<int> result=new Result<int>();
+			Result<int> result = new Result<int>();
 			try
 			{
-				result =await _context.SaveChangesAsync();
+				result = await _context.SaveChangesAsync();
 				return result;
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				return result.WithError(ex.Message);
 			}

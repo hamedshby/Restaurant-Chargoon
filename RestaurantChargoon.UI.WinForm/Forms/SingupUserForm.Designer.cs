@@ -33,8 +33,6 @@
 			label3 = new Label();
 			label4 = new Label();
 			label5 = new Label();
-			label6 = new Label();
-			UserCheckBox = new CheckBox();
 			RestaurantManagerCheckBox = new CheckBox();
 			NameTetxtBox = new TextBox();
 			LastNameTetxtBox = new TextBox();
@@ -47,7 +45,7 @@
 			// label1
 			// 
 			label1.AutoSize = true;
-			label1.Location = new Point(650, 56);
+			label1.Location = new Point(650, 50);
 			label1.Name = "label1";
 			label1.Size = new Size(27, 20);
 			label1.TabIndex = 0;
@@ -91,31 +89,12 @@
 			label5.TabIndex = 4;
 			label5.Text = "آدرس";
 			// 
-			// label6
-			// 
-			label6.AutoSize = true;
-			label6.Location = new Point(650, 382);
-			label6.Name = "label6";
-			label6.Size = new Size(93, 20);
-			label6.TabIndex = 5;
-			label6.Text = "وضعیت کاربر";
-			label6.Click += label6_Click;
-			// 
-			// UserCheckBox
-			// 
-			UserCheckBox.AutoSize = true;
-			UserCheckBox.Location = new Point(551, 382);
-			UserCheckBox.Name = "UserCheckBox";
-			UserCheckBox.Size = new Size(74, 24);
-			UserCheckBox.TabIndex = 6;
-			UserCheckBox.Text = "مشتری";
-			UserCheckBox.UseVisualStyleBackColor = true;
-			// 
 			// RestaurantManagerCheckBox
 			// 
 			RestaurantManagerCheckBox.AutoSize = true;
-			RestaurantManagerCheckBox.Location = new Point(405, 382);
+			RestaurantManagerCheckBox.Location = new Point(512, 382);
 			RestaurantManagerCheckBox.Name = "RestaurantManagerCheckBox";
+			RestaurantManagerCheckBox.RightToLeft = RightToLeft.Yes;
 			RestaurantManagerCheckBox.Size = new Size(113, 24);
 			RestaurantManagerCheckBox.TabIndex = 7;
 			RestaurantManagerCheckBox.Text = "مدیر رستوران";
@@ -124,7 +103,7 @@
 			// 
 			// NameTetxtBox
 			// 
-			NameTetxtBox.Location = new Point(383, 56);
+			NameTetxtBox.Location = new Point(383, 50);
 			NameTetxtBox.Name = "NameTetxtBox";
 			NameTetxtBox.Size = new Size(242, 27);
 			NameTetxtBox.TabIndex = 8;
@@ -159,7 +138,7 @@
 			// 
 			// singup
 			// 
-			singup.Location = new Point(88, 413);
+			singup.Location = new Point(321, 445);
 			singup.Name = "singup";
 			singup.Size = new Size(148, 47);
 			singup.TabIndex = 13;
@@ -171,7 +150,7 @@
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(792, 472);
+			ClientSize = new Size(792, 517);
 			Controls.Add(singup);
 			Controls.Add(AddressTetxtBox);
 			Controls.Add(PasswordTetxtBox);
@@ -179,8 +158,6 @@
 			Controls.Add(LastNameTetxtBox);
 			Controls.Add(NameTetxtBox);
 			Controls.Add(RestaurantManagerCheckBox);
-			Controls.Add(UserCheckBox);
-			Controls.Add(label6);
 			Controls.Add(label5);
 			Controls.Add(label4);
 			Controls.Add(label3);
@@ -199,8 +176,6 @@
 		private Label label3;
 		private Label label4;
 		private Label label5;
-		private Label label6;
-		private CheckBox UserCheckBox;
 		private CheckBox RestaurantManagerCheckBox;
 		private TextBox NameTetxtBox;
 		private TextBox LastNameTetxtBox;

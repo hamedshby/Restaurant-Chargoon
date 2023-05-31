@@ -7,10 +7,16 @@ namespace RestaurantChargoon.Infrastructure.EF.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer("server=.;initial catalog=Restauranttt;integrated security=true;TrustServerCertificate=True");
+            options.UseSqlServer("server=.;initial catalog=Restaurantttt;integrated security=true;TrustServerCertificate=True");
         }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
+
+        
     }
+
+
+    
+    
 }

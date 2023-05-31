@@ -23,7 +23,7 @@ namespace Restaurant_Chargoon.UI.WinForm
 			//Application.Run(container.Resolve<SingupUserForm>());
 
 
-			Application.Run(new SingupUserForm());
+			Application.Run(new MainForm());
         }
     }
 }

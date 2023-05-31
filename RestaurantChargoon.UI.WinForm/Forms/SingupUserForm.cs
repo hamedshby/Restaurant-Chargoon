@@ -42,9 +42,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			User user = new User()
 			{
 				Name = NameTetxtBox.Text,
-				Family = LastNameTetxtBox.Text,
+				LastName = LastNameTetxtBox.Text,
 				NationalCode = NationalCodeTetxtBox.Text,
-				Address = AddressTetxtBox.Text
+				Address = AddressTetxtBox.Text,
+				Password= PasswordTetxtBox.Text,
+				UserType=UserType.User
 			};
 
 			userService.Add(user);
@@ -54,8 +56,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 				return result;
 			});
 
-
+			if (result.IsFailed)
 			MessageBox.Show(result.Errors[0].Message);
+			else
+				MessageBox.Show("اطلاعات با موفقیت ثبت گردید");
+
 		}
 	}
 }
