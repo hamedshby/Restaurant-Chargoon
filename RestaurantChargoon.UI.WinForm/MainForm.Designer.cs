@@ -28,47 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            signinUser = new Button();
+            signupUser = new Button();
+            signupRestaurant = new Button();
             SuspendLayout();
             // 
-            // button1
+            // signinUser
             // 
-            button1.Location = new Point(314, 73);
-            button1.Name = "button1";
-            button1.Size = new Size(171, 63);
-            button1.TabIndex = 0;
-            button1.Text = "ورود کاربر";
-            button1.UseVisualStyleBackColor = true;
+            signinUser.Location = new Point(314, 73);
+            signinUser.Name = "signinUser";
+            signinUser.Size = new Size(171, 63);
+            signinUser.TabIndex = 0;
+            signinUser.Text = "ورود کاربر";
+            signinUser.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // signupUser
             // 
-            button2.Location = new Point(314, 178);
-            button2.Name = "button2";
-            button2.Size = new Size(171, 63);
-            button2.TabIndex = 1;
-            button2.Text = "ثبت نام کاربر";
-            button2.UseVisualStyleBackColor = true;
+            signupUser.Location = new Point(314, 178);
+            signupUser.Name = "signupUser";
+            signupUser.Size = new Size(171, 63);
+            signupUser.TabIndex = 1;
+            signupUser.Text = "ثبت نام کاربر";
+            signupUser.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // signupRestaurant
             // 
-            button3.Location = new Point(314, 283);
-            button3.Name = "button3";
-            button3.Size = new Size(171, 63);
-            button3.TabIndex = 2;
-            button3.Text = "ثبت نام رستوران";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            signupRestaurant.Location = new Point(314, 283);
+            signupRestaurant.Name = "signupRestaurant";
+            signupRestaurant.Size = new Size(171, 63);
+            signupRestaurant.TabIndex = 2;
+            signupRestaurant.Text = "ثبت نام رستوران";
+            signupRestaurant.UseVisualStyleBackColor = true;
+            signupRestaurant.Click += button3_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(signupRestaurant);
+            Controls.Add(signupUser);
+            Controls.Add(signinUser);
             Name = "MainForm";
             Text = "صفحه اصلی";
             ResumeLayout(false);
@@ -76,8 +76,8 @@
 
         #endregion
 
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button signinUser;
+        private Button signupUser;
+        private Button signupRestaurant;
     }
 }
