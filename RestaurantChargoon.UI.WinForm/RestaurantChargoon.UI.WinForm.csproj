@@ -10,12 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Forms\**" />
     <Compile Remove="UserControls\**" />
-    <EmbeddedResource Remove="Forms\**" />
     <EmbeddedResource Remove="UserControls\**" />
-    <None Remove="Forms\**" />
     <None Remove="UserControls\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Forms\" />
   </ItemGroup>
 
 </Project>
