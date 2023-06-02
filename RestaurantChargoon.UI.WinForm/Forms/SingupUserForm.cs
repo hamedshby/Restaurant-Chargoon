@@ -6,12 +6,21 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 	public partial class SingupUserForm : Form
 	{
 		private readonly UserService userService;
+        
 		public SingupUserForm()
 		{
 			InitializeComponent();
 			this.userService = new UserService();
+			 
 		}
 
+		public SingupUserForm(string NationalCode)
+		{
+			InitializeComponent();
+			this.userService = new UserService(); 
+			NationalCodeTetxtBox.Text = NationalCode;
+		}
+		
 		private void label1_Click(object sender, EventArgs e)
 		{
 
