@@ -33,7 +33,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             restaurantService.Add(restaurant);
             var result = await Task.Run(() =>
             {
-                var result = userService.Save();
+                var result = restaurantService.Save();
                 return result;
             });
             if (result.IsFailed)
