@@ -1,3 +1,4 @@
+using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Domain.Repositories;
 using RestaurantChargoon.Infrastructure.EF.Repositories;
 using RestaurantChargoon.UI.WinForm.Forms;
@@ -8,6 +9,7 @@ namespace Restaurant_Chargoon.UI.WinForm
     internal static class Program
     {
 		private static IUnityContainer container;
+		public static User userLogin;
 		/// <summary>
 		///  The main entry point for the application.
 		/// </summary>
@@ -22,6 +24,7 @@ namespace Restaurant_Chargoon.UI.WinForm
 			//container.RegisterType(typeof(IGenericRepository<>), typeof(GenericRepository<>));			
 			//Application.Run(container.Resolve<SingupUserForm>());
 
+			userLogin = new User();
 
 			Application.Run(new MainForm());
         }

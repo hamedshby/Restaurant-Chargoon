@@ -1,13 +1,5 @@
-﻿using RestaurantChargoon.Services.Users;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Services.Users;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
 {
@@ -22,15 +14,23 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 		private void enter_Click(object sender, EventArgs e)
 		{
-			var user = userService.GetByNationalCode(NationalCodeTextBox.Text.Trim());
-			if (user == null) 
+			var user = userService.CheckUserPassword(NationalCodeTextBox.Text.Trim(), PasswordTextBox.Text.Trim());
+			if (user == null)
 			{
 				MessageBox.Show("نام کاربری و پسورد وجود ندارد");
 				return;
 			}
+			Program.userLogin = user;
 			RestaurantDashboardForm restaurantDashboardForm = new RestaurantDashboardForm();
 			this.Hide();
-			restaurantDashboardForm.ShowDialog();			
+			restaurantDashboardForm.ShowDialog();
+		}
+
+		private void SigninUserFrom_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			MainForm mainForm = new MainForm();
+			mainForm.Show();
+
 		}
 	}
 }

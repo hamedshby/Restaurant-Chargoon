@@ -29,4 +29,8 @@
     <ProjectReference Include="..\RestaurantChargoon.Services\RestaurantChargoon.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

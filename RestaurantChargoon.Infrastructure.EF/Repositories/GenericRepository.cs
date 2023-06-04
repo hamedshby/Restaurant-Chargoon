@@ -1,4 +1,5 @@
 ﻿using FluentResults;
+using Microsoft.Data.SqlClient;
 using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Domain.Repositories;
 using RestaurantChargoon.Infrastructure.EF.Context;
@@ -75,7 +76,7 @@ namespace RestaurantChargoon.Infrastructure.EF.Repositories
 				result.WithSuccess("عملیات با موفقیت انجام گردید");
 				return result;
 			}
-			catch (Exception ex)
+			catch (SqlException ex)
 			{
 				return result.WithError("عملیات با خطا مواجه گردید");
 			}

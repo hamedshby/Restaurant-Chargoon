@@ -38,40 +38,43 @@
 			// label1
 			// 
 			label1.AutoSize = true;
-			label1.Location = new Point(255, 37);
+			label1.Location = new Point(250, 29);
 			label1.Name = "label1";
-			label1.Size = new Size(56, 20);
+			label1.Size = new Size(43, 15);
 			label1.TabIndex = 0;
 			label1.Text = "کد ملی";
 			// 
 			// label2
 			// 
 			label2.AutoSize = true;
-			label2.Location = new Point(255, 105);
+			label2.Location = new Point(250, 80);
 			label2.Name = "label2";
-			label2.Size = new Size(48, 20);
+			label2.Size = new Size(37, 15);
 			label2.TabIndex = 1;
 			label2.Text = "پسورد";
 			// 
 			// NationalCodeTextBox
 			// 
-			NationalCodeTextBox.Location = new Point(63, 37);
+			NationalCodeTextBox.Location = new Point(82, 29);
+			NationalCodeTextBox.Margin = new Padding(3, 2, 3, 2);
 			NationalCodeTextBox.Name = "NationalCodeTextBox";
-			NationalCodeTextBox.Size = new Size(151, 27);
+			NationalCodeTextBox.Size = new Size(133, 23);
 			NationalCodeTextBox.TabIndex = 3;
 			// 
 			// PasswordTextBox
 			// 
-			PasswordTextBox.Location = new Point(63, 105);
+			PasswordTextBox.Location = new Point(82, 80);
+			PasswordTextBox.Margin = new Padding(3, 2, 3, 2);
 			PasswordTextBox.Name = "PasswordTextBox";
-			PasswordTextBox.Size = new Size(151, 27);
+			PasswordTextBox.Size = new Size(133, 23);
 			PasswordTextBox.TabIndex = 4;
 			// 
 			// Loginbtn
 			// 
-			Loginbtn.Location = new Point(63, 169);
+			Loginbtn.Location = new Point(82, 140);
+			Loginbtn.Margin = new Padding(3, 2, 3, 2);
 			Loginbtn.Name = "Loginbtn";
-			Loginbtn.Size = new Size(151, 35);
+			Loginbtn.Size = new Size(132, 26);
 			Loginbtn.TabIndex = 7;
 			Loginbtn.Text = "ورود";
 			Loginbtn.UseVisualStyleBackColor = true;
@@ -79,17 +82,19 @@
 			// 
 			// SigninUserFrom
 			// 
-			AutoScaleDimensions = new SizeF(8F, 20F);
+			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(342, 262);
+			ClientSize = new Size(325, 196);
 			Controls.Add(Loginbtn);
 			Controls.Add(PasswordTextBox);
 			Controls.Add(NationalCodeTextBox);
 			Controls.Add(label2);
 			Controls.Add(label1);
+			Margin = new Padding(3, 2, 3, 2);
 			Name = "SigninUserFrom";
 			StartPosition = FormStartPosition.CenterParent;
 			Text = "فرم ورود کاربر";
+			FormClosed += SigninUserFrom_FormClosed;
 			ResumeLayout(false);
 			PerformLayout();
 		}

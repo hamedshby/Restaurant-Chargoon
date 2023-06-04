@@ -62,10 +62,6 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ManagerNationalCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("RestaurantName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

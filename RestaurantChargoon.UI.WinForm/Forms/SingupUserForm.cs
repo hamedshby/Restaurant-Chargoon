@@ -1,4 +1,5 @@
-﻿using RestaurantChargoon.Domain.Entities;
+﻿using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.Users;
 
@@ -78,14 +79,20 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 					else
 					{
 						MessageBox.Show("اطلاعات با موفقیت ثبت گردید");
-						if (userStatus == UserType.RestaurantManager)
-						{
-							SignUpRestaurantForm signUpRestaurantForm = new SignUpRestaurantForm();
-							signUpRestaurantForm.ShowDialog();
-						}
+						//if (userStatus == UserType.RestaurantManager)
+						//{
+						//	SignUpRestaurantForm signUpRestaurantForm = new SignUpRestaurantForm();
+						//	signUpRestaurantForm.ShowDialog();
+						//}
 					}
 				}
 			}
+		}
+
+		private void SingupUserForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			MainForm mainForm = new MainForm();
+			mainForm.Show();
 		}
 	}
 }

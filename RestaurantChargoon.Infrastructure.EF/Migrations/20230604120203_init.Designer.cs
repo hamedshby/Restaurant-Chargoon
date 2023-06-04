@@ -10,7 +10,7 @@ using RestaurantChargoon.Infrastructure.EF.Context;
 namespace RestaurantChargoon.Infrastructure.EF.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20230604095248_init")]
+    [Migration("20230604120203_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,7 +39,12 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("RestaurantId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RestaurantId");
 
                     b.ToTable("Foods");
                 });
@@ -56,10 +61,6 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EndTime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ManagerNationalCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -115,6 +116,15 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("RestaurantChargoon.Domain.Entities.Food", b =>
+                {
+                    b.HasOne("RestaurantChargoon.Domain.Entities.Restaurant", "Restaurant")
+                        .WithMany()
+                        .HasForeignKey("RestaurantId");
+
+                    b.Navigation("Restaurant");
                 });
 
             modelBuilder.Entity("RestaurantChargoon.Domain.Entities.Restaurant", b =>

@@ -45,7 +45,7 @@
 			// 
 			// signupUserBtn
 			// 
-			signupUserBtn.Location = new Point(145, 150);
+			signupUserBtn.Location = new Point(145, 149);
 			signupUserBtn.Name = "signupUserBtn";
 			signupUserBtn.Size = new Size(171, 63);
 			signupUserBtn.TabIndex = 1;
@@ -55,7 +55,7 @@
 			// 
 			// signupRestaurant
 			// 
-			signupRestaurant.Location = new Point(145, 254);
+			signupRestaurant.Location = new Point(145, 253);
 			signupRestaurant.Name = "signupRestaurant";
 			signupRestaurant.Size = new Size(171, 63);
 			signupRestaurant.TabIndex = 2;
@@ -74,6 +74,7 @@
 			Name = "MainForm";
 			StartPosition = FormStartPosition.CenterScreen;
 			Text = "صفحه اصلی";
+			FormClosed += MainForm_FormClosed;
 			ResumeLayout(false);
 		}
 
