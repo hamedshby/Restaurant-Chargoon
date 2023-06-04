@@ -43,6 +43,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			}
 			else
 				MessageBox.Show("اطلاعات با موفقیت ثبت گردید");
+
+			//test
 		}
 	}
 }
