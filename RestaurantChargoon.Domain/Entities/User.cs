@@ -1,4 +1,6 @@
-﻿namespace RestaurantChargoon.Domain.Entities
+﻿using RestaurantChargoon.Domain.Enums;
+
+namespace RestaurantChargoon.Domain.Entities
 {
 	public class User : BaseEntity
 	{       
@@ -10,9 +12,4 @@
 		public UserType UserType { get; set; }
 	}
 
-	public enum UserType
-	{
-		User = 1,
-		RestaurantManager = 2
-	}
 }

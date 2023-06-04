@@ -2,7 +2,7 @@
 using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Infrastructure.EF.Repositories;
  
-namespace RestaurantChargoon.Services.Restaurant
+namespace RestaurantChargoon.Services.Restaurants
 {
     public class RestaurantService
     {
@@ -11,10 +11,12 @@ namespace RestaurantChargoon.Services.Restaurant
         {
             this.repository = new GenericRepository<RestaurantChargoon.Domain.Entities.Restaurant>();
         }
-        public void Add(RestaurantChargoon.Domain.Entities.Restaurant restaurant)
+        public async Task<Result<int>> Add(Restaurant restaurant)
         {
             repository.Create(restaurant);
-        }
+			var result = await Save();
+			return result;
+		}
 
         public async Task<Result<int>> Save()
         {

@@ -50,7 +50,6 @@
 			label1.Size = new Size(27, 20);
 			label1.TabIndex = 0;
 			label1.Text = "نام";
-			label1.Click += label1_Click;
 			// 
 			// label2
 			// 
@@ -78,7 +77,6 @@
 			label4.Size = new Size(48, 20);
 			label4.TabIndex = 3;
 			label4.Text = "پسورد";
-			label4.Click += label4_Click;
 			// 
 			// label5
 			// 
@@ -99,7 +97,6 @@
 			RestaurantManagerCheckBox.TabIndex = 7;
 			RestaurantManagerCheckBox.Text = "مدیر رستوران";
 			RestaurantManagerCheckBox.UseVisualStyleBackColor = true;
-			RestaurantManagerCheckBox.CheckedChanged += checkBox2_CheckedChanged;
 			// 
 			// NameTetxtBox
 			// 
@@ -144,7 +141,7 @@
 			singup.TabIndex = 13;
 			singup.Text = "ثبت نام";
 			singup.UseVisualStyleBackColor = true;
-			singup.Click += singup_Click_1;
+			singup.Click += singup_Click;
 			// 
 			// SingupUserForm
 			// 

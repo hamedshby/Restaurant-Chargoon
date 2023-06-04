@@ -24,6 +24,18 @@ namespace RestaurantChargoon.Infrastructure.EF.Repositories
 			return result;
 		}
 
+		public IEnumerable<T> Get(Func<T, bool> predicate = null)
+		{
+			var query = _context.Set<T>().AsQueryable();
+			if (predicate != null)
+			{
+				query = query.Where(predicate).AsQueryable();
+			}
+			var result = query.ToList();
+			return result;
+		}
+
+
 		public T GetById(int id)
 		{
 			var result = _context.Set<T>().Find(id);
@@ -60,11 +72,12 @@ namespace RestaurantChargoon.Infrastructure.EF.Repositories
 			try
 			{
 				result = await _context.SaveChangesAsync();
+				result.WithSuccess("عملیات با موفقیت انجام گردید");
 				return result;
 			}
 			catch (Exception ex)
 			{
-				return result.WithError(ex.Message);
+				return result.WithError("عملیات با خطا مواجه گردید");
 			}
 		}
 	}

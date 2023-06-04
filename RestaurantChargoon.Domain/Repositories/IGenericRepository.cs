@@ -6,7 +6,7 @@ namespace RestaurantChargoon.Domain.Repositories
 	public interface IGenericRepository<T> where T : BaseEntity
 	{
 		IEnumerable<T> GetAll();
-
+		IEnumerable<T> Get(Func<T, bool> predicate);
 		T GetById(int id);
 
 		int GetCount();

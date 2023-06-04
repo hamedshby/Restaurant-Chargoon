@@ -1,6 +1,6 @@
 ﻿namespace RestaurantChargoon.UI.WinForm.Forms
 {
-    partial class RestaurantDashboard
+    partial class RestaurantDashboardForm
     {
         /// <summary>
         /// Required designer variable.

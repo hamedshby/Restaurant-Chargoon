@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
 {
-    public partial class RestaurantDashboard : Form
+    public partial class RestaurantDashboardForm : Form
     {
-        public RestaurantDashboard()
+        public RestaurantDashboardForm()
         {
             InitializeComponent();
         }
