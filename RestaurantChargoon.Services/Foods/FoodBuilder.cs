@@ -1,8 +1,6 @@
-﻿using RestaurantChargoon.Domain.Entities;
+﻿using FluentResults;
+using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Domain.Enums;
-using FluentResults;
-using System.Xml.Linq;
-using System.Diagnostics;
 
 namespace RestaurantChargoon.Services.Foods
 {
