@@ -49,9 +49,6 @@ namespace RestaurantChargoon.UI.WinForm.Forms
                 RestaurantDashboardForm restaurantDashboard = new RestaurantDashboardForm();
                 restaurantDashboard.ShowDialog();
             }
-
-
-            //test
         }
         public Result<Restaurant> GetRestaurantResult()
         {

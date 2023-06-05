@@ -85,6 +85,5 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			MainForm mainForm = new MainForm();
 			mainForm.Show();
 		}
-
-    }
+	}
 }
