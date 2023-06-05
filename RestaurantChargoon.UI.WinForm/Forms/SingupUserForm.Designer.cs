@@ -171,6 +171,7 @@
             this.Name = "SingupUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "فرم ثبت نام کاربر";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SingupUserForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

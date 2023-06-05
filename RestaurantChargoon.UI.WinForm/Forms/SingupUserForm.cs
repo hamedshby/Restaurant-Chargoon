@@ -72,7 +72,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 						MessageBox.Show("اطلاعات با موفقیت ثبت گردید");
 						if (userStatus == UserType.RestaurantManager)
 						{
-							SignUpRestaurantForm signUpRestaurantForm = new SignUpRestaurantForm(NationalCodeTetxtBox.Text);
+							SignUpRestaurantForm signUpRestaurantForm = new SignUpRestaurantForm();
 							signUpRestaurantForm.ShowDialog();
 						}
 					}
