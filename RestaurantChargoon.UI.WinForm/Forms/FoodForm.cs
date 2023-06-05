@@ -5,7 +5,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 	public partial class FoodForm : Form
 	{
 		private readonly FoodService foodService;
-		public FoodForm()
+        public int RestaurantId { get; set; }
+        public FoodForm()
 		{
 			InitializeComponent();
 			this.foodService = new FoodService();
@@ -25,9 +26,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 		public void FillgridView()
 		{
-			FoodDataGridView.Rows.Clear();
-			FoodDataGridView.Refresh();
-			var foods = foodService.GetAll();
+			var foods = foodService.Get(c=>c.RestaurantId==RestaurantId).ToList();
 			BindingSource bindingSource = new BindingSource();
 			bindingSource.DataSource = foods;
 			FoodDataGridView.DataSource = bindingSource;

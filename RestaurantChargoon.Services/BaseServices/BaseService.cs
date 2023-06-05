@@ -29,7 +29,7 @@ namespace RestaurantChargoon.Services.BaseServices
 			return result;
 		}
 
-		public async Task<Result<int>> Save()
+		private async Task<Result<int>> Save()
 		{
 			return await repository.Save();
 		}

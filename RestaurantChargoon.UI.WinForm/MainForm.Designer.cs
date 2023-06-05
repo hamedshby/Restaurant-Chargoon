@@ -30,7 +30,6 @@
 		{
 			signinUser = new Button();
 			signupUserBtn = new Button();
-			signupRestaurant = new Button();
 			SuspendLayout();
 			// 
 			// signinUser
@@ -53,22 +52,11 @@
 			signupUserBtn.UseVisualStyleBackColor = true;
 			signupUserBtn.Click += signupUserBtn_Click_1;
 			// 
-			// signupRestaurant
-			// 
-			signupRestaurant.Location = new Point(145, 253);
-			signupRestaurant.Name = "signupRestaurant";
-			signupRestaurant.Size = new Size(171, 63);
-			signupRestaurant.TabIndex = 2;
-			signupRestaurant.Text = "ثبت نام رستوران";
-			signupRestaurant.UseVisualStyleBackColor = true;
-			signupRestaurant.Click += signupRestaurant_Click;
-			// 
 			// MainForm
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(461, 385);
-			Controls.Add(signupRestaurant);
+			ClientSize = new Size(461, 292);
 			Controls.Add(signupUserBtn);
 			Controls.Add(signinUser);
 			Name = "MainForm";
@@ -82,6 +70,5 @@
 
 		private Button signinUser;
 		private Button signupUserBtn;
-		private Button signupRestaurant;
 	}
 }

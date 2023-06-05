@@ -7,7 +7,8 @@ namespace RestaurantChargoon.Domain.Entities
         public string Name { get; set; }
         public decimal Price { get; set; }
         public FoodType FoodType { get; set; }
-		public Restaurant Restaurant { get; set; }
+        public int RestaurantId { get; set; }
+        public Restaurant Restaurant { get; set; }
 	}
 
 }
