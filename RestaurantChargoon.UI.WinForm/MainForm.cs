@@ -16,7 +16,6 @@ namespace Restaurant_Chargoon.UI.WinForm
 			SigninUserFrom signinUser = new SigninUserFrom();
 			this.Hide();
 			signinUser.ShowDialog();
-
 		}
 
 		private void signupRestaurant_Click(object sender, EventArgs e)

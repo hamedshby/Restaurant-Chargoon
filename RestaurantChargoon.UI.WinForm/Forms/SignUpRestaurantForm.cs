@@ -15,20 +15,16 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			InitializeComponent();
 			this.userService = new UserService();
 			this.restaurantService = new RestaurantService();
+		}
 
-		}
-		public string MyValue
-		{
-			get { return NationalCodeTextBox.Text; }
-		}
 		private async void RegisterRestaurant_Click(object sender, EventArgs e)
 		{
 			Restaurant restaurant = new Restaurant()
 			{
 				Address = AddressTextBox.Text,
 				RestaurantName = ResturantNameTextBox.Text,
-				StartTime = FromTimeTextbox.Text,
-				EndTime = ToTimeTextbox.Text,
+				StartTime = FromTimePicker.Text,
+				EndTime = ToTimePicker.Text,
 				UserId = Program.userLogin.Id
 			};
 			var result = await restaurantService.Add(restaurant);

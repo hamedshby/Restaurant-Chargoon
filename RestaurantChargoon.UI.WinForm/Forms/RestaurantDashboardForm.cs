@@ -38,11 +38,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			var foods = restaurantService.GetAll().Select(c =>
 			new
 			{
-				id = c.Id,
-				RestaurantName = c.RestaurantName,
-				StartTime = c.StartTime,
-				EndTime = c.EndTime,
-				Address = c.Address
+				c.Id,
+				c.RestaurantName,
+				c.StartTime,
+				c.EndTime,
+				c.Address
 			});
 			BindingSource bindingSource = new BindingSource();
 			bindingSource.DataSource = foods;
@@ -55,7 +55,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			if (RestaurantDataGridView.SelectedRows.Count > 0)
 			{
 				DataGridViewRow selectedRow = RestaurantDataGridView.SelectedRows[0];
-				int.TryParse(selectedRow.Cells[0].Value.ToString(),out int result);
+				int.TryParse(selectedRow.Cells[0].Value.ToString(), out int result);
 				return result;
 			}
 			return 0;
@@ -64,9 +64,14 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		private void MenuButton_Click(object sender, EventArgs e)
 		{
 			Program.RestaurantId = GetRowIdSelected();
-			FoodForm foodForm = new FoodForm();		
+			FoodForm foodForm = new FoodForm();
 			this.Hide();
 			foodForm.ShowDialog();
+		}
+
+		private void RefreshButton_Click(object sender, EventArgs e)
+		{
+			FillgridView();
 		}
 	}
 	#endregion

@@ -51,7 +51,7 @@
 			PricetextBox.Location = new Point(77, 87);
 			PricetextBox.Name = "PricetextBox";
 			PricetextBox.Size = new Size(151, 27);
-			PricetextBox.TabIndex = 12;
+			PricetextBox.TabIndex = 9;
 			// 
 			// label2
 			// 
@@ -72,10 +72,10 @@
 			// 
 			// SaveButton
 			// 
-			SaveButton.Location = new Point(113, 216);
+			SaveButton.Location = new Point(77, 216);
 			SaveButton.Name = "SaveButton";
-			SaveButton.Size = new Size(94, 29);
-			SaveButton.TabIndex = 9;
+			SaveButton.Size = new Size(151, 29);
+			SaveButton.TabIndex = 11;
 			SaveButton.Text = "ذخیره";
 			SaveButton.UseVisualStyleBackColor = true;
 			SaveButton.Click += SaveButton_Click;
@@ -98,9 +98,10 @@
 			// 
 			// AddFoodForm
 			// 
+			AcceptButton = SaveButton;
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(340, 287);
+			ClientSize = new Size(324, 287);
 			Controls.Add(label3);
 			Controls.Add(PricetextBox);
 			Controls.Add(label2);
@@ -110,7 +111,7 @@
 			Controls.Add(label1);
 			Name = "AddFoodForm";
 			StartPosition = FormStartPosition.CenterParent;
-			Text = "AddFoodForm";
+			Text = "افزودن منو";
 			Load += AddFoodForm_Load;
 			ResumeLayout(false);
 			PerformLayout();

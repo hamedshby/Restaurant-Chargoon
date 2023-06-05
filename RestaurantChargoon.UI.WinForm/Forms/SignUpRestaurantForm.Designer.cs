@@ -28,133 +28,147 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			ToTimePicker = new DateTimePicker();
+			FromTimePicker = new DateTimePicker();
 			RegisterRestaurant = new Button();
 			ResturantNameTextBox = new TextBox();
-			NationalCodeTextBox = new TextBox();
 			AddressTextBox = new TextBox();
 			label1 = new Label();
-			label2 = new Label();
 			label3 = new Label();
 			label4 = new Label();
 			label5 = new Label();
-			FromTimeTextbox = new MaskedTextBox();
-			ToTimeTextbox = new MaskedTextBox();
+			groupBox1 = new GroupBox();
+			groupBox1.SuspendLayout();
 			SuspendLayout();
+			// 
+			// ToTimePicker
+			// 
+			ToTimePicker.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			ToTimePicker.CustomFormat = "HH:mm";
+			ToTimePicker.Format = DateTimePickerFormat.Custom;
+			ToTimePicker.ImeMode = ImeMode.NoControl;
+			ToTimePicker.Location = new Point(84, 26);
+			ToTimePicker.Name = "ToTimePicker";
+			ToTimePicker.ShowUpDown = true;
+			ToTimePicker.Size = new Size(80, 27);
+			ToTimePicker.TabIndex = 12;
+			ToTimePicker.Value = new DateTime(2029, 6, 5, 0, 0, 0, 0);
+			// 
+			// FromTimePicker
+			// 
+			FromTimePicker.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			FromTimePicker.CustomFormat = "HH:mm";
+			FromTimePicker.Format = DateTimePickerFormat.Custom;
+			FromTimePicker.ImeMode = ImeMode.NoControl;
+			FromTimePicker.Location = new Point(249, 26);
+			FromTimePicker.Name = "FromTimePicker";
+			FromTimePicker.ShowUpDown = true;
+			FromTimePicker.Size = new Size(80, 27);
+			FromTimePicker.TabIndex = 11;
+			FromTimePicker.Value = new DateTime(2023, 6, 5, 0, 0, 0, 0);
 			// 
 			// RegisterRestaurant
 			// 
-			RegisterRestaurant.Location = new Point(222, 256);
+			RegisterRestaurant.Location = new Point(199, 279);
+			RegisterRestaurant.Margin = new Padding(3, 4, 3, 4);
 			RegisterRestaurant.Name = "RegisterRestaurant";
-			RegisterRestaurant.Size = new Size(75, 23);
-			RegisterRestaurant.TabIndex = 0;
-			RegisterRestaurant.Text = "ثبت نام";
+			RegisterRestaurant.Size = new Size(137, 31);
+			RegisterRestaurant.TabIndex = 6;
+			RegisterRestaurant.Text = "ذخیره";
 			RegisterRestaurant.UseVisualStyleBackColor = true;
 			RegisterRestaurant.Click += RegisterRestaurant_Click;
 			// 
 			// ResturantNameTextBox
 			// 
-			ResturantNameTextBox.Location = new Point(194, 19);
+			ResturantNameTextBox.Location = new Point(120, 25);
+			ResturantNameTextBox.Margin = new Padding(3, 4, 3, 4);
 			ResturantNameTextBox.Name = "ResturantNameTextBox";
-			ResturantNameTextBox.Size = new Size(146, 23);
+			ResturantNameTextBox.RightToLeft = RightToLeft.Yes;
+			ResturantNameTextBox.Size = new Size(245, 27);
 			ResturantNameTextBox.TabIndex = 1;
-			// 
-			// NationalCodeTextBox
-			// 
-			NationalCodeTextBox.Location = new Point(194, 61);
-			NationalCodeTextBox.Name = "NationalCodeTextBox";
-			NationalCodeTextBox.Size = new Size(146, 23);
-			NationalCodeTextBox.TabIndex = 2;
 			// 
 			// AddressTextBox
 			// 
-			AddressTextBox.Location = new Point(32, 177);
+			AddressTextBox.Location = new Point(36, 185);
+			AddressTextBox.Margin = new Padding(3, 4, 3, 4);
 			AddressTextBox.Multiline = true;
 			AddressTextBox.Name = "AddressTextBox";
-			AddressTextBox.Size = new Size(308, 52);
+			AddressTextBox.RightToLeft = RightToLeft.Yes;
+			AddressTextBox.Size = new Size(329, 68);
 			AddressTextBox.TabIndex = 5;
 			// 
 			// label1
 			// 
 			label1.AutoSize = true;
-			label1.Location = new Point(353, 23);
+			label1.Location = new Point(380, 28);
 			label1.Name = "label1";
-			label1.Size = new Size(63, 15);
+			label1.Size = new Size(81, 20);
 			label1.TabIndex = 6;
 			label1.Text = "نام رستوران";
 			// 
-			// label2
-			// 
-			label2.AutoSize = true;
-			label2.Location = new Point(353, 74);
-			label2.Name = "label2";
-			label2.Size = new Size(121, 15);
-			label2.TabIndex = 7;
-			label2.Text = "کد ملی صاحب رستوران";
-			// 
 			// label3
 			// 
+			label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 			label3.AutoSize = true;
-			label3.Location = new Point(353, 126);
+			label3.Location = new Point(344, 31);
 			label3.Name = "label3";
-			label3.Size = new Size(49, 15);
+			label3.Size = new Size(63, 20);
 			label3.TabIndex = 8;
 			label3.Text = "از ساعت";
 			// 
 			// label4
 			// 
+			label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 			label4.AutoSize = true;
-			label4.Location = new Point(136, 124);
+			label4.Location = new Point(163, 29);
 			label4.Name = "label4";
-			label4.Size = new Size(48, 15);
+			label4.Size = new Size(62, 20);
 			label4.TabIndex = 9;
 			label4.Text = "تا ساعت";
 			// 
 			// label5
 			// 
 			label5.AutoSize = true;
-			label5.Location = new Point(353, 179);
+			label5.Location = new Point(380, 185);
 			label5.Name = "label5";
-			label5.Size = new Size(76, 15);
+			label5.Size = new Size(98, 20);
 			label5.TabIndex = 10;
 			label5.Text = "آدرس رستوران";
 			// 
-			// FromTimeTextbox
+			// groupBox1
 			// 
-			FromTimeTextbox.Location = new Point(240, 122);
-			FromTimeTextbox.Mask = "12:00";
-			FromTimeTextbox.Name = "FromTimeTextbox";
-			FromTimeTextbox.Size = new Size(100, 23);
-			FromTimeTextbox.TabIndex = 11;
-			FromTimeTextbox.ValidatingType = typeof(DateTime);
-			// 
-			// ToTimeTextbox
-			// 
-			ToTimeTextbox.Location = new Point(32, 122);
-			ToTimeTextbox.Mask = "23:00";
-			ToTimeTextbox.Name = "ToTimeTextbox";
-			ToTimeTextbox.Size = new Size(100, 23);
-			ToTimeTextbox.TabIndex = 12;
-			ToTimeTextbox.ValidatingType = typeof(DateTime);
+			groupBox1.Controls.Add(FromTimePicker);
+			groupBox1.Controls.Add(ToTimePicker);
+			groupBox1.Controls.Add(label3);
+			groupBox1.Controls.Add(label4);
+			groupBox1.Location = new Point(36, 83);
+			groupBox1.Name = "groupBox1";
+			groupBox1.RightToLeft = RightToLeft.Yes;
+			groupBox1.Size = new Size(442, 73);
+			groupBox1.TabIndex = 13;
+			groupBox1.TabStop = false;
+			groupBox1.Text = "ساعت کاری";
 			// 
 			// SignUpRestaurantForm
 			// 
-			AutoScaleDimensions = new SizeF(7F, 15F);
+			AcceptButton = RegisterRestaurant;
+			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(503, 295);
-			Controls.Add(ToTimeTextbox);
-			Controls.Add(FromTimeTextbox);
+			ClientSize = new Size(525, 323);
+			Controls.Add(groupBox1);
 			Controls.Add(label5);
-			Controls.Add(label4);
-			Controls.Add(label3);
-			Controls.Add(label2);
 			Controls.Add(label1);
 			Controls.Add(AddressTextBox);
-			Controls.Add(NationalCodeTextBox);
 			Controls.Add(ResturantNameTextBox);
 			Controls.Add(RegisterRestaurant);
+			Margin = new Padding(3, 4, 3, 4);
+			MaximumSize = new Size(543, 370);
+			MinimumSize = new Size(543, 370);
 			Name = "SignUpRestaurantForm";
 			StartPosition = FormStartPosition.CenterParent;
-			Text = "ثبت نام رستوران";
+			Text = "ثبت رستوران";
+			groupBox1.ResumeLayout(false);
+			groupBox1.PerformLayout();
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -163,14 +177,13 @@
 
 		private Button RegisterRestaurant;
 		private TextBox ResturantNameTextBox;
-		private TextBox NationalCodeTextBox;
 		private TextBox AddressTextBox;
 		private Label label1;
-		private Label label2;
 		private Label label3;
 		private Label label4;
 		private Label label5;
-		private MaskedTextBox FromTimeTextbox;
-		private MaskedTextBox ToTimeTextbox;
+		private DateTimePicker FromTimePicker;
+		private DateTimePicker ToTimePicker;
+		private GroupBox groupBox1;
 	}
 }

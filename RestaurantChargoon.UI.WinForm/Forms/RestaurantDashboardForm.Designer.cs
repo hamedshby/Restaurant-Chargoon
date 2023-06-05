@@ -36,12 +36,13 @@
 			Column3 = new DataGridViewTextBoxColumn();
 			Column4 = new DataGridViewTextBoxColumn();
 			MenuButton = new Button();
+			RefreshButton = new Button();
 			((System.ComponentModel.ISupportInitialize)RestaurantDataGridView).BeginInit();
 			SuspendLayout();
 			// 
 			// AddRestaurantButton
 			// 
-			AddRestaurantButton.Location = new Point(23, 33);
+			AddRestaurantButton.Location = new Point(460, 12);
 			AddRestaurantButton.Name = "AddRestaurantButton";
 			AddRestaurantButton.Size = new Size(171, 44);
 			AddRestaurantButton.TabIndex = 1;
@@ -56,14 +57,14 @@
 			RestaurantDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			RestaurantDataGridView.Columns.AddRange(new DataGridViewColumn[] { Column5, Column1, Column2, Column3, Column4 });
 			RestaurantDataGridView.Dock = DockStyle.Bottom;
-			RestaurantDataGridView.Location = new Point(0, 110);
+			RestaurantDataGridView.Location = new Point(0, 68);
 			RestaurantDataGridView.Name = "RestaurantDataGridView";
 			RestaurantDataGridView.ReadOnly = true;
 			RestaurantDataGridView.RightToLeft = RightToLeft.Yes;
 			RestaurantDataGridView.RowHeadersWidth = 51;
 			RestaurantDataGridView.RowTemplate.Height = 29;
 			RestaurantDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-			RestaurantDataGridView.Size = new Size(643, 220);
+			RestaurantDataGridView.Size = new Size(643, 197);
 			RestaurantDataGridView.TabIndex = 2;
 			// 
 			// Column5
@@ -114,25 +115,36 @@
 			// 
 			// MenuButton
 			// 
-			MenuButton.Location = new Point(449, 41);
+			MenuButton.Location = new Point(297, 12);
 			MenuButton.Name = "MenuButton";
-			MenuButton.Size = new Size(132, 36);
+			MenuButton.Size = new Size(157, 44);
 			MenuButton.TabIndex = 3;
 			MenuButton.Text = "مشاهده منو";
 			MenuButton.UseVisualStyleBackColor = true;
 			MenuButton.Click += MenuButton_Click;
 			// 
+			// RefreshButton
+			// 
+			RefreshButton.Location = new Point(153, 12);
+			RefreshButton.Name = "RefreshButton";
+			RefreshButton.Size = new Size(138, 44);
+			RefreshButton.TabIndex = 4;
+			RefreshButton.Text = "تازه سازی";
+			RefreshButton.UseVisualStyleBackColor = true;
+			RefreshButton.Click += RefreshButton_Click;
+			// 
 			// RestaurantDashboardForm
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(643, 330);
+			ClientSize = new Size(643, 265);
+			Controls.Add(RefreshButton);
 			Controls.Add(MenuButton);
 			Controls.Add(RestaurantDataGridView);
 			Controls.Add(AddRestaurantButton);
 			Margin = new Padding(3, 4, 3, 4);
 			Name = "RestaurantDashboardForm";
-			StartPosition = FormStartPosition.CenterParent;
+			StartPosition = FormStartPosition.CenterScreen;
 			Text = "RestaurantDashboard";
 			FormClosed += RestaurantDashboardForm_FormClosed;
 			Load += RestaurantDashboardForm_Load;
@@ -149,5 +161,6 @@
 		private DataGridViewTextBoxColumn Column3;
 		private DataGridViewTextBoxColumn Column4;
 		private Button MenuButton;
+		private Button RefreshButton;
 	}
 }
