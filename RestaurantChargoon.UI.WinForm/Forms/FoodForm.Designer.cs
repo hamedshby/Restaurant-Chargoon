@@ -121,6 +121,7 @@
 			Controls.Add(FoodDataGridView);
 			Name = "FoodForm";
 			Text = "FoodForm";
+			FormClosed += FoodForm_FormClosed;
 			Load += FoodForm_Load;
 			((System.ComponentModel.ISupportInitialize)FoodDataGridView).EndInit();
 			ResumeLayout(false);

@@ -62,8 +62,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 		private void MenuButton_Click(object sender, EventArgs e)
 		{
-			FoodForm foodForm = new FoodForm();
-			foodForm.RestaurantId = GetRowIdSelected();
+			int restaurantId = GetRowIdSelected();
+			FoodForm foodForm = new FoodForm(restaurantId);			
 			this.Hide();
 			foodForm.ShowDialog();
 		}

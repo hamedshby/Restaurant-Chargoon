@@ -6,14 +6,14 @@ namespace RestaurantChargoon.Services.Foods
 {
     public class FoodBuilder
     {
-        private readonly Result<Food> foodResult ;
+        private readonly Result<Food> foodResult=new Result<Food>() ;
         private readonly Food food=new Food();
 
 		public FoodBuilder GetName(string name)
         {         
             if(string.IsNullOrEmpty(name))
             {
-                foodResult.WithError("نام را وراد کنید");
+                foodResult.WithError("نام را وراد کنید");                
             }
             food.Name = name;
             return this;
@@ -33,7 +33,7 @@ namespace RestaurantChargoon.Services.Foods
                 
         public Result<Food> Build()
         {            
-            return food;
+            return foodResult;
         }
     }
 

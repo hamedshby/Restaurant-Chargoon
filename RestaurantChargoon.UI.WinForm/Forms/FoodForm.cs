@@ -5,12 +5,13 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 	public partial class FoodForm : Form
 	{
 		private readonly FoodService foodService;
-        public int RestaurantId { get; set; }
-        public FoodForm()
+		private int restaurantId;
+		public FoodForm(int restaurantId)
 		{
 			InitializeComponent();
 			this.foodService = new FoodService();
 			FillgridView();
+			this.restaurantId = restaurantId;
 		}
 
 		private void FoodForm_Load(object sender, EventArgs e)
@@ -20,13 +21,13 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 		private void AddFoodButton_Click(object sender, EventArgs e)
 		{
-			AddFoodForm addFoodForm = new AddFoodForm();
+			AddFoodForm addFoodForm = new AddFoodForm(restaurantId);
 			addFoodForm.ShowDialog();
 		}
 
 		public void FillgridView()
 		{
-			var foods = foodService.Get(c=>c.RestaurantId==RestaurantId).ToList();
+			var foods = foodService.Get(c => c.RestaurantId == restaurantId).ToList();
 			BindingSource bindingSource = new BindingSource();
 			bindingSource.DataSource = foods;
 			FoodDataGridView.DataSource = bindingSource;
@@ -35,6 +36,12 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		public void RefreshButton_Click(object sender, EventArgs e)
 		{
 			FillgridView();
+		}
+
+		private void FoodForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			RestaurantDashboardForm restaurantDashboardForm = new RestaurantDashboardForm();
+			restaurantDashboardForm.Show();
 		}
 	}
 }

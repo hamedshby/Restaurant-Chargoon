@@ -1,6 +1,7 @@
 ﻿using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Foods;
+using RestaurantChargoon.UI.WinForm.Services;
 using System.Data;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
@@ -8,11 +9,13 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 	public partial class AddFoodForm : Form
 	{
 		private readonly FoodService foodService;
-		public int restaurantId;
-		public AddFoodForm()
+		private int restaurantId;
+
+		public AddFoodForm(int restaurantId)
 		{
 			InitializeComponent();
 			this.foodService = new FoodService();
+			this.restaurantId = restaurantId;
 		}
 
 		#region Events
@@ -20,7 +23,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		{
 			SetFoodTypeComboBox();
 		}
-				
+
 		private async void SaveButton_Click(object sender, EventArgs e)
 		{
 			var food = new FoodBuilder()
@@ -29,12 +32,17 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			.GetFoodType((FoodType)FoodTypeComboBox.SelectedIndex + 1)
 			.Build();
 
-			var result = await foodService.Add(food.Value);
+			if (food.IsFailed)
+			{
+				string errorMessage = food.GetResultErrors();
+				FormService.ShowErrorMessageBox(errorMessage);
+				return;
+			}
 
-			MessageBox.Show(result.Reasons[0].Message);
-			FoodForm foodForm = new FoodForm();
-			foodForm.FoodDataGridView.Refresh();
-			this.Close();	
+			var result = await foodService.Add(food.Value);
+			FormService.ShowErrorMessageBox(result.Reasons[0].Message);
+			if (result.IsSuccess)
+				this.Close();
 		}
 
 		#endregion
