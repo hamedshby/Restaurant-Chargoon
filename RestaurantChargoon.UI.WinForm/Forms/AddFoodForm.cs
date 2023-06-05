@@ -12,8 +12,6 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 	public partial class AddFoodForm : Form
 	{
 		private readonly FoodService foodService;
-
-
 		public AddFoodForm()
 		{
 			InitializeComponent();
@@ -29,24 +27,15 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		private async void SaveButton_Click(object sender, EventArgs e)
 		{
 			var foodResult = GetFoodResult();
-
 			if (foodResult.IsFailed)
 			{
-				foodResult.PrintResultErrors();
+				foodResult.PrintResultMessages();
 				return;
 			}
-
 			var food = foodResult.Value;
 			food.RestaurantId = Program.RestaurantId;
 			var result = await foodService.Add(food);
-
-			if (result.IsSuccess)
-			{
-				FormService.ShowInfoMessageBox(result.Reasons[0].Message);
-				this.Close();
-			}
-			else
-				FormService.ShowErrorMessageBox(result.Reasons[0].Message);
+			result.PrintResultMessages();
 		}
 
 		#endregion

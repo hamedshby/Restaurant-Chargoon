@@ -4,7 +4,6 @@ namespace RestaurantChargoon.UI.WinForm.Services
 {
 	public static class FormService
 	{
-
 		public static void ShowErrorMessageBox(string message)
 		{
 			MessageBox.Show(message, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -15,14 +14,17 @@ namespace RestaurantChargoon.UI.WinForm.Services
 			MessageBox.Show(message, "پیام", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
-		public static void PrintResultErrors<T>(this Result<T> result)
+		public static void PrintResultMessages<T>(this Result<T> result)
 		{
-			string errors = string.Empty;
-			foreach (var error in result.Errors)
+			string messages = string.Empty;
+			foreach (var error in result.Reasons)
 			{
-				errors += error.Message + Environment.NewLine;
+				messages += error.Message + Environment.NewLine;
 			}
-			ShowErrorMessageBox(errors);
+			if (result.IsFailed)
+				ShowErrorMessageBox(messages);
+			else
+				ShowInfoMessageBox(messages);
 		}
 	}
 }
