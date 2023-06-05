@@ -1,4 +1,7 @@
-﻿using RestaurantChargoon.Domain.Enums;
+﻿using FluentResults;
+using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Foods;
 using RestaurantChargoon.UI.WinForm.Services;
@@ -9,13 +12,12 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 	public partial class AddFoodForm : Form
 	{
 		private readonly FoodService foodService;
-		private int restaurantId;
 
-		public AddFoodForm(int restaurantId)
+
+		public AddFoodForm()
 		{
 			InitializeComponent();
 			this.foodService = new FoodService();
-			this.restaurantId = restaurantId;
 		}
 
 		#region Events
@@ -26,23 +28,25 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 		private async void SaveButton_Click(object sender, EventArgs e)
 		{
-			var food = new FoodBuilder()
-				.GetName(NameTextBox.Text)
-				.GetPrice(PricetextBox.Text)
-			.GetFoodType((FoodType)FoodTypeComboBox.SelectedIndex + 1)
-			.Build();
+			var foodResult = GetFoodResult();
 
-			if (food.IsFailed)
+			if (foodResult.IsFailed)
 			{
-				string errorMessage = food.GetResultErrors();
-				FormService.ShowErrorMessageBox(errorMessage);
+				foodResult.PrintResultErrors();
 				return;
 			}
 
-			var result = await foodService.Add(food.Value);
-			FormService.ShowErrorMessageBox(result.Reasons[0].Message);
+			var food = foodResult.Value;
+			food.RestaurantId = Program.RestaurantId;
+			var result = await foodService.Add(food);
+
 			if (result.IsSuccess)
+			{
+				FormService.ShowInfoMessageBox(result.Reasons[0].Message);
 				this.Close();
+			}
+			else
+				FormService.ShowErrorMessageBox(result.Reasons[0].Message);
 		}
 
 		#endregion
@@ -56,6 +60,16 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			{
 				FoodTypeComboBox.Items.Add(foodType.GetDisplayName());
 			}
+		}
+
+		private Result<Food> GetFoodResult()
+		{
+			var foodResult = new FoodBuilder()
+				.GetName(NameTextBox.Text)
+				.GetPrice(PricetextBox.Text)
+			.GetFoodType((FoodType)FoodTypeComboBox.SelectedIndex + 1)
+			.Build();
+			return foodResult;
 		}
 		#endregion
 	}

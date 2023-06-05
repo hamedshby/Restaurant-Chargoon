@@ -10,6 +10,7 @@ namespace Restaurant_Chargoon.UI.WinForm
     {
 		private static IUnityContainer container;
 		public static User userLogin;
+		public static int RestaurantId;
 		/// <summary>
 		///  The main entry point for the application.
 		/// </summary>

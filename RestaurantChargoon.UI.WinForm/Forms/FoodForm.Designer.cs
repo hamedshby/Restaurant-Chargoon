@@ -120,6 +120,7 @@
 			Controls.Add(AddFoodButton);
 			Controls.Add(FoodDataGridView);
 			Name = "FoodForm";
+			StartPosition = FormStartPosition.CenterParent;
 			Text = "FoodForm";
 			FormClosed += FoodForm_FormClosed;
 			Load += FoodForm_Load;

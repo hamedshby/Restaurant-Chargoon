@@ -1,4 +1,5 @@
-﻿using RestaurantChargoon.Services.Restaurants;
+﻿using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Services.Restaurants;
 using System.Windows.Forms;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
@@ -62,8 +63,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 		private void MenuButton_Click(object sender, EventArgs e)
 		{
-			int restaurantId = GetRowIdSelected();
-			FoodForm foodForm = new FoodForm(restaurantId);			
+			Program.RestaurantId = GetRowIdSelected();
+			FoodForm foodForm = new FoodForm();		
 			this.Hide();
 			foodForm.ShowDialog();
 		}

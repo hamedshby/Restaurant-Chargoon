@@ -14,16 +14,5 @@ namespace RestaurantChargoon.Services.ExtensionMethods
 							.GetCustomAttribute<DisplayAttribute>()
 							?.GetName() ?? enumValue.ToString();
 		}
-
-		public static string GetResultErrors<T>(this Result<T> result)
-		{
-			string errors = string.Empty;
-			foreach (var error in result.Errors)
-			{
-				errors += error.Message + Environment.NewLine;
-			}
-			return errors;
-		}
-
 	}
 }
