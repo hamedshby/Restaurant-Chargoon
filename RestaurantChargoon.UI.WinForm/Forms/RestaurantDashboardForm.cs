@@ -17,7 +17,9 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		private void AddRestaurantButton_Click(object sender, EventArgs e)
 		{
 			SignUpRestaurantForm signUpRestaurantForm = new SignUpRestaurantForm();
+			this.Hide();
 			signUpRestaurantForm.ShowDialog();
+
 		}
 
 		private void RestaurantDashboardForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -35,7 +37,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		#region Methods
 		public void FillgridView()
 		{
-			var foods = restaurantService.GetAll().Select(c =>
+			var foods = restaurantService.Get(r=> r.UserId==Program.userLogin.Id).Select(c =>
 			new
 			{
 				id = c.Id,
@@ -68,6 +70,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			this.Hide();
 			foodForm.ShowDialog();
 		}
-	}
+
+        
+    }
 	#endregion
 }
