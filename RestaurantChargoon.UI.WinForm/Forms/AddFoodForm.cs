@@ -1,6 +1,10 @@
-﻿using RestaurantChargoon.Domain.Enums;
+﻿using FluentResults;
+using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Foods;
+using RestaurantChargoon.UI.WinForm.Services;
 using System.Data;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
@@ -8,7 +12,6 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 	public partial class AddFoodForm : Form
 	{
 		private readonly FoodService foodService;
-		public int restaurantId;
 		public AddFoodForm()
 		{
 			InitializeComponent();
@@ -20,21 +23,19 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		{
 			SetFoodTypeComboBox();
 		}
-				
+
 		private async void SaveButton_Click(object sender, EventArgs e)
 		{
-			var food = new FoodBuilder()
-				.GetName(NameTextBox.Text)
-				.GetPrice(PricetextBox.Text)
-			.GetFoodType((FoodType)FoodTypeComboBox.SelectedIndex + 1)
-			.Build();
-
-			var result = await foodService.Add(food.Value);
-
-			MessageBox.Show(result.Reasons[0].Message);
-			FoodForm foodForm = new FoodForm();
-			foodForm.FoodDataGridView.Refresh();
-			this.Close();	
+			var foodResult = GetFoodResult();
+			if (foodResult.IsFailed)
+			{
+				foodResult.PrintResultMessages();
+				return;
+			}
+			var food = foodResult.Value;
+			food.RestaurantId = Program.RestaurantId;
+			var result = await foodService.Add(food);
+			result.PrintResultMessages();
 		}
 
 		#endregion
@@ -48,6 +49,16 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			{
 				FoodTypeComboBox.Items.Add(foodType.GetDisplayName());
 			}
+		}
+
+		private Result<Food> GetFoodResult()
+		{
+			var foodResult = new FoodBuilder()
+				.GetName(NameTextBox.Text)
+				.GetPrice(PricetextBox.Text)
+			.GetFoodType((FoodType)FoodTypeComboBox.SelectedIndex + 1)
+			.Build();
+			return foodResult;
 		}
 		#endregion
 	}

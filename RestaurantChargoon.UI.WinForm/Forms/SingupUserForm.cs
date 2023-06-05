@@ -15,15 +15,6 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			this.userService = new UserService();
 
 		}
-
-		public SingupUserForm(string NationalCode)
-		{
-			InitializeComponent();
-			this.userService = new UserService();
-			NationalCodeTetxtBox.Text = NationalCode;
-		}
-
-
 		private async void singup_Click(object sender, EventArgs e)
 		{
 			// Check User Status 
@@ -79,11 +70,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 					else
 					{
 						MessageBox.Show("اطلاعات با موفقیت ثبت گردید");
-						//if (userStatus == UserType.RestaurantManager)
-						//{
-						//	SignUpRestaurantForm signUpRestaurantForm = new SignUpRestaurantForm();
-						//	signUpRestaurantForm.ShowDialog();
-						//}
+						if (userStatus == UserType.RestaurantManager)
+						{
+							SignUpRestaurantForm signUpRestaurantForm = new SignUpRestaurantForm(NationalCodeTetxtBox.Text);
+							signUpRestaurantForm.ShowDialog();
+						}
 					}
 				}
 			}
@@ -94,5 +85,6 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			MainForm mainForm = new MainForm();
 			mainForm.Show();
 		}
-	}
+
+    }
 }

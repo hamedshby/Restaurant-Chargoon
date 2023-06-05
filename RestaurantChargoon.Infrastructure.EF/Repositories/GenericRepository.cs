@@ -50,21 +50,27 @@ namespace RestaurantChargoon.Infrastructure.EF.Repositories
 			return result;
 		}
 
-		public void Create(T entity)
+		public async Task<Result<int>> Create(T entity)
 		{
 			_context.Set<T>().Add(entity);
+			var result = await Save();
+			return result;
 		}
 
 
-		public void Update(T entity)
+		public async Task<Result<int>> Update(T entity)
 		{
 			_context.Set<T>().Update(entity);
+			var result = await Save();
+			return result;
 		}
 
 
-		public void Delete(T entity)
+		public async Task<Result<int>> Delete(T entity)
 		{
 			_context.Set<T>().Remove(entity);
+			var result = await Save();
+			return result;
 		}
 
 		public async Task<Result<int>> Save()

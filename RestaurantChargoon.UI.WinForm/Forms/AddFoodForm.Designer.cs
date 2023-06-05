@@ -109,6 +109,7 @@
 			Controls.Add(NameTextBox);
 			Controls.Add(label1);
 			Name = "AddFoodForm";
+			StartPosition = FormStartPosition.CenterParent;
 			Text = "AddFoodForm";
 			Load += AddFoodForm_Load;
 			ResumeLayout(false);
