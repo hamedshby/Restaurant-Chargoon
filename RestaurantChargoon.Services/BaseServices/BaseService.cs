@@ -1,7 +1,6 @@
 ﻿using FluentResults;
 using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Infrastructure.EF.Repositories;
-using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantChargoon.Services.BaseServices
 {
@@ -17,23 +16,16 @@ namespace RestaurantChargoon.Services.BaseServices
 
 		public async Task<Result<int>> Add(T entity)
 		{
-			repository.Create(entity);
-			var result = await Save();
+			var result = await repository.Create(entity);
 			return result;
 		}
 
 		public async Task<Result<int>> Update(T entity)
 		{
-			repository.Update(entity);
-			var result = await Save();
+			var result = await repository.Update(entity);
 			return result;
 		}
 
-		private async Task<Result<int>> Save()
-		{
-			return await repository.Save();
-		}
-		
 		public IEnumerable<T> GetAll()
 		{
 			return repository.GetAll();
@@ -42,11 +34,6 @@ namespace RestaurantChargoon.Services.BaseServices
 		public IEnumerable<T> Get(Func<T, bool> predicate = null)
 		{
 			return repository.Get(predicate);
-		}
-
-		public T GetById(int id)
-		{
-			return repository.GetById(id);
 		}
 	}
 }
