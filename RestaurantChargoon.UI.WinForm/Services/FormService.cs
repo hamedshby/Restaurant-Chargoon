@@ -26,5 +26,14 @@ namespace RestaurantChargoon.UI.WinForm.Services
 			else
 				ShowInfoMessageBox(messages);
 		}
-	}
+
+        public static void AddBottonToGrid(string name, int columnIndex, DataGridView dataGridView)
+        {
+            DataGridViewButtonColumn startbtn = new DataGridViewButtonColumn();
+            startbtn.Name = name;
+            startbtn.Text = name;
+            startbtn.UseColumnTextForButtonValue = true;
+            dataGridView.Columns.Insert(columnIndex, startbtn);
+        }
+    }
 }
