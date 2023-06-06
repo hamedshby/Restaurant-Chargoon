@@ -1,93 +1,58 @@
-﻿using Restaurant_Chargoon.UI.WinForm;
+﻿using FluentResults;
+using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.Users;
+using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
 {
-	public partial class SingupUserForm : Form
-	{
-		private readonly UserService userService;
+    public partial class SingupUserForm : Form
+    {
+        private readonly UserService userService;
 
-		public SingupUserForm()
-		{
-			InitializeComponent();
-			this.userService = new UserService();
+        public SingupUserForm()
+        {
+            InitializeComponent();
+            this.userService = new UserService();
 
-		}
-		private async void singup_Click(object sender, EventArgs e)
-		{
-			// Check User Status 
-			UserType userStatus = RestaurantManagerCheckBox.Checked ? UserType.RestaurantManager : UserType.User;
-			// Check Text of All of TextBox Is empty or not
-			bool hasEpmty = false;
-			foreach (Control control in this.Controls)
-			{
-				if (control is TextBox)
-				{
-					if (string.IsNullOrEmpty(((TextBox)control).Text))
-					{
-						hasEpmty = true;
-						break;
-					}
+        }
+        private async void singup_Click(object sender, EventArgs e)
+        {
+            var UserResult = GetUserResult();
+            if (UserResult.IsFailed)
+            {
+                UserResult.PrintResultMessages();
+                return;
+            }
+            var result = await userService.Add(UserResult.Value);
+            result.PrintResultMessages();
+            if (result.IsSuccess)
+            {
+                MainForm mainForm = new MainForm();
+                mainForm.Show();
+                this.Close();
+            }
+        }
 
-				}
-			}
-			if (hasEpmty)
-			{
-				MessageBox.Show("پر کردن تمامی موارد اجباری است");
-			}
-			else
-			{
-				// For Check Duplicate Natonal Code
-				var checkUser = userService.Get(u => u.NationalCode == NationalCodeTetxtBox.Text).FirstOrDefault();
-				if (checkUser != null)
-				{
-					MessageBox.Show("این کاربر وجود دارد");
-				}
-				else
-				{
-					User user = new User()
-					{
-						Name = NameTetxtBox.Text,
-						LastName = LastNameTetxtBox.Text,
-						NationalCode = NationalCodeTetxtBox.Text,
-						Address = AddressTetxtBox.Text,
-						Password = PasswordTetxtBox.Text,
-						UserType = userStatus
-					};
+        private void SingupUserForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            mainForm.Show();
+        }
+        public Result<User> GetUserResult()
+        {
+            UserType userStatus = RestaurantManagerCheckBox.Checked ? UserType.RestaurantManager : UserType.User;
+            var result = new UserBuilder()
+                .GetName(NameTetxtBox.Text)
+                .GetFamily(LastNameTetxtBox.Text)
+                .GetAddress(AddressTetxtBox.Text)
+                .GetPassword(PasswordTetxtBox.Text)
+                .GetNationalCode(NationalCodeTetxtBox.Text)
+                .GetUserType(userStatus)
+                .Build();
 
-					var result = await userService.Add(user);
-					if (result.IsFailed)
-					{
-						string errors = string.Empty;
-						foreach (var error in result.Errors)
-						{
-							errors += error.Message + Environment.NewLine;
-						}
-						MessageBox.Show(errors);
-					}
-					else
-					{
-
-						MessageBox.Show("اطلاعات با موفقیت ثبت گردید");
-						MainForm mainForm = new MainForm();
-						mainForm.Show();
-						this.Close();
-						//if (userStatus == UserType.RestaurantManager)
-						//{
-						//	SignUpRestaurantForm signUpRestaurantForm = new SignUpRestaurantForm();
-						//	signUpRestaurantForm.ShowDialog();
-						//}
-					}
-				}
-			}
-		}
-
-		private void SingupUserForm_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			MainForm mainForm = new MainForm();
-			mainForm.Show();
-		}
-	}
+            return result;
+        }
+    }
 }
