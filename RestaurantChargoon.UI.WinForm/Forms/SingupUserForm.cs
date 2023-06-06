@@ -69,12 +69,16 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 					}
 					else
 					{
+
 						MessageBox.Show("اطلاعات با موفقیت ثبت گردید");
-						if (userStatus == UserType.RestaurantManager)
-						{
-							SignUpRestaurantForm signUpRestaurantForm = new SignUpRestaurantForm();
-							signUpRestaurantForm.ShowDialog();
-						}
+						MainForm mainForm = new MainForm();
+						mainForm.Show();
+						this.Close();
+						//if (userStatus == UserType.RestaurantManager)
+						//{
+						//	SignUpRestaurantForm signUpRestaurantForm = new SignUpRestaurantForm();
+						//	signUpRestaurantForm.ShowDialog();
+						//}
 					}
 				}
 			}

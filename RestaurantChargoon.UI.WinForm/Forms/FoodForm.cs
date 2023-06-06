@@ -24,6 +24,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		private void AddFoodButton_Click(object sender, EventArgs e)
 		{
 			AddFoodForm addFoodForm = new AddFoodForm();
+			this.Hide();
 			addFoodForm.ShowDialog();
 		}
 

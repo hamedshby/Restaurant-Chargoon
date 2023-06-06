@@ -36,7 +36,13 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			food.RestaurantId = Program.RestaurantId;
 			var result = await foodService.Add(food);
 			result.PrintResultMessages();
-		}
+            if (result.IsSuccess)
+            {
+				FoodForm foodForm = new FoodForm();
+				foodForm.Show();
+				this.Close();
+            }
+        }
 
 		#endregion
 
