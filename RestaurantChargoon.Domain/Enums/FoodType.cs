@@ -4,6 +4,8 @@ namespace RestaurantChargoon.Domain.Enums
 {
 	public enum FoodType
 	{
+        [Display(Name = "غذای اصلی")]
+        MainCource =1,
 		[Display(Name = "پیش غذا")]
 		Appetizer = 1,
 		[Display(Name = "نوشیدنی")]
