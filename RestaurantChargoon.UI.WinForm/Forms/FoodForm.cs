@@ -1,22 +1,28 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Foods;
+using RestaurantChargoon.Services.Restaurants;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
 {
     public partial class FoodForm : Form
     {
         private readonly FoodService foodService;
+        private readonly RestaurantService restaurantService;
+
         private int cellCount = 0;
         public FoodForm()
         {
             InitializeComponent();
             this.foodService = new FoodService();
+            this.restaurantService = new RestaurantService();
         }
 
         #region Events
         private void FoodForm_Load(object sender, EventArgs e)
         {
+            var restaurantName = restaurantService.Get(c => c.Id == Program.RestaurantId).FirstOrDefault().RestaurantName;
+            this.Text = restaurantName;
             RestaurantDashboardForm restaurantDashboardForm = Application.OpenForms["RestaurantDashboardForm"] as RestaurantDashboardForm;
             if (restaurantDashboardForm != null)
             {
@@ -50,6 +56,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             if (restaurantDashboardForm != null)
             {
                 restaurantDashboardForm.Show();
+            }
+            else
+            {
+                RestaurantDashboardForm restaurantForm=new RestaurantDashboardForm();
+                restaurantForm.Show();
             }
         }
 

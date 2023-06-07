@@ -46,13 +46,6 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             FillgridView();
         }
 
-        private void MenuButton_Click(object sender, EventArgs e)
-        {
-            Program.RestaurantId = GetRowIdSelected();
-            FoodForm foodForm = new FoodForm();           
-            foodForm.ShowDialog();
-        }
-
         private void RestaurantDataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             if (cellCount == 1)
@@ -69,9 +62,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
                 DataGridViewRow row = RestaurantDataGridView.Rows[e.RowIndex];
                 int.TryParse(row.Cells[2].Value.ToString(), out Program.RestaurantId);
                 string restaurantName = row.Cells[3].Value.ToString();
-                FoodForm foodForm = new FoodForm();
-                this.Hide();
-                foodForm.Text = restaurantName;
+                FoodForm foodForm = new FoodForm();                            
                 foodForm.ShowDialog();
             }
         }
