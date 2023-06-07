@@ -7,12 +7,12 @@ namespace RestaurantChargoon.Domain.Enums
         [Display(Name = "غذای اصلی")]
         MainCource =1,
 		[Display(Name = "پیش غذا")]
-		Appetizer = 1,
+		Appetizer = 2,
 		[Display(Name = "نوشیدنی")]
-		Beverage = 2,
+		Beverage = 3,
 		[Display(Name = "سالاد")]
-		Salad = 3,
+		Salad = 4,
 		[Display(Name = "دسر")]
-		Dessert = 4
+		Dessert = 5
 	}
 }
