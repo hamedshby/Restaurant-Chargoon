@@ -1,7 +1,6 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Foods;
-using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
 {
@@ -18,13 +17,17 @@ namespace RestaurantChargoon.UI.WinForm.Forms
         #region Events
         private void FoodForm_Load(object sender, EventArgs e)
         {
+            RestaurantDashboardForm restaurantDashboardForm = Application.OpenForms["RestaurantDashboardForm"] as RestaurantDashboardForm;
+            if (restaurantDashboardForm != null)
+            {
+                restaurantDashboardForm.Hide();
+            }
             FillgridView();
         }
 
         private void AddFoodButton_Click(object sender, EventArgs e)
         {
             AddFoodForm addFoodForm = new AddFoodForm();
-            this.Hide();
             addFoodForm.ShowDialog();
         }
         private void FoodDataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -43,8 +46,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
         private void FoodForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            RestaurantDashboardForm restaurantDashboardForm = new RestaurantDashboardForm();
-            restaurantDashboardForm.Show();
+            RestaurantDashboardForm restaurantDashboardForm = Application.OpenForms["RestaurantDashboardForm"] as RestaurantDashboardForm;
+            if (restaurantDashboardForm != null)
+            {
+                restaurantDashboardForm.Show();
+            }
         }
 
         private void FoodDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)

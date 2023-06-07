@@ -1,4 +1,5 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.Users;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
@@ -12,6 +13,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             this.userService = new UserService();
         }
 
+        #region Events
         private void enter_Click(object sender, EventArgs e)
         {
             var user = userService.CheckUserPassword(NationalCodeTextBox.Text.Trim(), PasswordTextBox.Text.Trim());
@@ -21,16 +23,32 @@ namespace RestaurantChargoon.UI.WinForm.Forms
                 return;
             }
             Program.userLogin = user;
-            RestaurantDashboardForm restaurantDashboardForm = new RestaurantDashboardForm();
-            this.Hide();
-            restaurantDashboardForm.ShowDialog();
+            if (user.UserType == UserType.RestaurantManager)
+            {
+                RestaurantDashboardForm restaurantDashboardForm = new RestaurantDashboardForm();
+                restaurantDashboardForm.ShowDialog();
+            }
         }
 
         private void SigninUserFrom_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
+            MainForm mainForm = Application.OpenForms["MainForm"] as MainForm;
+            if (mainForm != null)
+            {
+                mainForm.Show();
+            }
 
         }
+
+        private void SigninUserFrom_Load(object sender, EventArgs e)
+        {
+            MainForm mainForm = Application.OpenForms["MainForm"] as MainForm;
+            if (mainForm != null)
+            {
+                mainForm.Hide();
+            }
+        }
+
+        #endregion
     }
 }

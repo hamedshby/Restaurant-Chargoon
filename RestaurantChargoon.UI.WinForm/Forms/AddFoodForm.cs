@@ -9,63 +9,70 @@ using System.Data;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
 {
-	public partial class AddFoodForm : Form
-	{
-		private readonly FoodService foodService;
-		public AddFoodForm()
-		{
-			InitializeComponent();
-			this.foodService = new FoodService();
-		}
+    public partial class AddFoodForm : Form
+    {
+        private readonly FoodService foodService;
+        public AddFoodForm()
+        {
+            InitializeComponent();
+            this.foodService = new FoodService();
+        }
 
-		#region Events
-		private void AddFoodForm_Load(object sender, EventArgs e)
-		{
-			SetFoodTypeComboBox();
-		}
-
-		private async void SaveButton_Click(object sender, EventArgs e)
-		{
-			var foodResult = GetFoodResult();
-			if (foodResult.IsFailed)
-			{
-				foodResult.PrintResultMessages();
-				return;
-			}
-			var food = foodResult.Value;
-			food.RestaurantId = Program.RestaurantId;
-			var result = await foodService.Add(food);
-			result.PrintResultMessages();
-            if (result.IsSuccess)
+        #region Events
+        private void AddFoodForm_Load(object sender, EventArgs e)
+        {
+            FoodForm foodForm = Application.OpenForms["FoodForm"] as FoodForm;
+            if (foodForm != null)
             {
-				FoodForm foodForm = new FoodForm();
-				foodForm.Show();
-				this.Close();
+                foodForm.Hide();
+            }
+            SetFoodTypeComboBox();
+        }
+
+        private void AddFoodForm_FormClosed(object sender, FormClosedEventArgs e)
+        {            
+            FoodForm foodForm = new FoodForm();
+            foodForm.Show();
+        }
+
+        private async void SaveButton_Click(object sender, EventArgs e)
+        {
+            var foodResult = GetFoodResult();
+            if (foodResult.IsFailed)
+            {
+                foodResult.PrintResultMessages();
+                return;
+            }
+            var food = foodResult.Value;
+            food.RestaurantId = Program.RestaurantId;
+            var result = await foodService.Add(food);
+            result.PrintResultMessages();           
+        }
+
+        #endregion
+
+
+        #region Methods
+        private void SetFoodTypeComboBox()
+        {
+            var foodTypes = Enum.GetValues(typeof(FoodType)).Cast<FoodType>();
+            foreach (var foodType in foodTypes)
+            {
+                FoodTypeComboBox.Items.Add(foodType.GetDisplayName());
             }
         }
 
-		#endregion
+        private Result<Food> GetFoodResult()
+        {
+            var foodResult = new FoodBuilder()
+                .GetName(NameTextBox.Text)
+                .GetPrice(PricetextBox.Text)
+            .GetFoodType((FoodType)FoodTypeComboBox.SelectedIndex + 1)
+            .Build();
+            return foodResult;
+        }
+        #endregion
 
-
-		#region Methods
-		private void SetFoodTypeComboBox()
-		{
-			var foodTypes = Enum.GetValues(typeof(FoodType)).Cast<FoodType>();
-			foreach (var foodType in foodTypes)
-			{
-				FoodTypeComboBox.Items.Add(foodType.GetDisplayName());
-			}
-		}
-
-		private Result<Food> GetFoodResult()
-		{
-			var foodResult = new FoodBuilder()
-				.GetName(NameTextBox.Text)
-				.GetPrice(PricetextBox.Text)
-			.GetFoodType((FoodType)FoodTypeComboBox.SelectedIndex + 1)
-			.Build();
-			return foodResult;
-		}
-		#endregion
-	}
+       
+    }
 }

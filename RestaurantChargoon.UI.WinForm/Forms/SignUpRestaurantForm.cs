@@ -2,20 +2,17 @@
 using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Services.Restaurants;
-using RestaurantChargoon.Services.Users;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
 {
     public partial class SignUpRestaurantForm : Form
     {
-        private readonly UserService userService;
         private readonly RestaurantService restaurantService;
 
         public SignUpRestaurantForm()
         {
             InitializeComponent();
-            this.userService = new UserService();
             this.restaurantService = new RestaurantService();
 
         }
@@ -35,14 +32,24 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             var result = await restaurantService.Add(restaurant);
             result.PrintResultMessages();
             if (result.IsSuccess)
-            {
-                RestaurantDashboardForm restaurantDashboard = new RestaurantDashboardForm();
-                restaurantDashboard.Show();
                 this.Close();
-
-            }
-
         }
+
+        private void SignUpRestaurantForm_Load(object sender, EventArgs e)
+        {
+            RestaurantDashboardForm restaurantDashboardForm = Application.OpenForms["RestaurantDashboardForm"] as RestaurantDashboardForm;
+            if (restaurantDashboardForm != null)
+            {
+                restaurantDashboardForm.Hide();
+            }
+        }
+
+        private void SignUpRestaurantForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            RestaurantDashboardForm restaurantDashboardForm = new RestaurantDashboardForm();
+            restaurantDashboardForm.Show();
+        }
+
         public Result<Restaurant> GetRestaurantResult()
         {
             var result = new RestaurantBuilder()
@@ -53,5 +60,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
                 .Build();
             return result;
         }
+
+
     }
 }

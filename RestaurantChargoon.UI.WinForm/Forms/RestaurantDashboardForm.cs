@@ -17,27 +17,39 @@ namespace RestaurantChargoon.UI.WinForm.Forms
         #region Events
         private void AddRestaurantButton_Click(object sender, EventArgs e)
         {
-            SignUpRestaurantForm signUpRestaurantForm = new SignUpRestaurantForm();
-            this.Hide();
+            SignUpRestaurantForm signUpRestaurantForm = new SignUpRestaurantForm();            
             signUpRestaurantForm.ShowDialog();
 
         }
 
         private void RestaurantDashboardForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            SigninUserFrom signinUserFrom = Application.OpenForms["SigninUserFrom"] as SigninUserFrom;
+            if (signinUserFrom != null)
+            {
+                signinUserFrom.Close();
+            }
+            MainForm mainForm = Application.OpenForms["MainForm"] as MainForm;
+            if (mainForm != null)
+            {
+                mainForm.Show();
+            }
         }
 
         private void RestaurantDashboardForm_Load(object sender, EventArgs e)
         {
+            SigninUserFrom signinUserFrom = Application.OpenForms["SigninUserFrom"] as SigninUserFrom;
+            if (signinUserFrom != null)
+            {
+                signinUserFrom.Hide();
+            }
             FillgridView();
         }
 
         private void MenuButton_Click(object sender, EventArgs e)
         {
             Program.RestaurantId = GetRowIdSelected();
-            FoodForm foodForm = new FoodForm();
-            this.Hide();
+            FoodForm foodForm = new FoodForm();           
             foodForm.ShowDialog();
         }
 

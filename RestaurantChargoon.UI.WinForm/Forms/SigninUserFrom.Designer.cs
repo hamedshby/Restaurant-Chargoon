@@ -94,6 +94,7 @@
             StartPosition = FormStartPosition.CenterParent;
             Text = "فرم ورود کاربر";
             FormClosed += SigninUserFrom_FormClosed;
+            Load += SigninUserFrom_Load;
             ResumeLayout(false);
             PerformLayout();
         }

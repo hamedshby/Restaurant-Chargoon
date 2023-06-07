@@ -17,6 +17,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             this.userService = new UserService();
 
         }
+
+        #region Events
         private async void singup_Click(object sender, EventArgs e)
         {
             var UserResult = GetUserResult();
@@ -34,12 +36,24 @@ namespace RestaurantChargoon.UI.WinForm.Forms
                 this.Close();
             }
         }
-
+        private void SingupUserForm_Load(object sender, EventArgs e)
+        {
+            MainForm mainForm = Application.OpenForms["MainForm"] as MainForm;
+            if (mainForm != null)
+            {
+                mainForm.Hide();
+            }
+        }
         private void SingupUserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
+            MainForm mainForm = Application.OpenForms["MainForm"] as MainForm;
+            if (mainForm != null)
+            {
+                mainForm.Show();
+            }
         }
+        #endregion
+
         public Result<User> GetUserResult()
         {
             UserType userStatus = RestaurantManagerCheckBox.Checked ? UserType.RestaurantManager : UserType.User;
@@ -54,5 +68,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
             return result;
         }
+
+       
     }
 }
