@@ -33,10 +33,11 @@
 			UserNameTextBox = new TextBox();
 			label2 = new Label();
 			factorDetailsDataGridView = new DataGridView();
-			NameColumn = new DataGridViewTextBoxColumn();
 			IdColumn = new DataGridViewTextBoxColumn();
-			PriceColumn = new DataGridViewTextBoxColumn();
-			FoodTypeColumn = new DataGridViewTextBoxColumn();
+			FoodName = new DataGridViewTextBoxColumn();
+			Price = new DataGridViewTextBoxColumn();
+			FoodType = new DataGridViewTextBoxColumn();
+			SaveFactorButton = new Button();
 			((System.ComponentModel.ISupportInitialize)factorDetailsDataGridView).BeginInit();
 			SuspendLayout();
 			// 
@@ -78,7 +79,7 @@
 			factorDetailsDataGridView.AllowUserToDeleteRows = false;
 			factorDetailsDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 			factorDetailsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			factorDetailsDataGridView.Columns.AddRange(new DataGridViewColumn[] { NameColumn, IdColumn, PriceColumn, FoodTypeColumn });
+			factorDetailsDataGridView.Columns.AddRange(new DataGridViewColumn[] { IdColumn, FoodName, Price, FoodType });
 			factorDetailsDataGridView.Location = new Point(-1, 123);
 			factorDetailsDataGridView.Name = "factorDetailsDataGridView";
 			factorDetailsDataGridView.ReadOnly = true;
@@ -87,15 +88,7 @@
 			factorDetailsDataGridView.RowTemplate.Height = 29;
 			factorDetailsDataGridView.Size = new Size(480, 187);
 			factorDetailsDataGridView.TabIndex = 5;
-			// 
-			// NameColumn
-			// 
-			NameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-			NameColumn.DataPropertyName = "Name";
-			NameColumn.HeaderText = "نام";
-			NameColumn.MinimumWidth = 6;
-			NameColumn.Name = "NameColumn";
-			NameColumn.ReadOnly = true;
+			factorDetailsDataGridView.CellContentClick += factorDetailsDataGridView_CellContentClick;
 			// 
 			// IdColumn
 			// 
@@ -107,29 +100,49 @@
 			IdColumn.Visible = false;
 			IdColumn.Width = 125;
 			// 
-			// PriceColumn
+			// FoodName
 			// 
-			PriceColumn.DataPropertyName = "Price";
-			PriceColumn.HeaderText = "قیمت";
-			PriceColumn.MinimumWidth = 6;
-			PriceColumn.Name = "PriceColumn";
-			PriceColumn.ReadOnly = true;
-			PriceColumn.Width = 125;
+			FoodName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+			FoodName.DataPropertyName = "FoodName";
+			FoodName.HeaderText = "نام";
+			FoodName.MinimumWidth = 6;
+			FoodName.Name = "FoodName";
+			FoodName.ReadOnly = true;
 			// 
-			// FoodTypeColumn
+			// Price
 			// 
-			FoodTypeColumn.DataPropertyName = "FoodType";
-			FoodTypeColumn.HeaderText = "نوع";
-			FoodTypeColumn.MinimumWidth = 6;
-			FoodTypeColumn.Name = "FoodTypeColumn";
-			FoodTypeColumn.ReadOnly = true;
-			FoodTypeColumn.Width = 125;
+			Price.DataPropertyName = "Price";
+			Price.HeaderText = "قیمت";
+			Price.MinimumWidth = 6;
+			Price.Name = "Price";
+			Price.ReadOnly = true;
+			Price.Width = 125;
+			// 
+			// FoodType
+			// 
+			FoodType.DataPropertyName = "FoodType";
+			FoodType.HeaderText = "نوع";
+			FoodType.MinimumWidth = 6;
+			FoodType.Name = "FoodType";
+			FoodType.ReadOnly = true;
+			FoodType.Width = 125;
+			// 
+			// SaveFactorButton
+			// 
+			SaveFactorButton.Location = new Point(12, 69);
+			SaveFactorButton.Name = "SaveFactorButton";
+			SaveFactorButton.Size = new Size(142, 29);
+			SaveFactorButton.TabIndex = 6;
+			SaveFactorButton.Text = "تایید نهایی";
+			SaveFactorButton.UseVisualStyleBackColor = true;
+			SaveFactorButton.Click += SaveFactorButton_Click;
 			// 
 			// CartDashboardForm
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(478, 311);
+			Controls.Add(SaveFactorButton);
 			Controls.Add(factorDetailsDataGridView);
 			Controls.Add(UserNameTextBox);
 			Controls.Add(label2);
@@ -149,9 +162,10 @@
 		private TextBox UserNameTextBox;
 		private Label label2;
 		public DataGridView factorDetailsDataGridView;
-		private DataGridViewTextBoxColumn NameColumn;
 		private DataGridViewTextBoxColumn IdColumn;
-		private DataGridViewTextBoxColumn PriceColumn;
-		private DataGridViewTextBoxColumn FoodTypeColumn;
+		private DataGridViewTextBoxColumn FoodName;
+		private DataGridViewTextBoxColumn Price;
+		private DataGridViewTextBoxColumn FoodType;
+		private Button SaveFactorButton;
 	}
 }
