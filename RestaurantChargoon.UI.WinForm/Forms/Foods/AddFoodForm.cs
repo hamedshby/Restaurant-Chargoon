@@ -45,7 +45,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             }
             var food = foodResult.Value;
             food.RestaurantId = Program.RestaurantId;
-            var result = await foodService.Add(food);
+            var result = await foodService.AddAsync(food);
             result.PrintResultMessages();           
         }
 

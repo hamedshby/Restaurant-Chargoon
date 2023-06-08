@@ -1,5 +1,5 @@
-﻿using RestaurantChargoon.Domain.Entities;
-using FluentResults;
+﻿using FluentResults;
+using RestaurantChargoon.Domain.Entities;
 
 namespace RestaurantChargoon.Domain.Repositories
 {

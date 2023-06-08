@@ -27,7 +27,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
                 UserResult.PrintResultMessages();
                 return;
             }
-            var result = await userService.Add(UserResult.Value);
+            var result = await userService.AddAsync(UserResult.Value);
             result.PrintResultMessages();
             if (result.IsSuccess)
             {

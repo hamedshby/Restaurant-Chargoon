@@ -2,7 +2,7 @@
 {
 	public class Restaurant: BaseEntity
 	{
-        public string RestaurantName { get; set; }
+        public string Name { get; set; }
 		public string StartTime { get; set; }
 		public string EndTime { get; set; }
 		public string Address { get; set; }

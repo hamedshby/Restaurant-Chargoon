@@ -29,7 +29,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
             var restaurant = ResResult.Value;
             restaurant.UserId = Program.userLogin.Id;
-            var result = await restaurantService.Add(restaurant);
+            var result = await restaurantService.AddAsync(restaurant);
             result.PrintResultMessages();
             if (result.IsSuccess)
                 this.Close();

@@ -77,7 +77,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             new
             {
                 c.Id,
-                c.RestaurantName,
+                c.Name,
                 c.StartTime,
                 c.EndTime,
                 c.Address

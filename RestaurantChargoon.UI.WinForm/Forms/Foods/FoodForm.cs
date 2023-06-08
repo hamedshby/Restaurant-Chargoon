@@ -21,7 +21,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
         #region Events
         private void FoodForm_Load(object sender, EventArgs e)
         {
-            var restaurantName = restaurantService.Get(c => c.Id == Program.RestaurantId).FirstOrDefault().RestaurantName;
+            var restaurantName = restaurantService.Get(c => c.Id == Program.RestaurantId).FirstOrDefault().Name;
             this.Text = restaurantName;
             RestaurantDashboardForm restaurantDashboardForm = Application.OpenForms["RestaurantDashboardForm"] as RestaurantDashboardForm;
             if (restaurantDashboardForm != null)

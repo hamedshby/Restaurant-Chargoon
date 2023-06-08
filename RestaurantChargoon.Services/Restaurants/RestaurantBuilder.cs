@@ -1,17 +1,12 @@
 ﻿using FluentResults;
 using RestaurantChargoon.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RestaurantChargoon.Services.Restaurants
 {
-    public class RestaurantBuilder
-    {
-        private  readonly Result<Restaurant> RestaurantResult =new Result<Restaurant>();
-        private readonly Restaurant restaurant=new Restaurant();
+	public class RestaurantBuilder
+	{
+		private readonly Result<Restaurant> RestaurantResult = new Result<Restaurant>();
+		private readonly Restaurant restaurant = new Restaurant();
 		public RestaurantBuilder GetName(string name)
 		{
 			if (string.IsNullOrEmpty(name))
@@ -19,11 +14,11 @@ namespace RestaurantChargoon.Services.Restaurants
 				RestaurantResult.WithError("لطفا نام را وراد کنید");
 			}
 			else
-				restaurant.RestaurantName = name;
+				restaurant.Name = name;
 			return this;
 		}
-       
-        public RestaurantBuilder GetStartTime(string startTime)
+
+		public RestaurantBuilder GetStartTime(string startTime)
 		{
 			if (string.IsNullOrEmpty(startTime))
 			{
