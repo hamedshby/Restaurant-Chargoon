@@ -1,6 +1,7 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.UI.WinForm.Forms.Foods;
+using RestaurantChargoon.UI.WinForm.Forms.Users;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
@@ -17,24 +18,24 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 
 		private void RestaurantDashboardUserForm_Load(object sender, EventArgs e)
 		{
-			SigninUserFrom signinUserFrom = Application.OpenForms["SigninUserFrom"] as SigninUserFrom;
-			if (signinUserFrom != null)
+			UserDashboardForm userDashboardForm = Application.OpenForms["UserDashboardForm"] as UserDashboardForm;
+			if (userDashboardForm != null)
 			{
-				signinUserFrom.Hide();
+				userDashboardForm.Hide();
 			}
-			FillgridView();
+			FillGridView();
 		}
 
 		private void RestaurantDashboardUserForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			SigninUserFrom signinUserFrom = Application.OpenForms["SigninUserFrom"] as SigninUserFrom;
-			if (signinUserFrom != null)
+			UserDashboardForm userDashboardForm = Application.OpenForms["UserDashboardForm"] as UserDashboardForm;
+			if (userDashboardForm != null)
 			{
-				signinUserFrom.Show();
+				userDashboardForm.Show();
 			}
 		}
 
-		public void FillgridView()
+		public void FillGridView()
 		{
 			var factordetails = restaurantService.GetAll()
 				.Select(c => new { c.Id, c.Name, c.StartTime, c.EndTime, c.Address })

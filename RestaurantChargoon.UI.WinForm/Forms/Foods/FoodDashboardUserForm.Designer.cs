@@ -50,7 +50,7 @@
 			FoodDataGridView.RightToLeft = RightToLeft.Yes;
 			FoodDataGridView.RowHeadersWidth = 51;
 			FoodDataGridView.RowTemplate.Height = 29;
-			FoodDataGridView.Size = new Size(614, 276);
+			FoodDataGridView.Size = new Size(709, 276);
 			FoodDataGridView.TabIndex = 1;
 			FoodDataGridView.CellContentClick += FoodDataGridView_CellContentClick;
 			// 
@@ -105,7 +105,7 @@
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(614, 324);
+			ClientSize = new Size(709, 324);
 			Controls.Add(showcartButton);
 			Controls.Add(FoodDataGridView);
 			Name = "FoodDashboardUserForm";

@@ -32,5 +32,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 				signinUserFrom.Show();
 			}
 		}
+
+		private void ShowOrdersButton_Click(object sender, EventArgs e)
+		{
+			UserOrdersForm ordersForm = new UserOrdersForm();
+			ordersForm.ShowDialog();
+		}
 	}
 }

@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			button1 = new Button();
-			button2 = new Button();
+			ShowOrdersButton = new Button();
 			button3 = new Button();
 			SuspendLayout();
 			// 
@@ -43,14 +43,15 @@
 			button1.UseVisualStyleBackColor = true;
 			button1.Click += button1_Click;
 			// 
-			// button2
+			// ShowOrdersButton
 			// 
-			button2.Location = new Point(47, 83);
-			button2.Name = "button2";
-			button2.Size = new Size(161, 29);
-			button2.TabIndex = 1;
-			button2.Text = "تاریخچه سفارشها";
-			button2.UseVisualStyleBackColor = true;
+			ShowOrdersButton.Location = new Point(47, 83);
+			ShowOrdersButton.Name = "ShowOrdersButton";
+			ShowOrdersButton.Size = new Size(161, 29);
+			ShowOrdersButton.TabIndex = 1;
+			ShowOrdersButton.Text = "تاریخچه سفارشها";
+			ShowOrdersButton.UseVisualStyleBackColor = true;
+			ShowOrdersButton.Click += ShowOrdersButton_Click;
 			// 
 			// button3
 			// 
@@ -67,7 +68,7 @@
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(250, 224);
 			Controls.Add(button3);
-			Controls.Add(button2);
+			Controls.Add(ShowOrdersButton);
 			Controls.Add(button1);
 			MaximumSize = new Size(268, 271);
 			MinimumSize = new Size(268, 271);
@@ -81,7 +82,7 @@
 		#endregion
 
 		private Button button1;
-		private Button button2;
+		private Button ShowOrdersButton;
 		private Button button3;
 	}
 }
