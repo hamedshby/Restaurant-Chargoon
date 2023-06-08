@@ -2,6 +2,7 @@
 using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.Users;
 using RestaurantChargoon.UI.WinForm.Forms.Restaurants;
+using RestaurantChargoon.UI.WinForm.Forms.Users;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
 {
@@ -31,8 +32,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			}
 			else if (user.UserType == UserType.User)
 			{
-				RestaurantDashboardUserForm restaurantDashboardUserForm = new RestaurantDashboardUserForm();
-				restaurantDashboardUserForm.ShowDialog();
+				UserDashboardForm userDashboardForm = new UserDashboardForm();
+				userDashboardForm.ShowDialog();
 			}
 		}
 
