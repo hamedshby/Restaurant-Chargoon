@@ -17,8 +17,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
         }
 
-
-        private async void RegisterRestaurant_Click(object sender, EventArgs e)
+		#region Events
+		private async void RegisterRestaurant_Click(object sender, EventArgs e)
         {
             var ResResult = GetRestaurantResult();
             if (ResResult.IsFailed)
@@ -37,20 +37,19 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
         private void SignUpRestaurantForm_Load(object sender, EventArgs e)
         {
-            RestaurantDashboardForm restaurantDashboardForm = Application.OpenForms["RestaurantDashboardForm"] as RestaurantDashboardForm;
-            if (restaurantDashboardForm != null)
-            {
-                restaurantDashboardForm.Hide();
-            }
-        }
+			nameof(RestaurantDashboardForm).HideParentForm();
+
+		}
 
         private void SignUpRestaurantForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            RestaurantDashboardForm restaurantDashboardForm = new RestaurantDashboardForm();
-            restaurantDashboardForm.Show();
-        }
+			nameof(RestaurantDashboardForm).ShowParentForm();
+		}
 
-        public Result<Restaurant> GetRestaurantResult()
+		#endregion
+
+		#region Methods
+		public Result<Restaurant> GetRestaurantResult()
         {
             var result = new RestaurantBuilder()
                 .GetName(ResturantNameTextBox.Text)
@@ -61,6 +60,6 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             return result;
         }
 
-
-    }
+		#endregion
+	}
 }

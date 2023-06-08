@@ -18,43 +18,18 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 			this.restaurantService = new RestaurantService();
 		}
 
+		#region Events
 		private void UserOrdersForm_Load(object sender, EventArgs e)
 		{
-			UserDashboardForm userDashboardForm = Application.OpenForms["UserDashboardForm"] as UserDashboardForm;
-			if (userDashboardForm != null)
-			{
-				userDashboardForm.Hide();
-			}
+			nameof(UserDashboardForm).HideParentForm();
 			FillGridView();
 		}
 
 		private void UserOrdersForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			UserDashboardForm userDashboardForm = Application.OpenForms["UserDashboardForm"] as UserDashboardForm;
-			if (userDashboardForm != null)
-			{
-				userDashboardForm.Show();
-			}
+			nameof(UserDashboardForm).ShowParentForm();
 		}
 
-		public void FillGridView()
-		{
-			var factors = factorService.Get(c => c.UserId == Program.userLogin.Id)
-				.Select(c => new
-				{
-					c.Id,
-					RestaurantName = restaurantService.GetById(c.RestaurantId).Name
-				})
-				.OrderByDescending(c => c.Id)
-				.ToList();
-			if (factors.Any())
-			{
-				BindingSource bindingSource = new BindingSource();
-				bindingSource.DataSource = factors;
-				UserFactorDataGridView.DataSource = bindingSource;
-				UserFactorDataGridView.AddBottonColumn("مشاهده ی جزییات");
-			}
-		}
 
 		private void UserFactorDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
@@ -73,5 +48,28 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 				}
 			}
 		}
+
+		#endregion
+
+		#region Methods
+		public void FillGridView()
+		{
+			var factors = factorService.Get(c => c.UserId == Program.userLogin.Id)
+				.Select(c => new
+				{
+					c.Id,
+					RestaurantName = restaurantService.GetById(c.RestaurantId).Name
+				})
+				.OrderByDescending(c => c.Id)
+				.ToList();
+			if (factors.Any())
+			{
+				BindingSource bindingSource = new BindingSource();
+				bindingSource.DataSource = factors;
+				UserFactorDataGridView.DataSource = bindingSource;
+				UserFactorDataGridView.AddBottonColumn("مشاهده ی جزییات");
+			}
+		}
+		#endregion
 	}
 }

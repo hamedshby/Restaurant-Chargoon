@@ -1,8 +1,8 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.Users;
-using RestaurantChargoon.UI.WinForm.Forms.Restaurants;
 using RestaurantChargoon.UI.WinForm.Forms.Users;
+using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
 {
@@ -39,21 +39,12 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 		private void SigninUserFrom_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			MainForm mainForm = Application.OpenForms["MainForm"] as MainForm;
-			if (mainForm != null)
-			{
-				mainForm.Show();
-			}
-
+			nameof(MainForm).ShowParentForm();
 		}
 
 		private void SigninUserFrom_Load(object sender, EventArgs e)
 		{
-			MainForm mainForm = Application.OpenForms["MainForm"] as MainForm;
-			if (mainForm != null)
-			{
-				mainForm.Hide();
-			}
+			nameof(MainForm).HideParentForm();
 		}
 
 		#endregion

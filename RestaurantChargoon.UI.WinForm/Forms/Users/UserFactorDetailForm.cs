@@ -1,6 +1,6 @@
-﻿using RestaurantChargoon.Domain.Enums;
-using RestaurantChargoon.Services.ExtensionMethods;
+﻿using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Factors;
+using RestaurantChargoon.UI.WinForm.Services;
 using System.Data;
 
 namespace RestaurantChargoon.UI.WinForm.Forms.Users
@@ -16,25 +16,21 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 			this.factorId = factorId;
 		}
 
+		#region Events
 		private void UserFactorDetailForm_Load(object sender, EventArgs e)
 		{
-			UserFactorsForm userFactorsForm = Application.OpenForms["UserFactorsForm"] as UserFactorsForm;
-			if (userFactorsForm != null)
-			{
-				userFactorsForm.Hide();
-			}
+			nameof(UserFactorsForm).HideParentForm();
 			FillGridView();
 		}
 
 		private void UserFactorDetailForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			UserFactorsForm userFactorsForm = Application.OpenForms["UserFactorsForm"] as UserFactorsForm;
-			if (userFactorsForm != null)
-			{
-				userFactorsForm.Show();
-			}
+			nameof(UserFactorsForm).ShowParentForm();
 		}
+		#endregion
 
+
+		#region Methods
 		public void FillGridView()
 		{
 			var factorDetails = factorDetailService.Get(c => c.FactorId == factorId)
@@ -47,5 +43,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 				FactcorDetailDataGridView.DataSource = bindingSource;
 			}
 		}
+
+		#endregion
 	}
 }

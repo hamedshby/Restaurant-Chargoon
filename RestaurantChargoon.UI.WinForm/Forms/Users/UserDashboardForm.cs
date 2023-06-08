@@ -1,4 +1,5 @@
 ﻿using RestaurantChargoon.UI.WinForm.Forms.Restaurants;
+using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms.Users
 {
@@ -17,20 +18,12 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 
 		private void UserDashboardForm_Load(object sender, EventArgs e)
 		{
-			SigninUserFrom signinUserFrom = Application.OpenForms["SigninUserFrom"] as SigninUserFrom;
-			if (signinUserFrom != null)
-			{
-				signinUserFrom.Hide();
-			}
+			nameof(SigninUserFrom).HideParentForm();
 		}
 
 		private void UserDashboardForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			SigninUserFrom signinUserFrom = Application.OpenForms["SigninUserFrom"] as SigninUserFrom;
-			if (signinUserFrom != null)
-			{
-				signinUserFrom.Show();
-			}
+			nameof(SigninUserFrom).ShowParentForm();
 		}
 
 		private void ShowOrdersButton_Click(object sender, EventArgs e)

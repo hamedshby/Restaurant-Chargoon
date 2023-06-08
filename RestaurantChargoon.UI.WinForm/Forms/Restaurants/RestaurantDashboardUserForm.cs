@@ -16,34 +16,16 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 			this.restaurantService = new RestaurantService();
 		}
 
+		#region Events
 		private void RestaurantDashboardUserForm_Load(object sender, EventArgs e)
 		{
-			UserDashboardForm userDashboardForm = Application.OpenForms["UserDashboardForm"] as UserDashboardForm;
-			if (userDashboardForm != null)
-			{
-				userDashboardForm.Hide();
-			}
+			nameof(UserDashboardForm).HideParentForm();
 			FillGridView();
 		}
 
 		private void RestaurantDashboardUserForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			UserDashboardForm userDashboardForm = Application.OpenForms["UserDashboardForm"] as UserDashboardForm;
-			if (userDashboardForm != null)
-			{
-				userDashboardForm.Show();
-			}
-		}
-
-		public void FillGridView()
-		{
-			var factordetails = restaurantService.GetAll()
-				.Select(c => new { c.Id, c.Name, c.StartTime, c.EndTime, c.Address })
-				.ToList();
-			BindingSource bindingSource = new BindingSource();
-			bindingSource.DataSource = factordetails;
-			RestaurantDataGridView.DataSource = bindingSource;
-			RestaurantDataGridView.AddBottonColumn("انتخاب");
+			nameof(UserDashboardForm).ShowParentForm();
 		}
 
 		private void RestaurantDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -63,7 +45,20 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 				}
 			}
 		}
+		#endregion
 
-		
+		#region Methods
+		public void FillGridView()
+		{
+			var factordetails = restaurantService.GetAll()
+				.Select(c => new { c.Id, c.Name, c.StartTime, c.EndTime, c.Address })
+				.ToList();
+			BindingSource bindingSource = new BindingSource();
+			bindingSource.DataSource = factordetails;
+			RestaurantDataGridView.DataSource = bindingSource;
+			RestaurantDataGridView.AddBottonColumn("انتخاب");
+		}
+
+		#endregion
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using FluentResults;
+using RestaurantChargoon.UI.WinForm.Forms.Users;
 using System.Windows.Forms;
 
 namespace RestaurantChargoon.UI.WinForm.Services
@@ -55,5 +56,23 @@ namespace RestaurantChargoon.UI.WinForm.Services
 			newColumn.Visible = visible;
 			dataGridView.Columns.Add(newColumn);
 		}
+
+		public static void HideParentForm(this string formName)
+		{
+			Form formToShow = Application.OpenForms[formName];
+			if (formToShow != null)
+			{
+				formToShow.Hide();
+			}
+		}
+		public static void ShowParentForm(this string formName)
+		{
+			Form formToShow = Application.OpenForms[formName];
+			if (formToShow != null)
+			{
+				formToShow.Show();
+			}
+		}
+
 	}
 }

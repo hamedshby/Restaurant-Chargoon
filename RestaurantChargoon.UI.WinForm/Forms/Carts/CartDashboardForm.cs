@@ -4,7 +4,6 @@ using RestaurantChargoon.Services.Factors;
 using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.Services.Users;
 using RestaurantChargoon.UI.WinForm.Forms.Foods;
-using RestaurantChargoon.UI.WinForm.Forms.Restaurants;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms.Carts
@@ -27,27 +26,16 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 			factorService = new FactorService();
 		}
 
+		#region Events
 		private void CartDashboardForm_Load(object sender, EventArgs e)
 		{
-			FoodDashboardUserForm foodDashboardUserForm = Application.OpenForms["FoodDashboardUserForm"] as FoodDashboardUserForm;
-			if (foodDashboardUserForm != null)
-			{
-				foodDashboardUserForm.Hide();
-			}
-			string restaurantName = restaurantService.GetById(cart.RestaurantId).Name;
-			string userName = userService.GetById(cart.RestaurantId).Name;
-			RestaurantNametextBox.Text = restaurantName;
-			UserNameTextBox.Text = userName;
+			nameof(FoodDashboardUserForm).HideParentForm();
+			FillRestaurantNameUserNameTextBox();
 			FillgridView();
 		}
-
-		public void FillgridView()
+		private void CartDashboardForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			var factordetails = cart.FactorDetails.Select(c => new { c.Id, c.FoodName, c.Price, c.FoodType }).ToList();
-			BindingSource bindingSource = new BindingSource();
-			bindingSource.DataSource = factordetails;
-			factorDetailsDataGridView.DataSource = bindingSource;
-			factorDetailsDataGridView.AddBottonColumn("حذف");
+			nameof(FoodDashboardUserForm).ShowParentForm();
 		}
 
 		private void factorDetailsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -82,13 +70,28 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 			}
 		}
 
-		private void CartDashboardForm_FormClosed(object sender, FormClosedEventArgs e)
+		#endregion
+
+
+		#region Methods
+		private void FillRestaurantNameUserNameTextBox()
 		{
-			FoodDashboardUserForm foodDashboardUserForm = Application.OpenForms["FoodDashboardUserForm"] as FoodDashboardUserForm;
-			if (foodDashboardUserForm != null)
-			{
-				foodDashboardUserForm.Show();
-			}
+			string restaurantName = restaurantService.GetById(cart.RestaurantId).Name;
+			string userName = userService.GetById(cart.RestaurantId).Name;
+			RestaurantNametextBox.Text = restaurantName;
+			UserNameTextBox.Text = userName;
 		}
+
+		public void FillgridView()
+		{
+			var factordetails = cart.FactorDetails.Select(c => new { c.Id, c.FoodName, c.Price, c.FoodType }).ToList();
+			BindingSource bindingSource = new BindingSource();
+			bindingSource.DataSource = factordetails;
+			factorDetailsDataGridView.DataSource = bindingSource;
+			factorDetailsDataGridView.AddBottonColumn("حذف");
+		}
+
+		#endregion
+
 	}
 }

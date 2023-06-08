@@ -38,21 +38,14 @@ namespace RestaurantChargoon.UI.WinForm.Forms
         }
         private void SingupUserForm_Load(object sender, EventArgs e)
         {
-            MainForm mainForm = Application.OpenForms["MainForm"] as MainForm;
-            if (mainForm != null)
-            {
-                mainForm.Hide();
-            }
+            nameof(MainForm).HideParentForm();
         }
         private void SingupUserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MainForm mainForm = Application.OpenForms["MainForm"] as MainForm;
-            if (mainForm != null)
-            {
-                mainForm.Show();
-            }
-        }
+			nameof(MainForm).ShowParentForm();
+		}
         #endregion
+
 
         public Result<User> GetUserResult()
         {

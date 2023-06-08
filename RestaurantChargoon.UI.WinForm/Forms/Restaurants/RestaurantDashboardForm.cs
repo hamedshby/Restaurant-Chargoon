@@ -24,26 +24,13 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 		private void RestaurantDashboardForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			SigninUserFrom signinUserFrom = Application.OpenForms["SigninUserFrom"] as SigninUserFrom;
-			if (signinUserFrom != null)
-			{
-				signinUserFrom.Close();
-			}
-			MainForm mainForm = Application.OpenForms["MainForm"] as MainForm;
-			if (mainForm != null)
-			{
-				mainForm.Show();
-			}
+			nameof(SigninUserFrom).ShowParentForm();
 		}
 
 		private void RestaurantDashboardForm_Load(object sender, EventArgs e)
 		{
-			SigninUserFrom signinUserFrom = Application.OpenForms["SigninUserFrom"] as SigninUserFrom;
-			if (signinUserFrom != null)
-			{
-				signinUserFrom.Hide();
-			}
-			FillgridView();
+			nameof(SigninUserFrom).HideParentForm();
+			FillGridView();
 		}
 
 		private void RestaurantDataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -59,11 +46,17 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		{
 			if (e.ColumnIndex == RestaurantDataGridView.Columns["مشاهده منو"].Index)
 			{
-				DataGridViewRow row = RestaurantDataGridView.Rows[e.RowIndex];
-				int.TryParse(row.Cells[2].Value.ToString(), out Program.RestaurantId);
-				string restaurantName = row.Cells[3].Value.ToString();
-				FoodForm foodForm = new FoodForm();
-				foodForm.ShowDialog();
+				foreach (DataGridViewColumn itm in RestaurantDataGridView.Columns)
+				{
+					if (itm.DataPropertyName == "Id")
+					{
+						DataGridViewRow row = RestaurantDataGridView.Rows[e.RowIndex];
+						int.TryParse(row.Cells[2].Value.ToString(), out Program.RestaurantId);
+						FoodForm foodForm = new FoodForm();
+						foodForm.ShowDialog();
+						break;
+					}
+				}
 			}
 		}
 
@@ -71,34 +64,15 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 
 		#region Methods
-		public void FillgridView()
+		public void FillGridView()
 		{
-			var foods = restaurantService.Get(r => r.UserId == Program.userLogin.Id).Select(c =>
-			new
-			{
-				c.Id,
-				c.Name,
-				c.StartTime,
-				c.EndTime,
-				c.Address
-			});
+			var foods = restaurantService.Get(r => r.UserId == Program.userLogin.Id)
+				.Select(c => new { c.Id, c.Name, c.StartTime, c.EndTime, c.Address });
 			BindingSource bindingSource = new BindingSource();
 			bindingSource.DataSource = foods;
 			RestaurantDataGridView.DataSource = bindingSource;
 		}
 
-
-		private int GetRowIdSelected()
-		{
-			if (RestaurantDataGridView.SelectedRows.Count > 0)
-			{
-				DataGridViewRow selectedRow = RestaurantDataGridView.SelectedRows[0];
-				int.TryParse(selectedRow.Cells[0].Value.ToString(), out int restaurantId);
-				Program.RestaurantId = restaurantId;
-				return restaurantId;
-			}
-			return 0;
-		}
 		#endregion
 	}
 
