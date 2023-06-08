@@ -9,6 +9,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 	public partial class UserFactorsForm : Form
 	{
 		private readonly FactorService factorService;
+		private readonly FactorDetailService factorDetailService;
 		private readonly RestaurantService restaurantService;
 
 		public UserFactorsForm()
@@ -16,6 +17,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 			InitializeComponent();
 			factorService = new FactorService();
 			this.restaurantService = new RestaurantService();
+			this.factorDetailService = new FactorDetailService();
 		}
 
 		#region Events
@@ -58,7 +60,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 				.Select(c => new
 				{
 					c.Id,
-					RestaurantName = restaurantService.GetById(c.RestaurantId).Name
+					RestaurantName = restaurantService.GetById(c.RestaurantId).Name,
+					TotalPrice = factorDetailService.SumOfFactor(c.Id)
 				})
 				.OrderByDescending(c => c.Id)
 				.ToList();

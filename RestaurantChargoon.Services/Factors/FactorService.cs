@@ -6,5 +6,6 @@ namespace RestaurantChargoon.Services.Factors
 	public class FactorService : BaseService<Factor>
 	{
 
+		
 	}
 }
