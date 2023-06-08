@@ -35,7 +35,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 
 		private void ShowOrdersButton_Click(object sender, EventArgs e)
 		{
-			UserOrdersForm ordersForm = new UserOrdersForm();
+			UserFactorsForm ordersForm = new UserFactorsForm();
 			ordersForm.ShowDialog();
 		}
 	}

@@ -1,6 +1,6 @@
 ﻿namespace RestaurantChargoon.UI.WinForm.Forms.Users
 {
-	partial class UserOrdersForm
+	partial class UserFactorsForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -49,6 +49,7 @@
 			UserFactorDataGridView.RowTemplate.Height = 29;
 			UserFactorDataGridView.Size = new Size(485, 237);
 			UserFactorDataGridView.TabIndex = 0;
+			UserFactorDataGridView.CellContentClick += UserFactorDataGridView_CellContentClick;
 			// 
 			// RestaurantName
 			// 

@@ -6,12 +6,12 @@ using System.Data;
 
 namespace RestaurantChargoon.UI.WinForm.Forms.Users
 {
-	public partial class UserOrdersForm : Form
+	public partial class UserFactorsForm : Form
 	{
 		private readonly FactorService factorService;
 		private readonly RestaurantService restaurantService;
 
-		public UserOrdersForm()
+		public UserFactorsForm()
 		{
 			InitializeComponent();
 			factorService = new FactorService();
@@ -45,6 +45,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 					c.Id,
 					RestaurantName = restaurantService.GetById(c.RestaurantId).Name
 				})
+				.OrderByDescending(c => c.Id)
 				.ToList();
 			if (factors.Any())
 			{
@@ -52,6 +53,24 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 				bindingSource.DataSource = factors;
 				UserFactorDataGridView.DataSource = bindingSource;
 				UserFactorDataGridView.AddBottonColumn("مشاهده ی جزییات");
+			}
+		}
+
+		private void UserFactorDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.ColumnIndex == UserFactorDataGridView.Columns["مشاهده ی جزییات"].Index)
+			{
+				DataGridViewRow row = UserFactorDataGridView.Rows[e.RowIndex];
+				foreach (DataGridViewColumn itm in UserFactorDataGridView.Columns)
+				{
+					if (itm.DataPropertyName == "Id")
+					{
+						int.TryParse(row.Cells[itm.Index].Value.ToString(), out int factorId);
+						UserFactorDetailForm form = new UserFactorDetailForm(factorId);
+						form.ShowDialog();
+						break;
+					}
+				}
 			}
 		}
 	}

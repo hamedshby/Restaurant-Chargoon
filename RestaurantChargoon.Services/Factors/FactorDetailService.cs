@@ -3,7 +3,7 @@ using RestaurantChargoon.Services.CommonServices;
 
 namespace RestaurantChargoon.Services.Factors
 {
-	public class FactorService : BaseService<Factor>
+	public class FactorDetailService : BaseService<FactorDetail>
 	{
 
 	}
