@@ -150,6 +150,7 @@
 			Controls.Add(label1);
 			Name = "CartDashboardForm";
 			Text = "CartDashboardForm";
+			FormClosed += CartDashboardForm_FormClosed;
 			Load += CartDashboardForm_Load;
 			((System.ComponentModel.ISupportInitialize)factorDetailsDataGridView).EndInit();
 			ResumeLayout(false);

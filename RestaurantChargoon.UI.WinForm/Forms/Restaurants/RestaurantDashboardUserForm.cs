@@ -1,5 +1,6 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Services.Restaurants;
+using RestaurantChargoon.UI.WinForm.Forms.Foods;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
@@ -24,6 +25,15 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 			FillgridView();
 		}
 
+		private void RestaurantDashboardUserForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			SigninUserFrom signinUserFrom = Application.OpenForms["SigninUserFrom"] as SigninUserFrom;
+			if (signinUserFrom != null)
+			{
+				signinUserFrom.Show();
+			}
+		}
+
 		public void FillgridView()
 		{
 			var factordetails = restaurantService.GetAll()
@@ -45,20 +55,14 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 					if (itm.DataPropertyName == "Id")
 					{
 						int.TryParse(row.Cells[itm.Index].Value.ToString(), out Program.RestaurantId);
-						
+						FoodDashboardUserForm foodDashboardUserForm = new FoodDashboardUserForm();
+						foodDashboardUserForm.ShowDialog();
 						break;
 					}
 				}
 			}
 		}
 
-		private void RestaurantDashboardUserForm_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			SigninUserFrom signinUserFrom = Application.OpenForms["SigninUserFrom"] as SigninUserFrom;
-			if (signinUserFrom != null)
-			{
-				signinUserFrom.Show();
-			}
-		}
+		
 	}
 }

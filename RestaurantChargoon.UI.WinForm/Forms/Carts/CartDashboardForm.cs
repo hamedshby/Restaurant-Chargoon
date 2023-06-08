@@ -3,6 +3,8 @@ using RestaurantChargoon.Services.Carts;
 using RestaurantChargoon.Services.Factors;
 using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.Services.Users;
+using RestaurantChargoon.UI.WinForm.Forms.Foods;
+using RestaurantChargoon.UI.WinForm.Forms.Restaurants;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms.Carts
@@ -27,6 +29,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 
 		private void CartDashboardForm_Load(object sender, EventArgs e)
 		{
+			FoodDashboardUserForm foodDashboardUserForm = Application.OpenForms["FoodDashboardUserForm"] as FoodDashboardUserForm;
+			if (foodDashboardUserForm != null)
+			{
+				foodDashboardUserForm.Hide();
+			}
 			string restaurantName = restaurantService.GetById(cart.RestaurantId).Name;
 			string userName = userService.GetById(cart.RestaurantId).Name;
 			RestaurantNametextBox.Text = restaurantName;
@@ -63,15 +70,24 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 
 		private async void SaveFactorButton_Click(object sender, EventArgs e)
 		{
-            foreach (var factorDetail in cart.FactorDetails)
-            {
+			foreach (var factorDetail in cart.FactorDetails)
+			{
 				factorDetail.Id = 0;
-            }
-            var result = await factorService.AddAsync(cart);
+			}
+			var result = await factorService.AddAsync(cart);
 			result.PrintResultMessages();
 			if (result.IsSuccess)
 			{
 				this.Close();
+			}
+		}
+
+		private void CartDashboardForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			FoodDashboardUserForm foodDashboardUserForm = Application.OpenForms["FoodDashboardUserForm"] as FoodDashboardUserForm;
+			if (foodDashboardUserForm != null)
+			{
+				foodDashboardUserForm.Show();
 			}
 		}
 	}

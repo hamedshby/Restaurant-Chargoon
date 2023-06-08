@@ -1,4 +1,6 @@
-﻿namespace RestaurantChargoon.Domain.Entities
+﻿using System.Net;
+
+namespace RestaurantChargoon.Domain.Entities
 {
 	public class Factor : BaseEntity
 	{
@@ -8,5 +10,6 @@
         public User User { get; set; }
         public ICollection<FactorDetail> FactorDetails { get; set; }
 
-    }
+	
+	}
 }

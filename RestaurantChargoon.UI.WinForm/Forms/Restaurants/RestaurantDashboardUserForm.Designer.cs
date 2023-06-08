@@ -108,7 +108,8 @@
 			ClientSize = new Size(800, 261);
 			Controls.Add(RestaurantDataGridView);
 			Name = "RestaurantDashboardUserForm";
-			Text = "RestaurantDashboardUserForm";
+			StartPosition = FormStartPosition.CenterScreen;
+			Text = "لیست رستورانها";
 			FormClosed += RestaurantDashboardUserForm_FormClosed;
 			Load += RestaurantDashboardUserForm_Load;
 			((System.ComponentModel.ISupportInitialize)RestaurantDataGridView).EndInit();
