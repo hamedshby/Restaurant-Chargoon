@@ -38,10 +38,10 @@ namespace Restaurant_Chargoon.UI.WinForm
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			CartService cartService = new CartService();
-			var cart= cartService.GetfakeCart();
-			CartDashboardForm cartDashboardForm = new CartDashboardForm(cart);
-			cartDashboardForm.ShowDialog();
+			//CartService cartService = new CartService();
+			//var cart= cartService.GetfakeCart();
+			//CartDashboardForm cartDashboardForm = new CartDashboardForm(cart);
+			//cartDashboardForm.ShowDialog();
 		}
 	}
 }

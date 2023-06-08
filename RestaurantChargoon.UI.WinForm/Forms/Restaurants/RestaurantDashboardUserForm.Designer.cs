@@ -1,6 +1,6 @@
-﻿namespace RestaurantChargoon.UI.WinForm.Forms
+﻿namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 {
-	partial class RestaurantDashboardForm
+	partial class RestaurantDashboardUserForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			AddRestaurantButton = new Button();
 			RestaurantDataGridView = new DataGridView();
 			Column5 = new DataGridViewTextBoxColumn();
 			Column1 = new DataGridViewTextBoxColumn();
@@ -38,35 +37,23 @@
 			((System.ComponentModel.ISupportInitialize)RestaurantDataGridView).BeginInit();
 			SuspendLayout();
 			// 
-			// AddRestaurantButton
-			// 
-			AddRestaurantButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-			AddRestaurantButton.Location = new Point(639, 0);
-			AddRestaurantButton.Name = "AddRestaurantButton";
-			AddRestaurantButton.Size = new Size(171, 44);
-			AddRestaurantButton.TabIndex = 1;
-			AddRestaurantButton.Text = "ثبت رستوران";
-			AddRestaurantButton.UseVisualStyleBackColor = true;
-			AddRestaurantButton.Click += AddRestaurantButton_Click;
-			// 
 			// RestaurantDataGridView
 			// 
 			RestaurantDataGridView.AllowUserToAddRows = false;
 			RestaurantDataGridView.AllowUserToDeleteRows = false;
-			RestaurantDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 			RestaurantDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			RestaurantDataGridView.Columns.AddRange(new DataGridViewColumn[] { Column5, Column1, Column2, Column3, Column4 });
-			RestaurantDataGridView.Location = new Point(0, 50);
+			RestaurantDataGridView.Dock = DockStyle.Fill;
+			RestaurantDataGridView.Location = new Point(0, 0);
 			RestaurantDataGridView.Name = "RestaurantDataGridView";
 			RestaurantDataGridView.ReadOnly = true;
 			RestaurantDataGridView.RightToLeft = RightToLeft.Yes;
 			RestaurantDataGridView.RowHeadersWidth = 51;
 			RestaurantDataGridView.RowTemplate.Height = 29;
 			RestaurantDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-			RestaurantDataGridView.Size = new Size(810, 281);
-			RestaurantDataGridView.TabIndex = 2;
+			RestaurantDataGridView.Size = new Size(800, 261);
+			RestaurantDataGridView.TabIndex = 3;
 			RestaurantDataGridView.CellContentClick += RestaurantDataGridView_CellContentClick;
-			RestaurantDataGridView.DataBindingComplete += RestaurantDataGridView_DataBindingComplete;
 			// 
 			// Column5
 			// 
@@ -114,25 +101,22 @@
 			Column4.ReadOnly = true;
 			Column4.Width = 125;
 			// 
-			// RestaurantDashboardForm
+			// RestaurantDashboardUserForm
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(810, 331);
+			ClientSize = new Size(800, 261);
 			Controls.Add(RestaurantDataGridView);
-			Controls.Add(AddRestaurantButton);
-			Margin = new Padding(3, 4, 3, 4);
-			Name = "RestaurantDashboardForm";
-			StartPosition = FormStartPosition.CenterScreen;
-			Text = "داشبورد رستوران";
-			FormClosed += RestaurantDashboardForm_FormClosed;
-			Load += RestaurantDashboardForm_Load;
+			Name = "RestaurantDashboardUserForm";
+			Text = "RestaurantDashboardUserForm";
+			FormClosed += RestaurantDashboardUserForm_FormClosed;
+			Load += RestaurantDashboardUserForm_Load;
 			((System.ComponentModel.ISupportInitialize)RestaurantDataGridView).EndInit();
 			ResumeLayout(false);
 		}
 
 		#endregion
-		private Button AddRestaurantButton;
+
 		private DataGridView RestaurantDataGridView;
 		private DataGridViewTextBoxColumn Column5;
 		private DataGridViewTextBoxColumn Column1;
