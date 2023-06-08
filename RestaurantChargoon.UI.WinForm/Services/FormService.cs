@@ -1,4 +1,6 @@
 ﻿using FluentResults;
+using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.UI.WinForm.Forms;
 using RestaurantChargoon.UI.WinForm.Forms.Users;
 using System.Windows.Forms;
 
@@ -29,16 +31,7 @@ namespace RestaurantChargoon.UI.WinForm.Services
 				ShowInfoMessageBox(messages);
 		}
 
-        public static void AddBottonToGrid(string name, int columnIndex, DataGridView dataGridView)
-        {
-            DataGridViewButtonColumn newColumn = new DataGridViewButtonColumn();
-            newColumn.Name = name;
-            newColumn.Text = name;
-            newColumn.UseColumnTextForButtonValue = true;
-            dataGridView.Columns.Add(newColumn);
-		}
-
-		public static void AddBottonColumn(this DataGridView dataGridView, string name)
+		public static void AddBottonToGrid(string name, int columnIndex, DataGridView dataGridView)
 		{
 			DataGridViewButtonColumn newColumn = new DataGridViewButtonColumn();
 			newColumn.Name = name;
@@ -47,7 +40,25 @@ namespace RestaurantChargoon.UI.WinForm.Services
 			dataGridView.Columns.Add(newColumn);
 		}
 
-		public static void AddColumn(this DataGridView dataGridView, string name, string headerText,bool visible=true)
+		public static void AddBottonColumn(this DataGridView dataGridView, string name)
+		{
+			bool columnExist=false;
+			foreach (DataGridViewColumn column in dataGridView.Columns)
+			{
+				if(column.Name==name)
+					columnExist=true;
+			}
+			if (!columnExist)
+			{
+				DataGridViewButtonColumn newColumn = new DataGridViewButtonColumn();
+				newColumn.Name = name;
+				newColumn.Text = name;
+				newColumn.UseColumnTextForButtonValue = true;
+				dataGridView.Columns.Add(newColumn);
+			}
+		}
+
+		public static void AddColumn(this DataGridView dataGridView, string name, string headerText, bool visible = true)
 		{
 			DataGridViewTextBoxColumn newColumn = new DataGridViewTextBoxColumn();
 			newColumn.HeaderText = headerText;

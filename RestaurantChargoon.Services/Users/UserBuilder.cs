@@ -47,10 +47,10 @@ namespace RestaurantChargoon.Services.Users
                 UserResult.WithError("اندازه کد ملی باید 10 رقم باشد");
 
             }
-            else if(userService.GetByNationalCode(NationalCode) != null)
-            {
-                UserResult.WithError("این کاربر وجود دارد");
-            }
+            //else if(userService.GetByNationalCode(NationalCode) != null)
+            //{
+            //    UserResult.WithError("این کاربر وجود دارد");
+            //}
             else
                 user.NationalCode = NationalCode;
             return this;

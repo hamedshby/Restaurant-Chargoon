@@ -21,19 +21,14 @@ namespace RestaurantChargoon.UI.WinForm.Forms
         #region Events
         private void AddFoodForm_Load(object sender, EventArgs e)
         {
-            FoodForm foodForm = Application.OpenForms["FoodForm"] as FoodForm;
-            if (foodForm != null)
-            {
-                foodForm.Hide();
-            }
+           nameof(FoodForm).HideParentForm();
             SetFoodTypeComboBox();
         }
 
         private void AddFoodForm_FormClosed(object sender, FormClosedEventArgs e)
-        {            
-            FoodForm foodForm = new FoodForm();
-            foodForm.Show();
-        }
+        {
+			nameof(FoodForm).ShowParentForm();
+		}
 
         private async void SaveButton_Click(object sender, EventArgs e)
         {

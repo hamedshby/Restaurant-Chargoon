@@ -127,6 +127,7 @@
 			Text = "داشبورد رستوران";
 			FormClosed += RestaurantDashboardForm_FormClosed;
 			Load += RestaurantDashboardForm_Load;
+			VisibleChanged += RestaurantDashboardForm_VisibleChanged;
 			((System.ComponentModel.ISupportInitialize)RestaurantDataGridView).EndInit();
 			ResumeLayout(false);
 		}

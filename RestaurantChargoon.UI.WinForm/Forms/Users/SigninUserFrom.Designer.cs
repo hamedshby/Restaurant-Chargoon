@@ -59,7 +59,7 @@
 			NationalCodeTextBox.Name = "NationalCodeTextBox";
 			NationalCodeTextBox.Size = new Size(151, 27);
 			NationalCodeTextBox.TabIndex = 3;
-			NationalCodeTextBox.Text = "2222222222";
+			NationalCodeTextBox.Text = "3333333333";
 			// 
 			// PasswordTextBox
 			// 
@@ -67,7 +67,7 @@
 			PasswordTextBox.Name = "PasswordTextBox";
 			PasswordTextBox.Size = new Size(151, 27);
 			PasswordTextBox.TabIndex = 4;
-			PasswordTextBox.Text = "123qwe";
+			PasswordTextBox.Text = "111qqq";
 			// 
 			// Loginbtn
 			// 

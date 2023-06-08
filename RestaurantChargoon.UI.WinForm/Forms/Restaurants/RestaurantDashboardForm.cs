@@ -35,11 +35,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 		private void RestaurantDataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
 		{
-			if (cellCount == 1)
-				return;
-			cellCount += 1;
-			FormService.AddBottonToGrid("ویرایش رستوران", 5, RestaurantDataGridView);
-			FormService.AddBottonToGrid("مشاهده منو", 6, RestaurantDataGridView);
+			//if (cellCount == 1)
+			//	return;
+			//cellCount += 1;
+			//FormService.AddBottonToGrid("ویرایش رستوران", 5, RestaurantDataGridView);
+			//FormService.AddBottonToGrid("مشاهده منو", 6, RestaurantDataGridView);
 		}
 
 		private void RestaurantDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -59,6 +59,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 				}
 			}
 		}
+		private void RestaurantDashboardForm_VisibleChanged(object sender, EventArgs e)
+		{
+			FillGridView();
+		}
+
 
 		#endregion
 
@@ -68,12 +73,19 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		{
 			var foods = restaurantService.Get(r => r.UserId == Program.userLogin.Id)
 				.Select(c => new { c.Id, c.Name, c.StartTime, c.EndTime, c.Address });
-			BindingSource bindingSource = new BindingSource();
-			bindingSource.DataSource = foods;
-			RestaurantDataGridView.DataSource = bindingSource;
+			if (foods.Any())
+			{
+				BindingSource bindingSource = new BindingSource();
+				bindingSource.DataSource = foods;
+				RestaurantDataGridView.DataSource = bindingSource;
+				RestaurantDataGridView.AddBottonColumn("ویرایش رستوران");
+				RestaurantDataGridView.AddBottonColumn("مشاهده منو");
+			}
 		}
 
 		#endregion
+
+	
 	}
 
 }
