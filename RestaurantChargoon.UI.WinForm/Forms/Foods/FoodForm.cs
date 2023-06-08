@@ -66,10 +66,10 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
         private void FoodDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == FoodDataGridView.Columns["مشاهده منو"].Index)
-            {
-                //Do something with your button.
-            }
+            //if (e.ColumnIndex == FoodDataGridView.Columns["مشاهده منو"].Index)
+            //{
+            //    //Do something with your button.
+            //}
         }
 
         #endregion
