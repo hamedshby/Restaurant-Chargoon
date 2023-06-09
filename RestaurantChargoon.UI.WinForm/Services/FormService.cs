@@ -1,8 +1,4 @@
 ﻿using FluentResults;
-using Restaurant_Chargoon.UI.WinForm;
-using RestaurantChargoon.UI.WinForm.Forms;
-using RestaurantChargoon.UI.WinForm.Forms.Users;
-using System.Windows.Forms;
 
 namespace RestaurantChargoon.UI.WinForm.Services
 {
@@ -42,11 +38,11 @@ namespace RestaurantChargoon.UI.WinForm.Services
 
 		public static void AddBottonColumn(this DataGridView dataGridView, string name)
 		{
-			bool columnExist=false;
+			bool columnExist = false;
 			foreach (DataGridViewColumn column in dataGridView.Columns)
 			{
-				if(column.Name==name)
-					columnExist=true;
+				if (column.Name == name)
+					columnExist = true;
 			}
 			if (!columnExist)
 			{
