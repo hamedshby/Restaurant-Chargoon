@@ -6,31 +6,47 @@ using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
 {
-	public partial class SigninUserFrom : Form
-	{
-		private readonly UserService userService;
-		public SigninUserFrom()
-		{
-			InitializeComponent();
-			this.userService = new UserService();
-		}
+    public partial class SigninUserFrom : Form
+    {
+        private readonly UserService userService;
+        public SigninUserFrom()
+        {
+            InitializeComponent();
+            this.userService = new UserService();
+        }
 
-		#region Events
-		private void enter_Click(object sender, EventArgs e)
-		{
-
+        #region Events
+        private void enter_Click(object sender, EventArgs e)
+        {
+            var user = userService.CheckUserPassword(NationalCodeTextBox.Text.Trim(), PasswordTextBox.Text.Trim());
+            if (user == null)
+            {
+                MessageBox.Show("نام کاربری و پسورد وجود ندارد");
+                return;
+            }
+            Program.userLogin = user;
+            if (user.UserType == UserType.RestaurantManager)
+            {
+                RestaurantDashboardForm restaurantDashboardForm = new RestaurantDashboardForm();
+                restaurantDashboardForm.ShowDialog();
+            }
+            else if (user.UserType == UserType.User)
+            {
+                UserDashboardForm userDashboardForm = new UserDashboardForm();
+                userDashboardForm.ShowDialog();
+            }
         }
 
         private void SigninUserFrom_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			nameof(MainForm).ShowParentForm();
-		}
+        {
+            nameof(MainForm).ShowParentForm();
+        }
 
-		private void SigninUserFrom_Load(object sender, EventArgs e)
-		{
-			nameof(MainForm).HideParentForm();
-		}
+        private void SigninUserFrom_Load(object sender, EventArgs e)
+        {
+            nameof(MainForm).HideParentForm();
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

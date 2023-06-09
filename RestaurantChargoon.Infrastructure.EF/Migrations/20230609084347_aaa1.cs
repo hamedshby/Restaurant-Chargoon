@@ -2,7 +2,7 @@
 
 namespace RestaurantChargoon.Infrastructure.EF.Migrations
 {
-    public partial class updatefororders : Migration
+    public partial class aaa1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
