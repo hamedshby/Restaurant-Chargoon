@@ -2,6 +2,7 @@
 using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Foods;
 using RestaurantChargoon.Services.Restaurants;
+using RestaurantChargoon.UI.WinForm.Forms.Foods;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
@@ -44,13 +45,13 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             nameof(RestaurantDashboardForm).ShowParentForm();
         }
 
-        private void FoodDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //if (e.ColumnIndex == FoodDataGridView.Columns["مشاهده منو"].Index)
-            //{
-            //    //Do something with your button.
-            //}
-        }
+        //private void FoodDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //          if (e.ColumnIndex == FoodDataGridView.Columns["مشاهده منو"].Index)
+        //          {
+        //              //Do something with your button.
+        //          }
+        //      }
 
         #endregion
 
@@ -59,7 +60,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
         #region Methods
         public void FillgridView()
         {
-            FoodDataGridView.Rows.Clear();
+           // FoodDataGridView.Rows.Clear();
             var foods = foodService.Get(c => c.RestaurantId == Program.RestaurantId)
                 .Select(c => new { c.Name, c.Id, c.Price, FoodType = c.FoodType.GetDisplayName() })
                 .ToList();
@@ -68,6 +69,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms
                 BindingSource bindingSource = new BindingSource();
                 bindingSource.DataSource = foods;
                 FoodDataGridView.DataSource = bindingSource;
+                FoodDataGridView.AddBottonColumn("ویرایش");
+                FoodDataGridView.AddBottonColumn("حذف");
             }
         }
 
@@ -81,7 +84,33 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
         private void FoodDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex == FoodDataGridView.Columns["ویرایش"].Index)
+            {
+                foreach (DataGridViewColumn itm in FoodDataGridView.Columns)
+                {
+                    if (itm.DataPropertyName == "Id")
+                    {
+                        DataGridViewRow row = FoodDataGridView.Rows[e.RowIndex];
+                        int.TryParse(row.Cells[itm.Index].Value.ToString(), out int foodid);
 
+                        EditFoodForm editFoodForm = new EditFoodForm(foodid);
+                        editFoodForm.Show();
+
+                    }
+                }
+            }
+            if (e.ColumnIndex == FoodDataGridView.Columns["حذف"].Index)
+            {
+                foreach (DataGridViewColumn itm in FoodDataGridView.Columns)
+                {
+                    if (itm.DataPropertyName == "Id")
+                    {
+                        DataGridViewRow row = FoodDataGridView.Rows[e.RowIndex];
+                        
+
+                    }
+                }
+            }
         }
     }
 }
