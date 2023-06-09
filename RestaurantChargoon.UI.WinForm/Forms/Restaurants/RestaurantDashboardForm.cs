@@ -87,8 +87,9 @@ namespace RestaurantChargoon.UI.WinForm.Forms
         #region Methods
         public void FillGridView()
         {
-            var foods = restaurantService.Get(r => r.UserId == Program.userLogin.Id).ToList()
-                .Select(c => new { c.Id, c.Name, c.StartTime, c.EndTime, c.Address });
+            var foods = restaurantService.Get(r => r.UserId == Program.userLogin.Id)
+                .Select(c => new { c.Id, c.Name, c.StartTime, c.EndTime, c.Address })
+				.ToList();
             if (foods.Any())
             {
                 BindingSource bindingSource = new BindingSource();

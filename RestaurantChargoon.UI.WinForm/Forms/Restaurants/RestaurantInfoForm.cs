@@ -112,7 +112,6 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
         private void RestaurantInfoForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             nameof(RestaurantDashboardForm).ShowParentForm();
-
         }
 
        
