@@ -20,12 +20,14 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
     public partial class EditFoodForm : Form
     {
         private readonly FoodService foodService;
-        private Food food = new Food();
-        public EditFoodForm(int rowId)
+        private int foodid;
+        private Food food;
+        public EditFoodForm(int FoodId)
         {
             InitializeComponent();
             this.foodService = new FoodService();
-            food = foodService.GetById(rowId);
+            foodid = FoodId;
+            food = foodService.GetById(foodid);
         }
 
         private async void SaveButton_Click(object sender, EventArgs e)
@@ -36,9 +38,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
                 foodResult.PrintResultMessages();
                 return;
             }
-            var food = foodResult.Value;
-            food.RestaurantId = Program.RestaurantId;
-            var result = await foodService.UpdateAsync(food);
+            var food2 = foodService.GetById(foodid);
+            food2.Name = NameTextBox.Text;
+            food2.FoodType = (FoodType)FoodTypeComboBox.SelectedIndex + 1  ;
+            food2.Price = Convert.ToDecimal(PricetextBox.Text);
+            var result = await foodService.UpdateAsync(food2);
             result.PrintResultMessages();
         }
         private void SetFoodTypeComboBox()
@@ -65,7 +69,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
             SetFoodTypeComboBox();
             NameTextBox.Text = food.Name;
             PricetextBox.Text = food.Price.ToString();
-            FoodTypeComboBox.SelectedValue = food.FoodType;
+            FoodTypeComboBox.SelectedIndex = (int) food.FoodType;
         }
 
         private void EditFoodForm_FormClosed(object sender, FormClosedEventArgs e)

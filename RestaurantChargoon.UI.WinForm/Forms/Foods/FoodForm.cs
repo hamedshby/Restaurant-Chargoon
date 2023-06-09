@@ -94,7 +94,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
                         int.TryParse(row.Cells[itm.Index].Value.ToString(), out int foodid);
 
                         EditFoodForm editFoodForm = new EditFoodForm(foodid);
-                        editFoodForm.Show();
+                        editFoodForm.ShowDialog();
 
                     }
                 }

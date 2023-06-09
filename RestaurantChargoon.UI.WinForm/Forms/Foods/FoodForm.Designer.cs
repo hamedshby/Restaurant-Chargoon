@@ -123,6 +123,7 @@
             this.Text = "FoodForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FoodForm_FormClosed);
             this.Load += new System.EventHandler(this.FoodForm_Load);
+            this.VisibleChanged += new System.EventHandler(this.FoodForm_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.FoodDataGridView)).EndInit();
             this.ResumeLayout(false);
 
