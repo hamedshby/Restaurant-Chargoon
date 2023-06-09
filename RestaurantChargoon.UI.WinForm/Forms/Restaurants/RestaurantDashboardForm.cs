@@ -74,6 +74,21 @@ namespace RestaurantChargoon.UI.WinForm.Forms
                     }
                 }
             }
+            if (e.ColumnIndex == RestaurantDataGridView.Columns["مشاهده فاکتور"].Index)
+            {
+                foreach (DataGridViewColumn itm in RestaurantDataGridView.Columns)
+                {
+                    if (itm.DataPropertyName == "Id")
+                    {
+                        DataGridViewRow row = RestaurantDataGridView.Rows[e.RowIndex];
+                        int.TryParse(row.Cells[itm.Index].Value.ToString(), out Program.RestaurantId);
+                        RestaurantFactorsForm restaurantFactorForm = new RestaurantFactorsForm();
+                        restaurantFactorForm.ShowDialog();
+                        break;
+                    }
+                }
+                
+            }
         }
         private void RestaurantDashboardForm_VisibleChanged(object sender, EventArgs e)
         {
@@ -96,6 +111,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
                 RestaurantDataGridView.DataSource = bindingSource;
                 RestaurantDataGridView.AddBottonColumn("ویرایش رستوران");
                 RestaurantDataGridView.AddBottonColumn("مشاهده منو");
+                RestaurantDataGridView.AddBottonColumn("مشاهده فاکتور");
             }
         }
 
