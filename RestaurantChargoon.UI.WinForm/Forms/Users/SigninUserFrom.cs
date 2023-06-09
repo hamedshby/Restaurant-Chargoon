@@ -18,26 +18,10 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		#region Events
 		private void enter_Click(object sender, EventArgs e)
 		{
-			var user = userService.CheckUserPassword(NationalCodeTextBox.Text.Trim(), PasswordTextBox.Text.Trim());
-			if (user == null)
-			{
-				MessageBox.Show("نام کاربری و پسورد وجود ندارد");
-				return;
-			}
-			Program.userLogin = user;
-			if (user.UserType == UserType.RestaurantManager)
-			{
-				RestaurantDashboardForm restaurantDashboardForm = new RestaurantDashboardForm();
-				restaurantDashboardForm.ShowDialog();
-			}
-			else if (user.UserType == UserType.User)
-			{
-				UserDashboardForm userDashboardForm = new UserDashboardForm();
-				userDashboardForm.ShowDialog();
-			}
-		}
 
-		private void SigninUserFrom_FormClosed(object sender, FormClosedEventArgs e)
+        }
+
+        private void SigninUserFrom_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			nameof(MainForm).ShowParentForm();
 		}

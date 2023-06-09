@@ -9,8 +9,8 @@ using RestaurantChargoon.Infrastructure.EF.Context;
 namespace RestaurantChargoon.Infrastructure.EF.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20230608081905_factor")]
-    partial class factor
+    [Migration("20230609113805_updatefororders")]
+    partial class updatefororders
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

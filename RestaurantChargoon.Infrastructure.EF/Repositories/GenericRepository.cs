@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Domain.Repositories;
 using RestaurantChargoon.Infrastructure.EF.Context;
@@ -27,7 +28,7 @@ namespace RestaurantChargoon.Infrastructure.EF.Repositories
 
 		public IEnumerable<T> Get(Func<T, bool> predicate = null)
 		{
-			var query = _context.Set<T>().AsQueryable();
+			var query = _context.Set<T>().AsNoTracking().AsQueryable();
 			if (predicate != null)
 			{
 				query = query.Where(predicate).AsQueryable();
