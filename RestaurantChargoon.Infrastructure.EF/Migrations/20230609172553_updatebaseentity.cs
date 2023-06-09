@@ -2,7 +2,7 @@
 
 namespace RestaurantChargoon.Infrastructure.EF.Migrations
 {
-    public partial class aaa1 : Migration
+    public partial class updatebaseentity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,8 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     NationalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserType = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    UserType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -34,7 +35,8 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     StartTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EndTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,7 +55,8 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RestaurantId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,7 +83,8 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     FoodType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RestaurantId = table.Column<int>(type: "int", nullable: false)
+                    RestaurantId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -102,7 +106,8 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     FactorId = table.Column<int>(type: "int", nullable: false),
                     FoodName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    FoodType = table.Column<int>(type: "int", nullable: false)
+                    FoodType = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
