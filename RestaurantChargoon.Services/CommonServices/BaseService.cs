@@ -25,7 +25,11 @@ namespace RestaurantChargoon.Services.CommonServices
 			var result = await repository.Update(entity);
 			return result;
 		}
-
+		public async Task<Result<int>> DeleteAsync(T entity)
+		{
+			var result = await repository.Delete(entity);
+			return result;
+		}
 		public IEnumerable<T> GetAll()
 		{
 			return repository.GetAll();
