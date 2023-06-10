@@ -9,8 +9,8 @@ using RestaurantChargoon.Infrastructure.EF.Context;
 namespace RestaurantChargoon.Infrastructure.EF.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20230609172553_updatebaseentity")]
-    partial class updatebaseentity
+    [Migration("20230610110901_init2")]
+    partial class init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,9 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("0");
 
                     b.Property<int>("RestaurantId")
                         .HasColumnType("int");
@@ -63,7 +65,9 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("0");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -87,7 +91,9 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("0");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -122,7 +128,9 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("0");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -154,7 +162,9 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("0");
 
                     b.Property<string>("LastName")
                         .IsRequired()

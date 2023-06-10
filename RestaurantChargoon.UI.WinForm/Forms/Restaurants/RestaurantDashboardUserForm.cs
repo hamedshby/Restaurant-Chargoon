@@ -32,17 +32,9 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 		{
 			if (e.ColumnIndex == RestaurantDataGridView.Columns["انتخاب"].Index)
 			{
-				DataGridViewRow row = RestaurantDataGridView.Rows[e.RowIndex];
-				foreach (DataGridViewColumn itm in RestaurantDataGridView.Columns)
-				{
-					if (itm.DataPropertyName == "Id")
-					{
-						int.TryParse(row.Cells[itm.Index].Value.ToString(), out Program.RestaurantId);
-						FoodDashboardUserForm foodDashboardUserForm = new FoodDashboardUserForm();
-						foodDashboardUserForm.ShowDialog();
-						break;
-					}
-				}
+				Program.RestaurantId = RestaurantDataGridView.GetRowClickedIdValue(e);
+				FoodDashboardUserForm foodDashboardUserForm = new FoodDashboardUserForm();
+				foodDashboardUserForm.ShowDialog();
 			}
 		}
 		#endregion

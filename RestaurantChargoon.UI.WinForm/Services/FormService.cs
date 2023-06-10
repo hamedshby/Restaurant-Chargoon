@@ -81,7 +81,7 @@ namespace RestaurantChargoon.UI.WinForm.Services
 			}
 		}
 
-		public static int GetRowClickedIdValue(this  DataGridView dataGridView, DataGridViewCellEventArgs e,string columnName="Id")
+		public static int GetRowClickedIdValue(this DataGridView dataGridView, DataGridViewCellEventArgs e, string columnName = "Id")
 		{
 			try
 			{
@@ -90,7 +90,7 @@ namespace RestaurantChargoon.UI.WinForm.Services
 				int.TryParse(cellValue, out int value);
 				return value;
 			}
-			catch(Exception ex) 
+			catch (Exception ex)
 			{
 				return 0;
 			}

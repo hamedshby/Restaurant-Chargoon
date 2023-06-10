@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Domain.Repositories;
+using RestaurantChargoon.Infrastructure.EF.Context;
 using RestaurantChargoon.Infrastructure.EF.Repositories;
 using RestaurantChargoon.UI.WinForm.Forms;
 using Unity;
@@ -26,6 +28,9 @@ namespace Restaurant_Chargoon.UI.WinForm
 			//Application.Run(container.Resolve<SingupUserForm>());
 
 			userLogin = new User();
+
+			var optionsBuilder = new DbContextOptionsBuilder<RestaurantDbContext>();
+			optionsBuilder.UseSqlServer("server=.;initial catalog=Restaurant;integrated security=true;TrustServerCertificate=True");
 
 			Application.Run(new MainForm());
         }

@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Domain.Enums;
+using System.Linq.Expressions;
+using System.Xml;
 
 namespace RestaurantChargoon.Infrastructure.EF.Context
 {
@@ -21,6 +23,23 @@ namespace RestaurantChargoon.Infrastructure.EF.Context
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
+
+			foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+			{
+				if (entityType.ClrType.GetProperty("IsDeleted") != null)
+				{
+					modelBuilder.Entity(entityType.ClrType)
+						.Property("IsDeleted")
+						.HasDefaultValueSql("0");
+				}
+				if (entityType.ClrType.GetProperty("IsDeleted") != null)
+				{
+					var isDeletedProp = entityType.ClrType.GetProperty("IsDeleted");
+					var param = Expression.Parameter(entityType.ClrType, "e");
+					var body = Expression.Equal(Expression.Property(param, isDeletedProp), Expression.Constant(false));
+					modelBuilder.Entity(entityType.ClrType).HasQueryFilter(Expression.Lambda(body, param));
+				}
+			}
 
 			modelBuilder.Entity<Food>()
 				.Property(f => f.FoodType)

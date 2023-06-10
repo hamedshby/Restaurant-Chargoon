@@ -35,19 +35,19 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		}
 
 		private void RestaurantDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
+		{			
 			Program.RestaurantId = RestaurantDataGridView.GetRowClickedIdValue(e);
-			if (e.ColumnIndex == RestaurantDataGridView.Columns["مشاهده منو"].Index)
+			if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.ShowMenu].Index)
 			{
 				FoodForm foodForm = new FoodForm();
 				foodForm.ShowDialog();
 			}
-			if (e.ColumnIndex == RestaurantDataGridView.Columns["ویرایش رستوران"].Index)
+			if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.RestaurantEdit].Index)
 			{
 				RestaurantInfoForm restaurantInfoForm = new RestaurantInfoForm();
 				restaurantInfoForm.ShowDialog();
 			}
-			if (e.ColumnIndex == RestaurantDataGridView.Columns["مشاهده فاکتور"].Index)
+			if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.ShowFactor].Index)
 			{
 				RestaurantFactorsForm restaurantFactorForm = new RestaurantFactorsForm();
 				restaurantFactorForm.ShowDialog();
@@ -73,9 +73,9 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 				BindingSource bindingSource = new BindingSource();
 				bindingSource.DataSource = foods;
 				RestaurantDataGridView.DataSource = bindingSource;
-				RestaurantDataGridView.AddBottonColumn("ویرایش رستوران");
-				RestaurantDataGridView.AddBottonColumn("مشاهده منو");
-				RestaurantDataGridView.AddBottonColumn("مشاهده فاکتور");
+				RestaurantDataGridView.AddBottonColumn(Resource.RestaurantEdit);
+				RestaurantDataGridView.AddBottonColumn(Resource.ShowMenu);
+				RestaurantDataGridView.AddBottonColumn(Resource.ShowFactor);
 			}
 		}
 

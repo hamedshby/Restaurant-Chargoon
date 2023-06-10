@@ -63,7 +63,6 @@
 			StartPosition = FormStartPosition.CenterScreen;
 			Text = "صفحه اصلی";
 			FormClosed += MainForm_FormClosed;
-			Load += MainForm_Load;
 			ResumeLayout(false);
 		}
 

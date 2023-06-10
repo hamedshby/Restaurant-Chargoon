@@ -1,6 +1,4 @@
-using RestaurantChargoon.Services.Carts;
 using RestaurantChargoon.UI.WinForm.Forms;
-using RestaurantChargoon.UI.WinForm.Forms.Carts;
 
 namespace Restaurant_Chargoon.UI.WinForm
 {
@@ -10,8 +8,6 @@ namespace Restaurant_Chargoon.UI.WinForm
 		{
 			InitializeComponent();
 		}
-
-
 
 		private void signinUser_Click(object sender, EventArgs e)
 		{
@@ -34,14 +30,6 @@ namespace Restaurant_Chargoon.UI.WinForm
 		private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			Application.Exit();
-		}
-
-		private void MainForm_Load(object sender, EventArgs e)
-		{
-			//CartService cartService = new CartService();
-			//var cart= cartService.GetfakeCart();
-			//CartDashboardForm cartDashboardForm = new CartDashboardForm(cart);
-			//cartDashboardForm.ShowDialog();
 		}
 	}
 }
