@@ -69,7 +69,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
             SetFoodTypeComboBox();
             NameTextBox.Text = food.Name;
             PricetextBox.Text = food.Price.ToString();
-            FoodTypeComboBox.SelectedIndex = (int) food.FoodType;
+            FoodTypeComboBox.SelectedIndex = Convert.ToInt32(food.FoodType)-1;
         }
 
         private void EditFoodForm_FormClosed(object sender, FormClosedEventArgs e)

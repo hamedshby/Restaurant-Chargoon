@@ -95,6 +95,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
                         EditFoodForm editFoodForm = new EditFoodForm(foodid);
                         editFoodForm.ShowDialog();
+                        break;
 
                     }
                 }
