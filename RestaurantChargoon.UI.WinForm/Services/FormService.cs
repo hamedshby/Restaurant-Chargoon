@@ -1,4 +1,6 @@
 ﻿using FluentResults;
+using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.UI.WinForm.Forms;
 
 namespace RestaurantChargoon.UI.WinForm.Services
 {
@@ -27,15 +29,6 @@ namespace RestaurantChargoon.UI.WinForm.Services
 				ShowInfoMessageBox(messages);
 		}
 
-		public static void AddBottonToGrid(string name, int columnIndex, DataGridView dataGridView)
-		{
-			DataGridViewButtonColumn newColumn = new DataGridViewButtonColumn();
-			newColumn.Name = name;
-			newColumn.Text = name;
-			newColumn.UseColumnTextForButtonValue = true;
-			dataGridView.Columns.Add(newColumn);
-		}
-
 		public static void AddBottonColumn(this DataGridView dataGridView, string name)
 		{
 			bool columnExist = false;
@@ -52,16 +45,6 @@ namespace RestaurantChargoon.UI.WinForm.Services
 				newColumn.UseColumnTextForButtonValue = true;
 				dataGridView.Columns.Add(newColumn);
 			}
-		}
-
-		public static void AddColumn(this DataGridView dataGridView, string name, string headerText, bool visible = true)
-		{
-			DataGridViewTextBoxColumn newColumn = new DataGridViewTextBoxColumn();
-			newColumn.HeaderText = headerText;
-			newColumn.Name = name;
-			newColumn.DataPropertyName = name;
-			newColumn.Visible = visible;
-			dataGridView.Columns.Add(newColumn);
 		}
 
 		public static void HideParentForm(this string formName)
@@ -94,7 +77,19 @@ namespace RestaurantChargoon.UI.WinForm.Services
 			{
 				return 0;
 			}
+		}
 
+		public static void Fill(this DataGridView dataGridView, object dataSource)
+		{
+			BindingSource bindingSource = new BindingSource();
+			bindingSource.DataSource = dataSource;
+			dataGridView.DataSource = bindingSource;
+		}
+
+		public static void ShowDialog(this Type formType)
+		{
+			Form form = (Form)Activator.CreateInstance(formType);
+			form.ShowDialog();
 		}
 
 	}

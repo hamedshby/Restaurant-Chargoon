@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RestaurantChargoon.UI.WinForm {
+namespace RestaurantChargoon.UI.WinForm.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace RestaurantChargoon.UI.WinForm {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RestaurantChargoon.UI.WinForm.Resource", typeof(Resource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RestaurantChargoon.UI.WinForm.Resources.Resource", typeof(Resource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace RestaurantChargoon.UI.WinForm {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ویرایش رستوران.
+        ///   Looks up a localized string similar to RestaurantEdit.
         /// </summary>
         internal static string RestaurantEdit {
             get {
@@ -70,16 +70,16 @@ namespace RestaurantChargoon.UI.WinForm {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مشاهده فاکتور.
+        ///   Looks up a localized string similar to ShowFactors.
         /// </summary>
-        internal static string ShowFactor {
+        internal static string ShowFactors {
             get {
-                return ResourceManager.GetString("ShowFactor", resourceCulture);
+                return ResourceManager.GetString("ShowFactors", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to مشاهده منو.
+        ///   Looks up a localized string similar to ShowMenu.
         /// </summary>
         internal static string ShowMenu {
             get {

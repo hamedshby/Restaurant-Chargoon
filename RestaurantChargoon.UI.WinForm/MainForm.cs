@@ -1,4 +1,5 @@
 using RestaurantChargoon.UI.WinForm.Forms;
+using RestaurantChargoon.UI.WinForm.Services;
 
 namespace Restaurant_Chargoon.UI.WinForm
 {
@@ -11,8 +12,7 @@ namespace Restaurant_Chargoon.UI.WinForm
 
 		private void signinUser_Click(object sender, EventArgs e)
 		{
-			SigninUserFrom signinUser = new SigninUserFrom();
-			signinUser.ShowDialog();
+			typeof(SigninUserFrom).ShowDialog();
 		}
 
 		private void signupRestaurant_Click(object sender, EventArgs e)

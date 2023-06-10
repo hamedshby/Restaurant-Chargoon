@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="RestaurantEdit" xml:space="preserve">
-    <value>ویرایش رستوران</value>
+    <value>RestaurantEdit</value>
   </data>
-  <data name="ShowFactor" xml:space="preserve">
-    <value>مشاهده فاکتور</value>
+  <data name="ShowFactors" xml:space="preserve">
+    <value>ShowFactors</value>
   </data>
   <data name="ShowMenu" xml:space="preserve">
-    <value>مشاهده منو</value>
+    <value>ShowMenu</value>
   </data>
 </root>

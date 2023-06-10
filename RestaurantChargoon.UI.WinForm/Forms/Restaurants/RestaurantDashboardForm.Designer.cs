@@ -35,13 +35,16 @@
 			Column2 = new DataGridViewTextBoxColumn();
 			Column3 = new DataGridViewTextBoxColumn();
 			Column4 = new DataGridViewTextBoxColumn();
+			ShowMenu = new DataGridViewButtonColumn();
+			RestaurantEdit = new DataGridViewButtonColumn();
+			ShowFactors = new DataGridViewButtonColumn();
 			((System.ComponentModel.ISupportInitialize)RestaurantDataGridView).BeginInit();
 			SuspendLayout();
 			// 
 			// AddRestaurantButton
 			// 
 			AddRestaurantButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-			AddRestaurantButton.Location = new Point(639, 0);
+			AddRestaurantButton.Location = new Point(754, 7);
 			AddRestaurantButton.Name = "AddRestaurantButton";
 			AddRestaurantButton.Size = new Size(171, 44);
 			AddRestaurantButton.TabIndex = 1;
@@ -54,16 +57,17 @@
 			RestaurantDataGridView.AllowUserToAddRows = false;
 			RestaurantDataGridView.AllowUserToDeleteRows = false;
 			RestaurantDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+			RestaurantDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 			RestaurantDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			RestaurantDataGridView.Columns.AddRange(new DataGridViewColumn[] { Id, Column1, Column2, Column3, Column4 });
-			RestaurantDataGridView.Location = new Point(0, 50);
+			RestaurantDataGridView.Columns.AddRange(new DataGridViewColumn[] { Id, Column1, Column2, Column3, Column4, ShowMenu, RestaurantEdit, ShowFactors });
+			RestaurantDataGridView.Location = new Point(0, 62);
 			RestaurantDataGridView.Name = "RestaurantDataGridView";
 			RestaurantDataGridView.ReadOnly = true;
 			RestaurantDataGridView.RightToLeft = RightToLeft.Yes;
 			RestaurantDataGridView.RowHeadersWidth = 51;
 			RestaurantDataGridView.RowTemplate.Height = 29;
 			RestaurantDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-			RestaurantDataGridView.Size = new Size(810, 281);
+			RestaurantDataGridView.Size = new Size(935, 269);
 			RestaurantDataGridView.TabIndex = 2;
 			RestaurantDataGridView.CellContentClick += RestaurantDataGridView_CellContentClick;
 			// 
@@ -75,7 +79,6 @@
 			Id.Name = "Id";
 			Id.ReadOnly = true;
 			Id.Visible = false;
-			Id.Width = 125;
 			// 
 			// Column1
 			// 
@@ -93,7 +96,6 @@
 			Column2.MinimumWidth = 6;
 			Column2.Name = "Column2";
 			Column2.ReadOnly = true;
-			Column2.Width = 125;
 			// 
 			// Column3
 			// 
@@ -102,7 +104,6 @@
 			Column3.MinimumWidth = 6;
 			Column3.Name = "Column3";
 			Column3.ReadOnly = true;
-			Column3.Width = 125;
 			// 
 			// Column4
 			// 
@@ -111,13 +112,41 @@
 			Column4.MinimumWidth = 6;
 			Column4.Name = "Column4";
 			Column4.ReadOnly = true;
-			Column4.Width = 125;
+			// 
+			// ShowMenu
+			// 
+			ShowMenu.HeaderText = "مشاهده منو";
+			ShowMenu.MinimumWidth = 6;
+			ShowMenu.Name = "ShowMenu";
+			ShowMenu.ReadOnly = true;
+			ShowMenu.Resizable = DataGridViewTriState.True;
+			ShowMenu.SortMode = DataGridViewColumnSortMode.Automatic;
+			ShowMenu.Text = "مشاهده منو";
+			ShowMenu.UseColumnTextForButtonValue = true;
+			// 
+			// RestaurantEdit
+			// 
+			RestaurantEdit.HeaderText = "ویرایش رستوران";
+			RestaurantEdit.MinimumWidth = 6;
+			RestaurantEdit.Name = "RestaurantEdit";
+			RestaurantEdit.ReadOnly = true;
+			RestaurantEdit.Text = "ویرایش رستوران";
+			RestaurantEdit.UseColumnTextForButtonValue = true;
+			// 
+			// ShowFactors
+			// 
+			ShowFactors.HeaderText = "مشاهده فاکتورها";
+			ShowFactors.MinimumWidth = 6;
+			ShowFactors.Name = "ShowFactors";
+			ShowFactors.ReadOnly = true;
+			ShowFactors.Text = "مشاهده فاکتورها";
+			ShowFactors.UseColumnTextForButtonValue = true;
 			// 
 			// RestaurantDashboardForm
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(810, 331);
+			ClientSize = new Size(935, 331);
 			Controls.Add(RestaurantDataGridView);
 			Controls.Add(AddRestaurantButton);
 			Margin = new Padding(3, 4, 3, 4);
@@ -139,5 +168,8 @@
 		private DataGridViewTextBoxColumn Column2;
 		private DataGridViewTextBoxColumn Column3;
 		private DataGridViewTextBoxColumn Column4;
+		private DataGridViewButtonColumn ShowMenu;
+		private DataGridViewButtonColumn RestaurantEdit;
+		private DataGridViewButtonColumn ShowFactors;
 	}
 }

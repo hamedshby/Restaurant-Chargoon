@@ -21,7 +21,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 		{
 			nameof(UserDashboardForm).HideParentForm();
 			FillTextBox();
-			EnableTextBox(false);
+			ChangeEnableStatus(false);
 		}
 
 		private void UserInfoForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -31,12 +31,12 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 
 		private void EditButton_Click(object sender, EventArgs e)
 		{
-			EnableTextBox(true);
+			ChangeEnableStatus(true);
 		}
 
 		private void CancelButton_Click(object sender, EventArgs e)
 		{
-			EnableTextBox(false);
+			ChangeEnableStatus(false);
 		}
 
 		private async void SaveButton_Click(object sender, EventArgs e)
@@ -51,7 +51,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 			var result = await userService.UpdateAsync(user);
 			result.PrintResultMessages();
 			if (UserResult.IsSuccess)
-				EnableTextBox(false);
+				ChangeEnableStatus(false);
 		}
 
 		#endregion
@@ -72,13 +72,14 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 			}
 		}
 
-		private void EnableTextBox(bool enableTextBox)
+		private void ChangeEnableStatus(bool enable)
 		{
-			NameTetxtBox.Enabled = enableTextBox;
-			LastNameTetxtBox.Enabled = enableTextBox;
-			AddressTetxtBox.Enabled = enableTextBox;
-			NationalCodeTetxtBox.Enabled = enableTextBox;
-			PasswordTetxtBox.Enabled = enableTextBox;
+			NameTetxtBox.Enabled = enable;
+			LastNameTetxtBox.Enabled = enable;
+			AddressTetxtBox.Enabled = enable;
+			NationalCodeTetxtBox.Enabled = enable;
+			PasswordTetxtBox.Enabled = enable;
+			RestaurantManagerCheckBox.Enabled = enable;
 		}
 
 		public Result<User> GetUserResult()
@@ -104,7 +105,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 			user.Address = AddressTetxtBox.Text;
 			user.NationalCode = NationalCodeTetxtBox.Text;
 			user.Password = PasswordTetxtBox.Text;
-
+			user.UserType = RestaurantManagerCheckBox.Checked ? UserType.RestaurantManager : UserType.User;
 			return user;
 		}
 
