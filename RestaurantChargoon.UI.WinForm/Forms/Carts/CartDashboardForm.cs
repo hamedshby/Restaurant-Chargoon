@@ -1,4 +1,5 @@
-﻿using RestaurantChargoon.Domain.Entities;
+﻿using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Services.Carts;
 using RestaurantChargoon.Services.Factors;
 using RestaurantChargoon.Services.Restaurants;
@@ -42,17 +43,9 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 		{
 			if (e.ColumnIndex == factorDetailsDataGridView.Columns["حذف"].Index)
 			{
-				DataGridViewRow row = factorDetailsDataGridView.Rows[e.RowIndex];
-				foreach (DataGridViewColumn itm in factorDetailsDataGridView.Columns)
-				{
-					if (itm.DataPropertyName == "Id")
-					{
-						int.TryParse(row.Cells[itm.Index].Value.ToString(), out int factorDetailId);
-						cart = cartService.RemoveFactorDetail(cart, factorDetailId);
-						factorDetailsDataGridView.Rows.RemoveAt(e.RowIndex);
-						break;
-					}
-				}
+				int factorDetailId = factorDetailsDataGridView.GetRowClickedIdValue(e);
+				cart = cartService.RemoveFactorDetail(cart, factorDetailId);
+				factorDetailsDataGridView.Rows.RemoveAt(e.RowIndex);
 			}
 		}
 

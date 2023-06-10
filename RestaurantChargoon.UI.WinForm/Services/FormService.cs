@@ -81,5 +81,21 @@ namespace RestaurantChargoon.UI.WinForm.Services
 			}
 		}
 
+		public static int GetRowClickedIdValue(this  DataGridView dataGridView, DataGridViewCellEventArgs e,string columnName="Id")
+		{
+			try
+			{
+				DataGridViewRow row1 = dataGridView.Rows[e.RowIndex];
+				string? cellValue = row1.Cells[columnName].Value.ToString();
+				int.TryParse(cellValue, out int value);
+				return value;
+			}
+			catch(Exception ex) 
+			{
+				return 0;
+			}
+
+		}
+
 	}
 }
