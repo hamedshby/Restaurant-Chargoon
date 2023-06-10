@@ -79,6 +79,7 @@ namespace RestaurantChargoon.Infrastructure.EF.Repositories
 			Result<int> result = new Result<int>();
 			try
 			{
+
 				result = await _context.SaveChangesAsync();
 				result.WithSuccess("عملیات با موفقیت انجام گردید");
 				return result;
@@ -88,5 +89,7 @@ namespace RestaurantChargoon.Infrastructure.EF.Repositories
 				return result.WithError("عملیات با خطا مواجه گردید");
 			}
 		}
+
+
 	}
 }

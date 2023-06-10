@@ -2,8 +2,11 @@
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Domain.Enums;
+using System;
+using System.Linq;
 using System.Linq.Expressions;
-using System.Xml;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace RestaurantChargoon.Infrastructure.EF.Context
 {
@@ -71,11 +74,27 @@ namespace RestaurantChargoon.Infrastructure.EF.Context
 				.HasForeignKey(r => r.UserId)
 				.OnDelete(DeleteBehavior.NoAction);
 		}
+
+		public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+		{
+			var entries = ChangeTracker
+				.Entries()
+				.Where(e => e.Entity is BaseEntity && (
+						e.State == EntityState.Added
+						|| e.State == EntityState.Modified));
+
+			foreach (var entityEntry in entries)
+			{
+				((BaseEntity)entityEntry.Entity).UpdateDate = DateTime.Now;
+
+				if (entityEntry.State == EntityState.Added)
+				{
+					((BaseEntity)entityEntry.Entity).CreateDate = DateTime.Now;
+				}
+			}
+			return (await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken));
+		}
 	}
-
-
-
-
-
-
 }
+
+

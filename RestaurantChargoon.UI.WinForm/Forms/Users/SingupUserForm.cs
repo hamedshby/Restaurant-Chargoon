@@ -31,8 +31,6 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             result.PrintResultMessages();
             if (result.IsSuccess)
             {
-                MainForm mainForm = new MainForm();
-                mainForm.Show();
                 this.Close();
             }
         }
