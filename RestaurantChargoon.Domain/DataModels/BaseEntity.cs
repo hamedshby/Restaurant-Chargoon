@@ -6,9 +6,4 @@
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
 	}
-
-	public interface IDataModel
-	{
-		bool IsDeleted { get; set; }
-	}
 }
