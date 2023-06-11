@@ -88,11 +88,11 @@ namespace RestaurantChargoon.UI.WinForm.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RestaurantEdit.
+        ///   Looks up a localized string similar to Edit.
         /// </summary>
-        internal static string RestaurantEdit {
+        internal static string Edit {
             get {
-                return ResourceManager.GetString("RestaurantEdit", resourceCulture);
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
