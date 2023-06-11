@@ -55,7 +55,13 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			}
 			if (e.ColumnIndex == FoodDataGridView.Columns[Resource.Delete].Index)
 			{
-
+				DialogResult dialogResult = MessageBox.Show("آیا از حذف این مورد مطمئن هستید؟ ", "هشدار ", MessageBoxButtons.YesNo);
+				if(dialogResult == DialogResult.Yes)
+                {
+					DeleteFood(foodid);
+					
+				}
+                FillgridView();
 			}
 		}
 
@@ -74,12 +80,19 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 				FoodDataGridView.Fill(foods);
 			}
 		}
-
+		public async Task DeleteFood(int foodid)
+        {
+			var food2 = foodService.GetById(foodid);
+			food2.IsDeleted = true;
+			
+			var result = await foodService.UpdateAsync(food2);
+			result.PrintResultMessages();
+		}
 
 		#endregion
 
 
 
-		
+
 	}
 }
