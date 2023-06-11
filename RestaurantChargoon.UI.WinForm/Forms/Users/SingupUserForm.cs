@@ -2,6 +2,7 @@
 using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Domain.Enums;
+using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Users;
 using RestaurantChargoon.UI.WinForm.Services;
 
@@ -20,7 +21,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
         #region Events
         private async void singup_Click(object sender, EventArgs e)
         {
-            var UserResult = GetUserResult();
+			var UserResult = GetUserResult();
             if (UserResult.IsFailed)
             {
                 UserResult.PrintResultMessages();
@@ -33,6 +34,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms
                 this.Close();
             }
         }
+
+      
         private void SingupUserForm_Load(object sender, EventArgs e)
         {
             nameof(MainForm).HideParentForm();

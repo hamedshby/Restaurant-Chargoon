@@ -117,31 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddToCart" xml:space="preserve">
-    <value>AddToCart</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="Detail" xml:space="preserve">
-    <value>Detail</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
-  </data>
   <data name="MaxLengthError" xml:space="preserve">
     <value>تعداد کاراکترهای ورودی باید حداکثر {0} حرف باشد</value>
   </data>
   <data name="MinLengthError" xml:space="preserve">
     <value>تعداد کاراکترهای ورودی باید حداقل {0} حرف باشد</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>Select</value>
-  </data>
-  <data name="ShowFactors" xml:space="preserve">
-    <value>ShowFactors</value>
-  </data>
-  <data name="ShowMenu" xml:space="preserve">
-    <value>ShowMenu</value>
   </data>
 </root>

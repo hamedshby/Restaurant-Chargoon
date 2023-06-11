@@ -24,8 +24,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		#region Events
 		private void FoodForm_Load(object sender, EventArgs e)
 		{
-			var restaurantName = restaurantService.Get(c => c.Id == Program.RestaurantId).FirstOrDefault().Name;
-			this.Text = restaurantName;
+			var restaurantName = restaurantService.Get(c => c.Id == Program.RestaurantId).FirstOrDefault();
+			this.Text = restaurantName == null ? string.Empty : restaurantName.Name;
 			nameof(RestaurantDashboardForm).HideParentForm();
 		}
 
@@ -80,6 +80,6 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 
 
-		
+
 	}
 }

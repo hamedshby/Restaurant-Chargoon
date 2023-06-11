@@ -31,7 +31,7 @@
 			FoodDataGridView = new DataGridView();
 			AddFoodButton = new Button();
 			NameColumn = new DataGridViewTextBoxColumn();
-			IdColumn = new DataGridViewTextBoxColumn();
+			Id = new DataGridViewTextBoxColumn();
 			PriceColumn = new DataGridViewTextBoxColumn();
 			FoodTypeColumn = new DataGridViewTextBoxColumn();
 			Edit = new DataGridViewButtonColumn();
@@ -45,7 +45,7 @@
 			FoodDataGridView.AllowUserToDeleteRows = false;
 			FoodDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 			FoodDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			FoodDataGridView.Columns.AddRange(new DataGridViewColumn[] { NameColumn, IdColumn, PriceColumn, FoodTypeColumn, Edit, Delete });
+			FoodDataGridView.Columns.AddRange(new DataGridViewColumn[] { NameColumn, Id, PriceColumn, FoodTypeColumn, Edit, Delete });
 			FoodDataGridView.Location = new Point(0, 36);
 			FoodDataGridView.Name = "FoodDataGridView";
 			FoodDataGridView.ReadOnly = true;
@@ -76,15 +76,15 @@
 			NameColumn.Name = "NameColumn";
 			NameColumn.ReadOnly = true;
 			// 
-			// IdColumn
+			// Id
 			// 
-			IdColumn.DataPropertyName = "Id";
-			IdColumn.HeaderText = "Id";
-			IdColumn.MinimumWidth = 6;
-			IdColumn.Name = "IdColumn";
-			IdColumn.ReadOnly = true;
-			IdColumn.Visible = false;
-			IdColumn.Width = 125;
+			Id.DataPropertyName = "Id";
+			Id.HeaderText = "Id";
+			Id.MinimumWidth = 6;
+			Id.Name = "Id";
+			Id.ReadOnly = true;
+			Id.Visible = false;
+			Id.Width = 125;
 			// 
 			// PriceColumn
 			// 
@@ -145,7 +145,7 @@
 		private Button AddFoodButton;
 		public DataGridView FoodDataGridView;
 		private DataGridViewTextBoxColumn NameColumn;
-		private DataGridViewTextBoxColumn IdColumn;
+		private DataGridViewTextBoxColumn Id;
 		private DataGridViewTextBoxColumn PriceColumn;
 		private DataGridViewTextBoxColumn FoodTypeColumn;
 		private DataGridViewButtonColumn Edit;

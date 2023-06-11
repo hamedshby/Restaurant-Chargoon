@@ -1,3 +1,5 @@
+using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.UI.WinForm.Forms;
 using RestaurantChargoon.UI.WinForm.Services;
 
@@ -28,6 +30,18 @@ namespace Restaurant_Chargoon.UI.WinForm
 		private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			Application.Exit();
+		}
+
+		private void MainForm_Load(object sender, EventArgs e)
+		{
+			TestAttr();
+		}
+
+		private void TestAttr()
+		{
+			User user = new User();
+			user.Name = "h";
+			user.CheckMinLength();
 		}
 	}
 }
