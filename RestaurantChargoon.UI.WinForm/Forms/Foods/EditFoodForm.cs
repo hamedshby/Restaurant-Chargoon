@@ -12,13 +12,13 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 	{
 		private readonly FoodService foodService;
 		private int foodid;
-		private Food food;
+		
 		public EditFoodForm(int FoodId)
 		{
 			InitializeComponent();
 			this.foodService = new FoodService();
 			foodid = FoodId;
-			food = foodService.GetById(foodid);
+			
 		}
 
 		private async void SaveButton_Click(object sender, EventArgs e)
@@ -56,6 +56,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 
 		private void EditFoodForm_Load(object sender, EventArgs e)
 		{
+			Food food = foodService.GetById(foodid);
 			nameof(FoodForm).HideParentForm();
 			SetFoodTypeComboBox();
 			NameTextBox.Text = food.Name;
