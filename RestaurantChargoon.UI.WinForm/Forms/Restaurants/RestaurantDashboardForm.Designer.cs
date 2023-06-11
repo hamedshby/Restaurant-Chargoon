@@ -36,7 +36,7 @@
 			Column3 = new DataGridViewTextBoxColumn();
 			Column4 = new DataGridViewTextBoxColumn();
 			ShowMenu = new DataGridViewButtonColumn();
-			RestaurantEdit = new DataGridViewButtonColumn();
+			Edit = new DataGridViewButtonColumn();
 			ShowFactors = new DataGridViewButtonColumn();
 			((System.ComponentModel.ISupportInitialize)RestaurantDataGridView).BeginInit();
 			SuspendLayout();
@@ -48,7 +48,7 @@
 			AddRestaurantButton.Name = "AddRestaurantButton";
 			AddRestaurantButton.Size = new Size(171, 44);
 			AddRestaurantButton.TabIndex = 1;
-			AddRestaurantButton.Text = "ثبت رستوران";
+			AddRestaurantButton.Text = "ثبت رستوران جدید";
 			AddRestaurantButton.UseVisualStyleBackColor = true;
 			AddRestaurantButton.Click += AddRestaurantButton_Click;
 			// 
@@ -59,7 +59,7 @@
 			RestaurantDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 			RestaurantDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 			RestaurantDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			RestaurantDataGridView.Columns.AddRange(new DataGridViewColumn[] { Id, Column1, Column2, Column3, Column4, ShowMenu, RestaurantEdit, ShowFactors });
+			RestaurantDataGridView.Columns.AddRange(new DataGridViewColumn[] { Id, Column1, Column2, Column3, Column4, ShowMenu, Edit, ShowFactors });
 			RestaurantDataGridView.Location = new Point(0, 62);
 			RestaurantDataGridView.Name = "RestaurantDataGridView";
 			RestaurantDataGridView.ReadOnly = true;
@@ -124,14 +124,14 @@
 			ShowMenu.Text = "مشاهده منو";
 			ShowMenu.UseColumnTextForButtonValue = true;
 			// 
-			// RestaurantEdit
+			// Edit
 			// 
-			RestaurantEdit.HeaderText = "ویرایش رستوران";
-			RestaurantEdit.MinimumWidth = 6;
-			RestaurantEdit.Name = "RestaurantEdit";
-			RestaurantEdit.ReadOnly = true;
-			RestaurantEdit.Text = "ویرایش رستوران";
-			RestaurantEdit.UseColumnTextForButtonValue = true;
+			Edit.HeaderText = "ویرایش رستوران";
+			Edit.MinimumWidth = 6;
+			Edit.Name = "Edit";
+			Edit.ReadOnly = true;
+			Edit.Text = "ویرایش رستوران";
+			Edit.UseColumnTextForButtonValue = true;
 			// 
 			// ShowFactors
 			// 
@@ -169,7 +169,7 @@
 		private DataGridViewTextBoxColumn Column3;
 		private DataGridViewTextBoxColumn Column4;
 		private DataGridViewButtonColumn ShowMenu;
-		private DataGridViewButtonColumn RestaurantEdit;
+		private DataGridViewButtonColumn Edit;
 		private DataGridViewButtonColumn ShowFactors;
 	}
 }

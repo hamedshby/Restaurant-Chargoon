@@ -18,7 +18,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		#region Events
 		private void AddRestaurantButton_Click(object sender, EventArgs e)
 		{
-			typeof(SignUpRestaurantForm).ShowDialog();			
+			typeof(SignUpRestaurantForm).ShowDialog();
 		}
 
 		private void RestaurantDashboardForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -36,11 +36,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			Program.RestaurantId = RestaurantDataGridView.GetRowClickedIdValue(e);
 			if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.ShowMenu].Index)
 			{
-				typeof(FoodForm).ShowDialog();				
+				typeof(FoodForm).ShowDialog();
 			}
-			else if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.RestaurantEdit].Index)
+			else if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.Edit].Index)
 			{
-				typeof(RestaurantInfoForm).ShowDialog();				
+				typeof(RestaurantInfoForm).ShowDialog();
 			}
 			else if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.ShowFactors].Index)
 			{
@@ -65,7 +65,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 				.ToList();
 			if (foods.Any())
 			{
-				RestaurantDataGridView.Fill(foods);							
+				RestaurantDataGridView.Fill(foods);
 			}
 		}
 

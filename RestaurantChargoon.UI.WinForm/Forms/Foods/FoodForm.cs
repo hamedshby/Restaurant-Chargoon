@@ -3,115 +3,83 @@ using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Foods;
 using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.UI.WinForm.Forms.Foods;
+using RestaurantChargoon.UI.WinForm.Resources;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
 {
-    public partial class FoodForm : Form
-    {
-        private readonly FoodService foodService;
-        private readonly RestaurantService restaurantService;
+	public partial class FoodForm : Form
+	{
+		private readonly FoodService foodService;
+		private readonly RestaurantService restaurantService;
 
-        private int cellCount = 0;
-        public FoodForm()
-        {
-            InitializeComponent();
-            this.foodService = new FoodService();
-            this.restaurantService = new RestaurantService();
-        }
+		private int cellCount = 0;
+		public FoodForm()
+		{
+			InitializeComponent();
+			this.foodService = new FoodService();
+			this.restaurantService = new RestaurantService();
+		}
 
-        #region Events
-        private void FoodForm_Load(object sender, EventArgs e)
-        {
-            var restaurantName = restaurantService.Get(c => c.Id == Program.RestaurantId).FirstOrDefault().Name;
-            this.Text = restaurantName;
-            nameof(RestaurantDashboardForm).HideParentForm();
-            FillgridView();
-        }
+		#region Events
+		private void FoodForm_Load(object sender, EventArgs e)
+		{
+			var restaurantName = restaurantService.Get(c => c.Id == Program.RestaurantId).FirstOrDefault().Name;
+			this.Text = restaurantName;
+			nameof(RestaurantDashboardForm).HideParentForm();
+		}
 
-        private void AddFoodButton_Click(object sender, EventArgs e)
-        {
-            AddFoodForm addFoodForm = new AddFoodForm();
-            addFoodForm.ShowDialog();
-        }
+		private void AddFoodButton_Click(object sender, EventArgs e)
+		{
+			typeof(AddFoodForm).ShowDialog();
+		}
 
-        public void RefreshButton_Click(object sender, EventArgs e)
-        {
-            FillgridView();
-        }
+		private void FoodForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			nameof(RestaurantDashboardForm).ShowParentForm();
+		}
 
-        private void FoodForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            nameof(RestaurantDashboardForm).ShowParentForm();
-        }
+		private void FoodForm_VisibleChanged(object sender, EventArgs e)
+		{
+			FillgridView();
+		}
 
-        //private void FoodDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //          if (e.ColumnIndex == FoodDataGridView.Columns["مشاهده منو"].Index)
-        //          {
-        //              //Do something with your button.
-        //          }
-        //      }
+		private void FoodDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+			int foodid = FoodDataGridView.GetRowClickedIdValue(e);
 
-        #endregion
+			if (e.ColumnIndex == FoodDataGridView.Columns[Resource.Edit].Index)
+			{
+				EditFoodForm editFoodForm = new EditFoodForm(foodid);
+				editFoodForm.ShowDialog();
+			}
+			if (e.ColumnIndex == FoodDataGridView.Columns[Resource.Delete].Index)
+			{
 
+			}
+		}
 
-
-        #region Methods
-        public void FillgridView()
-        {
-           // FoodDataGridView.Rows.Clear();
-            var foods = foodService.Get(c => c.RestaurantId == Program.RestaurantId)
-                .Select(c => new { c.Name, c.Id, c.Price, FoodType = c.FoodType.GetDisplayName() })
-                .ToList();
-            if (foods.Any())
-            {
-                BindingSource bindingSource = new BindingSource();
-                bindingSource.DataSource = foods;
-                FoodDataGridView.DataSource = bindingSource;
-                FoodDataGridView.AddBottonColumn("ویرایش");
-                FoodDataGridView.AddBottonColumn("حذف");
-            }
-        }
+		#endregion
 
 
-        #endregion
 
-        private void FoodForm_VisibleChanged(object sender, EventArgs e)
-        {
-            FillgridView();
-        }
+		#region Methods
+		public void FillgridView()
+		{
+			var foods = foodService.Get(c => c.RestaurantId == Program.RestaurantId)
+				.Select(c => new { c.Name, c.Id, c.Price, FoodType = c.FoodType.GetDisplayName() })
+				.ToList();
+			if (foods.Any())
+			{
+				FoodDataGridView.Fill(foods);
+			}
+		}
 
-        private void FoodDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == FoodDataGridView.Columns["ویرایش"].Index)
-            {
-                foreach (DataGridViewColumn itm in FoodDataGridView.Columns)
-                {
-                    if (itm.DataPropertyName == "Id")
-                    {
-                        DataGridViewRow row = FoodDataGridView.Rows[e.RowIndex];
-                        int.TryParse(row.Cells[itm.Index].Value.ToString(), out int foodid);
 
-                        EditFoodForm editFoodForm = new EditFoodForm(foodid);
-                        editFoodForm.ShowDialog();
-                        break;
+		#endregion
 
-                    }
-                }
-            }
-            if (e.ColumnIndex == FoodDataGridView.Columns["حذف"].Index)
-            {
-                foreach (DataGridViewColumn itm in FoodDataGridView.Columns)
-                {
-                    if (itm.DataPropertyName == "Id")
-                    {
-                        DataGridViewRow row = FoodDataGridView.Rows[e.RowIndex];
-                        
 
-                    }
-                }
-            }
-        }
-    }
+
+		
+	}
 }
