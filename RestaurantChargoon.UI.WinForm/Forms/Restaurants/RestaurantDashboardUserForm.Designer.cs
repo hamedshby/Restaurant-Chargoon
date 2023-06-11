@@ -29,11 +29,12 @@
 		private void InitializeComponent()
 		{
 			RestaurantDataGridView = new DataGridView();
-			Column5 = new DataGridViewTextBoxColumn();
+			Id = new DataGridViewTextBoxColumn();
 			Column1 = new DataGridViewTextBoxColumn();
 			Column2 = new DataGridViewTextBoxColumn();
 			Column3 = new DataGridViewTextBoxColumn();
 			Column4 = new DataGridViewTextBoxColumn();
+			Select = new DataGridViewButtonColumn();
 			((System.ComponentModel.ISupportInitialize)RestaurantDataGridView).BeginInit();
 			SuspendLayout();
 			// 
@@ -42,7 +43,7 @@
 			RestaurantDataGridView.AllowUserToAddRows = false;
 			RestaurantDataGridView.AllowUserToDeleteRows = false;
 			RestaurantDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			RestaurantDataGridView.Columns.AddRange(new DataGridViewColumn[] { Column5, Column1, Column2, Column3, Column4 });
+			RestaurantDataGridView.Columns.AddRange(new DataGridViewColumn[] { Id, Column1, Column2, Column3, Column4, Select });
 			RestaurantDataGridView.Dock = DockStyle.Fill;
 			RestaurantDataGridView.Location = new Point(0, 0);
 			RestaurantDataGridView.Name = "RestaurantDataGridView";
@@ -55,15 +56,15 @@
 			RestaurantDataGridView.TabIndex = 3;
 			RestaurantDataGridView.CellContentClick += RestaurantDataGridView_CellContentClick;
 			// 
-			// Column5
+			// Id
 			// 
-			Column5.DataPropertyName = "Id";
-			Column5.HeaderText = "Id";
-			Column5.MinimumWidth = 6;
-			Column5.Name = "Column5";
-			Column5.ReadOnly = true;
-			Column5.Visible = false;
-			Column5.Width = 125;
+			Id.DataPropertyName = "Id";
+			Id.HeaderText = "Id";
+			Id.MinimumWidth = 6;
+			Id.Name = "Id";
+			Id.ReadOnly = true;
+			Id.Visible = false;
+			Id.Width = 125;
 			// 
 			// Column1
 			// 
@@ -101,6 +102,16 @@
 			Column4.ReadOnly = true;
 			Column4.Width = 125;
 			// 
+			// Select
+			// 
+			Select.HeaderText = "انتخاب";
+			Select.MinimumWidth = 6;
+			Select.Name = "Select";
+			Select.ReadOnly = true;
+			Select.Text = "انتخاب";
+			Select.UseColumnTextForButtonValue = true;
+			Select.Width = 125;
+			// 
 			// RestaurantDashboardUserForm
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
@@ -119,10 +130,11 @@
 		#endregion
 
 		private DataGridView RestaurantDataGridView;
-		private DataGridViewTextBoxColumn Column5;
+		private DataGridViewTextBoxColumn Id;
 		private DataGridViewTextBoxColumn Column1;
 		private DataGridViewTextBoxColumn Column2;
 		private DataGridViewTextBoxColumn Column3;
 		private DataGridViewTextBoxColumn Column4;
+		private DataGridViewButtonColumn Select;
 	}
 }

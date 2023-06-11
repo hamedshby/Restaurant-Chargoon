@@ -1,10 +1,11 @@
-﻿using Restaurant_Chargoon.UI.WinForm;
-using RestaurantChargoon.Domain.Entities;
+﻿using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Services.Carts;
+using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Factors;
 using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.Services.Users;
 using RestaurantChargoon.UI.WinForm.Forms.Foods;
+using RestaurantChargoon.UI.WinForm.Resources;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms.Carts
@@ -41,7 +42,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 
 		private void factorDetailsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
-			if (e.ColumnIndex == factorDetailsDataGridView.Columns["حذف"].Index)
+			if (e.ColumnIndex == factorDetailsDataGridView.Columns[Resource.Delete].Index)
 			{
 				int factorDetailId = factorDetailsDataGridView.GetRowClickedIdValue(e);
 				cart = cartService.RemoveFactorDetail(cart, factorDetailId);
@@ -59,6 +60,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 			result.PrintResultMessages();
 			if (result.IsSuccess)
 			{
+				nameof(FoodDashboardUserForm).ShowParentForm();
 				this.Close();
 			}
 		}
@@ -77,11 +79,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 
 		public void FillgridView()
 		{
-			var factordetails = cart.FactorDetails.Select(c => new { c.Id, c.FoodName, c.Price, c.FoodType }).ToList();
-			BindingSource bindingSource = new BindingSource();
-			bindingSource.DataSource = factordetails;
-			factorDetailsDataGridView.DataSource = bindingSource;
-			factorDetailsDataGridView.AddBottonColumn("حذف");
+			var factordetails = cart.FactorDetails.Select(c => new { c.Id, c.FoodName, c.Price, FoodType = c.FoodType.GetDisplayName() }).ToList();
+			if (factordetails.Any())
+			{
+				factorDetailsDataGridView.Fill(factordetails);
+			}
 		}
 
 		#endregion

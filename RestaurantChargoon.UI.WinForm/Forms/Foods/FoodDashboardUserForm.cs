@@ -5,6 +5,7 @@ using RestaurantChargoon.Services.Foods;
 using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.UI.WinForm.Forms.Carts;
 using RestaurantChargoon.UI.WinForm.Forms.Restaurants;
+using RestaurantChargoon.UI.WinForm.Resources;
 using RestaurantChargoon.UI.WinForm.Services;
 using System.Data;
 
@@ -26,11 +27,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 
 		private void FoodDashboardUserForm_Load(object sender, EventArgs e)
 		{
-			RestaurantDashboardUserForm restaurantDashboard = Application.OpenForms["RestaurantDashboardUserForm"] as RestaurantDashboardUserForm;
-			if (restaurantDashboard != null)
-			{
-				restaurantDashboard.Hide();
-			}
+			nameof(RestaurantDashboardUserForm).HideParentForm();
 			string restaurantName = restaurantService.GetById(Program.RestaurantId).Name;
 			this.Text = " منوی رستوران" + restaurantName;
 			FillGridView();
@@ -38,49 +35,38 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 
 		private void FoodDashboardUserForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			RestaurantDashboardUserForm restaurantDashboard = Application.OpenForms["RestaurantDashboardUserForm"] as RestaurantDashboardUserForm;
-			if (restaurantDashboard != null)
+			nameof(RestaurantDashboardUserForm).ShowParentForm();
+		}
+
+
+		private void showcartButton_Click(object sender, EventArgs e)
+		{
+			var cart = cartService.Get();
+			CartDashboardForm form = new CartDashboardForm(cart);
+			form.ShowDialog();
+		}
+
+		private void FoodDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.ColumnIndex == FoodDataGridView.Columns[Resource.AddToCart].Index)
 			{
-				restaurantDashboard.Show();
+				int foodId = FoodDataGridView.GetRowClickedIdValue(e);
+				var cart = cartService.CreateUserCart(foodId, Program.userLogin.Id, Program.RestaurantId);
+				cartService.Add(cart);
 			}
 		}
+
 
 		public void FillGridView()
 		{
 			var factordetails = foodService.Get(c => c.RestaurantId == Program.RestaurantId)
 				.Select(c => new { c.Id, c.Name, c.Price, FoodType = c.FoodType.GetDisplayName() })
 				.ToList();
-			BindingSource bindingSource = new BindingSource();
-			bindingSource.DataSource = factordetails;
-			FoodDataGridView.DataSource = bindingSource;
-			FoodDataGridView.AddBottonColumn("افزودن به سبد خرید");
-		}
-
-		private void showcartButton_Click(object sender, EventArgs e)
-		{
-			var cart = cartService.Get();
-			CartDashboardForm cartDashboardForm = new CartDashboardForm(cart);
-			cartDashboardForm.Show();
-		}
-
-		private void FoodDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-			if (e.ColumnIndex == FoodDataGridView.Columns["افزودن به سبد خرید"].Index)
+			if (factordetails.Any())
 			{
-				DataGridViewRow row = FoodDataGridView.Rows[e.RowIndex];
-				foreach (DataGridViewColumn itm in FoodDataGridView.Columns)
-				{
-					if (itm.DataPropertyName == "Id")
-					{
-						int.TryParse(row.Cells[itm.Index].Value.ToString(), out int foodId);
-						var cart = cartService.CreateUserCart(foodId, Program.userLogin.Id, Program.RestaurantId);
-						cartService.Add(cart);
-						break;
-					}
-				}
+				FoodDataGridView.Fill(factordetails);
 			}
 		}
-
 
 	}
 }

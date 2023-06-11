@@ -33,11 +33,12 @@
 			UserNameTextBox = new TextBox();
 			label2 = new Label();
 			factorDetailsDataGridView = new DataGridView();
+			SaveFactorButton = new Button();
 			IdColumn = new DataGridViewTextBoxColumn();
 			FoodName = new DataGridViewTextBoxColumn();
 			Price = new DataGridViewTextBoxColumn();
 			FoodType = new DataGridViewTextBoxColumn();
-			SaveFactorButton = new Button();
+			Delete = new DataGridViewButtonColumn();
 			((System.ComponentModel.ISupportInitialize)factorDetailsDataGridView).BeginInit();
 			SuspendLayout();
 			// 
@@ -79,7 +80,7 @@
 			factorDetailsDataGridView.AllowUserToDeleteRows = false;
 			factorDetailsDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 			factorDetailsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			factorDetailsDataGridView.Columns.AddRange(new DataGridViewColumn[] { IdColumn, FoodName, Price, FoodType });
+			factorDetailsDataGridView.Columns.AddRange(new DataGridViewColumn[] { IdColumn, FoodName, Price, FoodType, Delete });
 			factorDetailsDataGridView.Location = new Point(-1, 123);
 			factorDetailsDataGridView.Name = "factorDetailsDataGridView";
 			factorDetailsDataGridView.ReadOnly = true;
@@ -89,6 +90,16 @@
 			factorDetailsDataGridView.Size = new Size(480, 187);
 			factorDetailsDataGridView.TabIndex = 5;
 			factorDetailsDataGridView.CellContentClick += factorDetailsDataGridView_CellContentClick;
+			// 
+			// SaveFactorButton
+			// 
+			SaveFactorButton.Location = new Point(12, 69);
+			SaveFactorButton.Name = "SaveFactorButton";
+			SaveFactorButton.Size = new Size(142, 29);
+			SaveFactorButton.TabIndex = 6;
+			SaveFactorButton.Text = "تایید نهایی";
+			SaveFactorButton.UseVisualStyleBackColor = true;
+			SaveFactorButton.Click += SaveFactorButton_Click;
 			// 
 			// IdColumn
 			// 
@@ -127,15 +138,17 @@
 			FoodType.ReadOnly = true;
 			FoodType.Width = 125;
 			// 
-			// SaveFactorButton
+			// Delete
 			// 
-			SaveFactorButton.Location = new Point(12, 69);
-			SaveFactorButton.Name = "SaveFactorButton";
-			SaveFactorButton.Size = new Size(142, 29);
-			SaveFactorButton.TabIndex = 6;
-			SaveFactorButton.Text = "تایید نهایی";
-			SaveFactorButton.UseVisualStyleBackColor = true;
-			SaveFactorButton.Click += SaveFactorButton_Click;
+			Delete.HeaderText = "حذف";
+			Delete.MinimumWidth = 6;
+			Delete.Name = "Delete";
+			Delete.ReadOnly = true;
+			Delete.Resizable = DataGridViewTriState.True;
+			Delete.SortMode = DataGridViewColumnSortMode.Automatic;
+			Delete.Text = "حذف";
+			Delete.UseColumnTextForButtonValue = true;
+			Delete.Width = 125;
 			// 
 			// CartDashboardForm
 			// 
@@ -163,10 +176,11 @@
 		private TextBox UserNameTextBox;
 		private Label label2;
 		public DataGridView factorDetailsDataGridView;
+		private Button SaveFactorButton;
 		private DataGridViewTextBoxColumn IdColumn;
 		private DataGridViewTextBoxColumn FoodName;
 		private DataGridViewTextBoxColumn Price;
 		private DataGridViewTextBoxColumn FoodType;
-		private Button SaveFactorButton;
+		private DataGridViewButtonColumn Delete;
 	}
 }

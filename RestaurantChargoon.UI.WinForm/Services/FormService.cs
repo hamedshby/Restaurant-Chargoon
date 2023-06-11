@@ -1,6 +1,4 @@
 ﻿using FluentResults;
-using RestaurantChargoon.Domain.Entities;
-using RestaurantChargoon.UI.WinForm.Forms;
 
 namespace RestaurantChargoon.UI.WinForm.Services
 {

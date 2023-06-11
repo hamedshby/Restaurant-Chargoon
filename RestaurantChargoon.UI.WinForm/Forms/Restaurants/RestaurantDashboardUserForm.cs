@@ -2,6 +2,7 @@
 using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.UI.WinForm.Forms.Foods;
 using RestaurantChargoon.UI.WinForm.Forms.Users;
+using RestaurantChargoon.UI.WinForm.Resources;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
@@ -30,11 +31,10 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 
 		private void RestaurantDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
-			if (e.ColumnIndex == RestaurantDataGridView.Columns["انتخاب"].Index)
+			if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.Select].Index)
 			{
 				Program.RestaurantId = RestaurantDataGridView.GetRowClickedIdValue(e);
-				FoodDashboardUserForm foodDashboardUserForm = new FoodDashboardUserForm();
-				foodDashboardUserForm.ShowDialog();
+				typeof(FoodDashboardUserForm).ShowDialog();
 			}
 		}
 		#endregion
@@ -45,10 +45,10 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 			var factordetails = restaurantService.GetAll()
 				.Select(c => new { c.Id, c.Name, c.StartTime, c.EndTime, c.Address })
 				.ToList();
-			BindingSource bindingSource = new BindingSource();
-			bindingSource.DataSource = factordetails;
-			RestaurantDataGridView.DataSource = bindingSource;
-			RestaurantDataGridView.AddBottonColumn("انتخاب");
+			if (factordetails.Any())
+			{
+				RestaurantDataGridView.Fill(factordetails);
+			}
 		}
 
 		#endregion

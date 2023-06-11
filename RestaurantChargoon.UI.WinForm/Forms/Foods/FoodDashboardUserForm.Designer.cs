@@ -29,11 +29,12 @@
 		private void InitializeComponent()
 		{
 			FoodDataGridView = new DataGridView();
+			showcartButton = new Button();
+			Id = new DataGridViewTextBoxColumn();
 			NameColumn = new DataGridViewTextBoxColumn();
-			IdColumn = new DataGridViewTextBoxColumn();
 			PriceColumn = new DataGridViewTextBoxColumn();
 			FoodTypeColumn = new DataGridViewTextBoxColumn();
-			showcartButton = new Button();
+			AddToCart = new DataGridViewButtonColumn();
 			((System.ComponentModel.ISupportInitialize)FoodDataGridView).BeginInit();
 			SuspendLayout();
 			// 
@@ -43,16 +44,36 @@
 			FoodDataGridView.AllowUserToDeleteRows = false;
 			FoodDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 			FoodDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			FoodDataGridView.Columns.AddRange(new DataGridViewColumn[] { NameColumn, IdColumn, PriceColumn, FoodTypeColumn });
+			FoodDataGridView.Columns.AddRange(new DataGridViewColumn[] { Id, NameColumn, PriceColumn, FoodTypeColumn, AddToCart });
 			FoodDataGridView.Location = new Point(0, 48);
 			FoodDataGridView.Name = "FoodDataGridView";
 			FoodDataGridView.ReadOnly = true;
 			FoodDataGridView.RightToLeft = RightToLeft.Yes;
 			FoodDataGridView.RowHeadersWidth = 51;
 			FoodDataGridView.RowTemplate.Height = 29;
-			FoodDataGridView.Size = new Size(709, 276);
+			FoodDataGridView.Size = new Size(721, 276);
 			FoodDataGridView.TabIndex = 1;
 			FoodDataGridView.CellContentClick += FoodDataGridView_CellContentClick;
+			// 
+			// showcartButton
+			// 
+			showcartButton.Location = new Point(554, 12);
+			showcartButton.Name = "showcartButton";
+			showcartButton.Size = new Size(155, 29);
+			showcartButton.TabIndex = 2;
+			showcartButton.Text = "مشاهده ی سبد خرید";
+			showcartButton.UseVisualStyleBackColor = true;
+			showcartButton.Click += showcartButton_Click;
+			// 
+			// Id
+			// 
+			Id.DataPropertyName = "Id";
+			Id.HeaderText = "Id";
+			Id.MinimumWidth = 6;
+			Id.Name = "Id";
+			Id.ReadOnly = true;
+			Id.Visible = false;
+			Id.Width = 125;
 			// 
 			// NameColumn
 			// 
@@ -62,16 +83,6 @@
 			NameColumn.MinimumWidth = 6;
 			NameColumn.Name = "NameColumn";
 			NameColumn.ReadOnly = true;
-			// 
-			// IdColumn
-			// 
-			IdColumn.DataPropertyName = "Id";
-			IdColumn.HeaderText = "Id";
-			IdColumn.MinimumWidth = 6;
-			IdColumn.Name = "IdColumn";
-			IdColumn.ReadOnly = true;
-			IdColumn.Visible = false;
-			IdColumn.Width = 125;
 			// 
 			// PriceColumn
 			// 
@@ -91,21 +102,21 @@
 			FoodTypeColumn.ReadOnly = true;
 			FoodTypeColumn.Width = 125;
 			// 
-			// showcartButton
+			// AddToCart
 			// 
-			showcartButton.Location = new Point(12, 12);
-			showcartButton.Name = "showcartButton";
-			showcartButton.Size = new Size(155, 29);
-			showcartButton.TabIndex = 2;
-			showcartButton.Text = "مشاهده ی سبد خرید";
-			showcartButton.UseVisualStyleBackColor = true;
-			showcartButton.Click += showcartButton_Click;
+			AddToCart.HeaderText = "افزودن به سبد خرید";
+			AddToCart.MinimumWidth = 6;
+			AddToCart.Name = "AddToCart";
+			AddToCart.ReadOnly = true;
+			AddToCart.Text = "افزودن به سبد خرید";
+			AddToCart.UseColumnTextForButtonValue = true;
+			AddToCart.Width = 150;
 			// 
 			// FoodDashboardUserForm
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(709, 324);
+			ClientSize = new Size(721, 324);
 			Controls.Add(showcartButton);
 			Controls.Add(FoodDataGridView);
 			Name = "FoodDashboardUserForm";
@@ -124,5 +135,7 @@
 		private DataGridViewTextBoxColumn PriceColumn;
 		private DataGridViewTextBoxColumn FoodTypeColumn;
 		private Button showcartButton;
+		private DataGridViewTextBoxColumn Id;
+		private DataGridViewButtonColumn AddToCart;
 	}
 }

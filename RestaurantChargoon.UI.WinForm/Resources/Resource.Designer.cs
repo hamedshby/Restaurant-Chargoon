@@ -61,11 +61,38 @@ namespace RestaurantChargoon.UI.WinForm.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AddToCart.
+        /// </summary>
+        internal static string AddToCart {
+            get {
+                return ResourceManager.GetString("AddToCart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RestaurantEdit.
         /// </summary>
         internal static string RestaurantEdit {
             get {
                 return ResourceManager.GetString("RestaurantEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        internal static string Select {
+            get {
+                return ResourceManager.GetString("Select", resourceCulture);
             }
         }
         
