@@ -21,14 +21,14 @@ namespace RestaurantChargoon.UI.WinForm.Forms
         #region Events
         private void AddFoodForm_Load(object sender, EventArgs e)
         {
-           nameof(FoodForm).HideParentForm();
+            nameof(FoodForm).HideParentForm();
             SetFoodTypeComboBox();
         }
 
         private void AddFoodForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-			nameof(FoodForm).ShowParentForm();
-		}
+            nameof(FoodForm).ShowParentForm();
+        }
 
         private async void SaveButton_Click(object sender, EventArgs e)
         {
@@ -41,7 +41,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             var food = foodResult.Value;
             food.RestaurantId = Program.RestaurantId;
             var result = await foodService.AddAsync(food);
-            result.PrintResultMessages();           
+            result.PrintResultMessages();
         }
 
         #endregion
@@ -66,8 +66,21 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             .Build();
             return foodResult;
         }
+
         #endregion
 
-       
+        private void PricetextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
