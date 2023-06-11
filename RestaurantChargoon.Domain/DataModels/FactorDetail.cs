@@ -9,5 +9,6 @@ namespace RestaurantChargoon.Domain.Entities
         public string FoodName { get; set; }
 		public decimal Price { get; set; }
 		public FoodType FoodType { get; set; }
-	}
+        public int count { get; set; }
+    }
 }
