@@ -1,4 +1,5 @@
-﻿using Restaurant_Chargoon.UI.WinForm;
+﻿using FluentResults;
+using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Foods;
 using RestaurantChargoon.Services.Restaurants;
@@ -44,7 +45,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			FillgridView();
 		}
 
-		private void FoodDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		private async void FoodDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
 			int foodid = FoodDataGridView.GetRowClickedIdValue(e);
 
@@ -56,12 +57,13 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			if (e.ColumnIndex == FoodDataGridView.Columns[Resource.Delete].Index)
 			{
 				DialogResult dialogResult = MessageBox.Show("آیا از حذف این مورد مطمئن هستید؟ ", "هشدار ", MessageBoxButtons.YesNo);
-				if(dialogResult == DialogResult.Yes)
-                {
-					DeleteFood(foodid);
-					
+				if (dialogResult == DialogResult.Yes)
+				{
+					Result<int> result = await DeleteFoodAsync(foodid);
+					if (result.IsSuccess)
+						FoodDataGridView.Rows.RemoveAt(e.RowIndex);
+					result.PrintResultMessages();
 				}
-                FillgridView();
 			}
 		}
 
@@ -80,13 +82,12 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 				FoodDataGridView.Fill(foods);
 			}
 		}
-		public async Task DeleteFood(int foodid)
-        {
-			var food2 = foodService.GetById(foodid);
-			food2.IsDeleted = true;
-			
-			var result = await foodService.UpdateAsync(food2);
-			result.PrintResultMessages();
+		public async Task<Result<int>> DeleteFoodAsync(int foodid)
+		{
+			var food = foodService.GetById(foodid);
+			food.IsDeleted = true;
+			var result = await foodService.UpdateAsync(food);			
+			return result;
 		}
 
 		#endregion

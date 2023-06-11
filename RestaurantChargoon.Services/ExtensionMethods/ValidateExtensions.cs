@@ -21,7 +21,6 @@ namespace RestaurantChargoon.Services.ExtensionMethods
 						string msg = propertyLength.ErrorMessage;
 						msg= msg.Replace("{0}",propertyLength.Length.ToString());
 					}
-
 				}
 			}
 		}

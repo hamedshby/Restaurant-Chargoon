@@ -1,5 +1,4 @@
 ﻿using RestaurantChargoon.Domain.Enums;
-using RestaurantChargoon.Domain.Resources;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 

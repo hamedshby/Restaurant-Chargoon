@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/RestaurantChargoon.Infrastructure.EF/Migrations/20230610121351_init.cs
+/RestaurantChargoon.Infrastructure.EF/Migrations/20230610121351_init.Designer.cs
+*.cs
