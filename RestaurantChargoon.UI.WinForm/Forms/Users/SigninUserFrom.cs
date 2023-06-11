@@ -21,19 +21,17 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			var user = userService.CheckUserPassword(NationalCodeTextBox.Text.Trim(), PasswordTextBox.Text.Trim());
 			if (user == null)
 			{
-				MessageBox.Show("نام کاربری و پسورد وجود ندارد");
+				FormService.ShowErrorMessageBox("نام کاربری و پسورد وجود ندارد");
 				return;
 			}
 			Program.userLogin = user;
 			if (user.UserType == UserType.RestaurantManager)
 			{
-				RestaurantDashboardForm restaurantDashboardForm = new RestaurantDashboardForm();
-				restaurantDashboardForm.ShowDialog();
+				typeof(RestaurantDashboardForm).ShowDialog();
 			}
 			else if (user.UserType == UserType.User)
 			{
-				UserDashboardForm userDashboardForm = new UserDashboardForm();
-				userDashboardForm.ShowDialog();
+				typeof(UserDashboardForm).ShowDialog();				
 			}
 		}
 

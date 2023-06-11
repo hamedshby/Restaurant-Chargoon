@@ -79,6 +79,15 @@ namespace RestaurantChargoon.UI.WinForm.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detail.
+        /// </summary>
+        internal static string Detail {
+            get {
+                return ResourceManager.GetString("Detail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RestaurantEdit.
         /// </summary>
         internal static string RestaurantEdit {

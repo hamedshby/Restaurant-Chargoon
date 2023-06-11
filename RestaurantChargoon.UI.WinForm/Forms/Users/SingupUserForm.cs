@@ -15,7 +15,6 @@ namespace RestaurantChargoon.UI.WinForm.Forms
         {
             InitializeComponent();
             this.userService = new UserService();
-
         }
 
         #region Events

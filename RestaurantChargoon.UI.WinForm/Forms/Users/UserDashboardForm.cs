@@ -12,8 +12,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			RestaurantDashboardUserForm restaurantDashboardUserForm = new RestaurantDashboardUserForm();
-			restaurantDashboardUserForm.ShowDialog();
+			typeof(RestaurantDashboardUserForm).ShowDialog();
 		}
 
 		private void UserDashboardForm_Load(object sender, EventArgs e)
@@ -28,14 +27,12 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 
 		private void ShowOrdersButton_Click(object sender, EventArgs e)
 		{
-			UserFactorsForm ordersForm = new UserFactorsForm();
-			ordersForm.ShowDialog();
+			typeof(UserFactorsForm).ShowDialog();
 		}
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			UserInfoForm userInfoForm = new UserInfoForm();
-			userInfoForm.ShowDialog();
+			typeof(UserInfoForm).ShowDialog();
 		}
 	}
 }

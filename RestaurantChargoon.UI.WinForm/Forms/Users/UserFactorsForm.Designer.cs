@@ -29,9 +29,10 @@
 		private void InitializeComponent()
 		{
 			UserFactorDataGridView = new DataGridView();
-			RestaurantName = new DataGridViewTextBoxColumn();
 			FactorId = new DataGridViewTextBoxColumn();
+			RestaurantName = new DataGridViewTextBoxColumn();
 			TotalPrice = new DataGridViewTextBoxColumn();
+			Detail = new DataGridViewButtonColumn();
 			((System.ComponentModel.ISupportInitialize)UserFactorDataGridView).BeginInit();
 			SuspendLayout();
 			// 
@@ -40,7 +41,7 @@
 			UserFactorDataGridView.AllowUserToAddRows = false;
 			UserFactorDataGridView.AllowUserToDeleteRows = false;
 			UserFactorDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			UserFactorDataGridView.Columns.AddRange(new DataGridViewColumn[] { RestaurantName, FactorId, TotalPrice });
+			UserFactorDataGridView.Columns.AddRange(new DataGridViewColumn[] { FactorId, RestaurantName, TotalPrice, Detail });
 			UserFactorDataGridView.Dock = DockStyle.Fill;
 			UserFactorDataGridView.Location = new Point(0, 0);
 			UserFactorDataGridView.Name = "UserFactorDataGridView";
@@ -48,18 +49,9 @@
 			UserFactorDataGridView.RightToLeft = RightToLeft.Yes;
 			UserFactorDataGridView.RowHeadersWidth = 51;
 			UserFactorDataGridView.RowTemplate.Height = 29;
-			UserFactorDataGridView.Size = new Size(485, 237);
+			UserFactorDataGridView.Size = new Size(621, 237);
 			UserFactorDataGridView.TabIndex = 0;
 			UserFactorDataGridView.CellContentClick += UserFactorDataGridView_CellContentClick;
-			// 
-			// RestaurantName
-			// 
-			RestaurantName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-			RestaurantName.DataPropertyName = "RestaurantName";
-			RestaurantName.HeaderText = "نام رستوران";
-			RestaurantName.MinimumWidth = 6;
-			RestaurantName.Name = "RestaurantName";
-			RestaurantName.ReadOnly = true;
 			// 
 			// FactorId
 			// 
@@ -71,6 +63,15 @@
 			FactorId.Visible = false;
 			FactorId.Width = 125;
 			// 
+			// RestaurantName
+			// 
+			RestaurantName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+			RestaurantName.DataPropertyName = "RestaurantName";
+			RestaurantName.HeaderText = "نام رستوران";
+			RestaurantName.MinimumWidth = 6;
+			RestaurantName.Name = "RestaurantName";
+			RestaurantName.ReadOnly = true;
+			// 
 			// TotalPrice
 			// 
 			TotalPrice.DataPropertyName = "TotalPrice";
@@ -80,11 +81,23 @@
 			TotalPrice.ReadOnly = true;
 			TotalPrice.Width = 125;
 			// 
+			// Detail
+			// 
+			Detail.HeaderText = "مشاهده ی جزییات";
+			Detail.MinimumWidth = 6;
+			Detail.Name = "Detail";
+			Detail.ReadOnly = true;
+			Detail.Resizable = DataGridViewTriState.True;
+			Detail.SortMode = DataGridViewColumnSortMode.Automatic;
+			Detail.Text = "مشاهده ی جزییات";
+			Detail.UseColumnTextForButtonValue = true;
+			Detail.Width = 160;
+			// 
 			// UserFactorsForm
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(485, 237);
+			ClientSize = new Size(621, 237);
 			Controls.Add(UserFactorDataGridView);
 			Name = "UserFactorsForm";
 			StartPosition = FormStartPosition.CenterScreen;
@@ -98,8 +111,9 @@
 		#endregion
 
 		private DataGridView UserFactorDataGridView;
-		private DataGridViewTextBoxColumn RestaurantName;
 		private DataGridViewTextBoxColumn FactorId;
+		private DataGridViewTextBoxColumn RestaurantName;
 		private DataGridViewTextBoxColumn TotalPrice;
+		private DataGridViewButtonColumn Detail;
 	}
 }

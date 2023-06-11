@@ -38,9 +38,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 				.ToList();
 			if (factorDetails.Any())
 			{
-				BindingSource bindingSource = new BindingSource();
-				bindingSource.DataSource = factorDetails;
-				FactcorDetailDataGridView.DataSource = bindingSource;
+				FactcorDetailDataGridView.Fill(factorDetails);
 			}
 		}
 

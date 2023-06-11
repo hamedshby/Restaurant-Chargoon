@@ -17,14 +17,12 @@ namespace Restaurant_Chargoon.UI.WinForm
 
 		private void signupRestaurant_Click(object sender, EventArgs e)
 		{
-			SignUpRestaurantForm signUpRestaurant = new SignUpRestaurantForm();
-			signUpRestaurant.ShowDialog();
+			typeof(SignUpRestaurantForm).ShowDialog();
 		}
 
 		private void signupUserBtn_Click_1(object sender, EventArgs e)
 		{
-			SingupUserForm singupUserForm = new SingupUserForm();
-			singupUserForm.ShowDialog();
+			typeof(SingupUserForm).ShowDialog();
 		}
 
 		private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

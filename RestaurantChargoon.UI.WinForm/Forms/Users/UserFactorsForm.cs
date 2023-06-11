@@ -1,6 +1,7 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Services.Factors;
 using RestaurantChargoon.Services.Restaurants;
+using RestaurantChargoon.UI.WinForm.Resources;
 using RestaurantChargoon.UI.WinForm.Services;
 using System.Data;
 
@@ -35,19 +36,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 
 		private void UserFactorDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
-			if (e.ColumnIndex == UserFactorDataGridView.Columns["مشاهده ی جزییات"].Index)
+			if (e.ColumnIndex == UserFactorDataGridView.Columns[Resource.Detail].Index)
 			{
-				DataGridViewRow row = UserFactorDataGridView.Rows[e.RowIndex];
-				foreach (DataGridViewColumn itm in UserFactorDataGridView.Columns)
-				{
-					if (itm.DataPropertyName == "Id")
-					{
-						int.TryParse(row.Cells[itm.Index].Value.ToString(), out int factorId);
-						UserFactorDetailForm form = new UserFactorDetailForm(factorId);
-						form.ShowDialog();
-						break;
-					}
-				}
+				int factorId = UserFactorDataGridView.GetRowClickedIdValue(e);
+				UserFactorDetailForm form = new UserFactorDetailForm(factorId);
+				form.ShowDialog();
 			}
 		}
 
@@ -70,7 +63,6 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 				BindingSource bindingSource = new BindingSource();
 				bindingSource.DataSource = factors;
 				UserFactorDataGridView.DataSource = bindingSource;
-				UserFactorDataGridView.AddBottonColumn("مشاهده ی جزییات");
 			}
 		}
 		#endregion

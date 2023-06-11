@@ -123,6 +123,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
   <data name="RestaurantEdit" xml:space="preserve">
     <value>RestaurantEdit</value>
   </data>
