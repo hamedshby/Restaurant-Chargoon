@@ -10,8 +10,8 @@ using RestaurantChargoon.Infrastructure.EF.Context;
 namespace RestaurantChargoon.Infrastructure.EF.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20230610121351_init")]
-    partial class init
+    [Migration("20230611171252_a1")]
+    partial class a1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

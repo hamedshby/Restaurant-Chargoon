@@ -107,11 +107,19 @@ namespace RestaurantChargoon.UI.WinForm.Forms
                     if (itm.DataPropertyName == "Id")
                     {
                         DataGridViewRow row = FoodDataGridView.Rows[e.RowIndex];
-                        
-
+                        int.TryParse(row.Cells[itm.Index].Value.ToString(), out int foodid);
+                        DialogResult result = MessageBox.Show("آیا از حذف مطمئن هستید ؟ ", "اخطار", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                        if(result == DialogResult.Yes)
+                        {
+                            DeleteFood();
+                        }
                     }
                 }
             }
+        }
+        private void DeleteFood()
+        {
+
         }
     }
 }
