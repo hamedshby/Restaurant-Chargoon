@@ -40,6 +40,8 @@
             PasswordTetxtBox = new TextBox();
             AddressTetxtBox = new TextBox();
             singup = new Button();
+            label6 = new Label();
+            label7 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -81,7 +83,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(367, 311);
+            label5.Location = new Point(367, 321);
             label5.Name = "label5";
             label5.Size = new Size(44, 20);
             label5.TabIndex = 4;
@@ -128,7 +130,7 @@
             // 
             // AddressTetxtBox
             // 
-            AddressTetxtBox.Location = new Point(101, 311);
+            AddressTetxtBox.Location = new Point(101, 321);
             AddressTetxtBox.Name = "AddressTetxtBox";
             AddressTetxtBox.Size = new Size(242, 27);
             AddressTetxtBox.TabIndex = 12;
@@ -143,11 +145,33 @@
             singup.UseVisualStyleBackColor = true;
             singup.Click += singup_Click;
             // 
+            // label6
+            // 
+            label6.Font = new Font("Segoe UI", 7F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(100, 278);
+            label6.Name = "label6";
+            label6.RightToLeft = RightToLeft.Yes;
+            label6.Size = new Size(242, 30);
+            label6.TabIndex = 14;
+            label6.Text = "طول پسورد حداقل 5 کاراکتر و شامل حرف و عدد باشد";
+            // 
+            // label7
+            // 
+            label7.Font = new Font("Segoe UI", 7F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(101, 202);
+            label7.Name = "label7";
+            label7.RightToLeft = RightToLeft.Yes;
+            label7.Size = new Size(242, 30);
+            label7.TabIndex = 15;
+            label7.Text = "کد ملی باید 10 رقم باشد";
+            // 
             // SingupUserForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(485, 485);
+            Controls.Add(label7);
+            Controls.Add(label6);
             Controls.Add(singup);
             Controls.Add(AddressTetxtBox);
             Controls.Add(PasswordTetxtBox);
@@ -183,5 +207,7 @@
         private TextBox PasswordTetxtBox;
         private TextBox AddressTetxtBox;
         private Button singup;
+        private Label label6;
+        private Label label7;
     }
 }
