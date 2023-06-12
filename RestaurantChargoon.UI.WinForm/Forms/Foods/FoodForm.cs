@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Foods;
 using RestaurantChargoon.Services.Restaurants;
@@ -90,10 +91,10 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			return result;
 		}
 
-		#endregion
+        #endregion
 
 
 
 
-	}
+    }
 }

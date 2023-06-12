@@ -73,7 +73,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 		private void FillRestaurantNameUserNameTextBox()
 		{
 			string restaurantName = restaurantService.GetById(cart.RestaurantId).Name;
-			string userName = userService.GetById(cart.RestaurantId).Name;
+			string userName = userService.GetById(cart.UserId).Name;
 			RestaurantNametextBox.Text = restaurantName;
 			UserNameTextBox.Text = userName;
 		}
