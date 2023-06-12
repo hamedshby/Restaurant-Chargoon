@@ -33,6 +33,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 		{
 			nameof(FoodDashboardUserForm).HideParentForm();
 			FillRestaurantNameUserNameTextBox();
+			EnableTextBox(false);
 			FillgridView();
 		}
 		private void CartDashboardForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -86,7 +87,12 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 			}
 		}
 
-		#endregion
+        private void EnableTextBox(bool enableTextBox)
+        {
+            UserNameTextBox.Enabled = enableTextBox;
+            RestaurantNametextBox.Enabled = enableTextBox;
+        }
+        #endregion
 
-	}
+    }
 }

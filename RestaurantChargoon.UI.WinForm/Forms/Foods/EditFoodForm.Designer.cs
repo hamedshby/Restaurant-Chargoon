@@ -53,6 +53,7 @@
             this.PricetextBox.Name = "PricetextBox";
             this.PricetextBox.Size = new System.Drawing.Size(133, 23);
             this.PricetextBox.TabIndex = 16;
+            this.PricetextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PricetextBox_KeyPress);
             // 
             // label2
             // 

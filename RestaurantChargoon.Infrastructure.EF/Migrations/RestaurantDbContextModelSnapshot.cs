@@ -73,6 +73,9 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("count")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("FactorId");

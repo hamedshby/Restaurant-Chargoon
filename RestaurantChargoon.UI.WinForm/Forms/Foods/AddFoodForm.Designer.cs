@@ -28,94 +28,101 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label3 = new Label();
-            PricetextBox = new TextBox();
-            label2 = new Label();
-            FoodTypeComboBox = new ComboBox();
-            SaveButton = new Button();
-            NameTextBox = new TextBox();
-            label1 = new Label();
-            SuspendLayout();
+            this.label3 = new System.Windows.Forms.Label();
+            this.PricetextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.FoodTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.NameTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(254, 159);
-            label3.Name = "label3";
-            label3.Size = new Size(31, 20);
-            label3.TabIndex = 13;
-            label3.Text = "نوع";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(222, 119);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(24, 15);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "نوع";
             // 
             // PricetextBox
             // 
-            PricetextBox.Location = new Point(77, 87);
-            PricetextBox.Name = "PricetextBox";
-            PricetextBox.Size = new Size(151, 27);
-            PricetextBox.TabIndex = 9;
+            this.PricetextBox.Location = new System.Drawing.Point(67, 65);
+            this.PricetextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PricetextBox.Name = "PricetextBox";
+            this.PricetextBox.Size = new System.Drawing.Size(133, 23);
+            this.PricetextBox.TabIndex = 9;
+            this.PricetextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PricetextBox_KeyPress);
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(254, 92);
-            label2.Name = "label2";
-            label2.Size = new Size(45, 20);
-            label2.TabIndex = 11;
-            label2.Text = "قیمت";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(222, 69);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 15);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "قیمت";
             // 
             // FoodTypeComboBox
             // 
-            FoodTypeComboBox.FormattingEnabled = true;
-            FoodTypeComboBox.Location = new Point(77, 156);
-            FoodTypeComboBox.Name = "FoodTypeComboBox";
-            FoodTypeComboBox.Size = new Size(151, 28);
-            FoodTypeComboBox.TabIndex = 10;
+            this.FoodTypeComboBox.FormattingEnabled = true;
+            this.FoodTypeComboBox.Location = new System.Drawing.Point(67, 117);
+            this.FoodTypeComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.FoodTypeComboBox.Name = "FoodTypeComboBox";
+            this.FoodTypeComboBox.Size = new System.Drawing.Size(133, 23);
+            this.FoodTypeComboBox.TabIndex = 10;
             // 
             // SaveButton
             // 
-            SaveButton.Location = new Point(77, 216);
-            SaveButton.Name = "SaveButton";
-            SaveButton.Size = new Size(151, 29);
-            SaveButton.TabIndex = 11;
-            SaveButton.Text = "ذخیره";
-            SaveButton.UseVisualStyleBackColor = true;
-            SaveButton.Click += SaveButton_Click;
+            this.SaveButton.Location = new System.Drawing.Point(67, 162);
+            this.SaveButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(132, 22);
+            this.SaveButton.TabIndex = 11;
+            this.SaveButton.Text = "ذخیره";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // NameTextBox
             // 
-            NameTextBox.Location = new Point(77, 32);
-            NameTextBox.Name = "NameTextBox";
-            NameTextBox.Size = new Size(151, 27);
-            NameTextBox.TabIndex = 8;
+            this.NameTextBox.Location = new System.Drawing.Point(67, 24);
+            this.NameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.Size = new System.Drawing.Size(133, 23);
+            this.NameTextBox.TabIndex = 8;
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(254, 37);
-            label1.Name = "label1";
-            label1.Size = new Size(27, 20);
-            label1.TabIndex = 7;
-            label1.Text = "نام";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(222, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(21, 15);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "نام";
             // 
             // AddFoodForm
             // 
-            AcceptButton = SaveButton;
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(324, 287);
-            Controls.Add(label3);
-            Controls.Add(PricetextBox);
-            Controls.Add(label2);
-            Controls.Add(FoodTypeComboBox);
-            Controls.Add(SaveButton);
-            Controls.Add(NameTextBox);
-            Controls.Add(label1);
-            Name = "AddFoodForm";
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "افزودن منو";
-            FormClosed += AddFoodForm_FormClosed;
-            Load += AddFoodForm_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AcceptButton = this.SaveButton;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 215);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.PricetextBox);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.FoodTypeComboBox);
+            this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.NameTextBox);
+            this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "AddFoodForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "افزودن منو";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddFoodForm_FormClosed);
+            this.Load += new System.EventHandler(this.AddFoodForm_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
