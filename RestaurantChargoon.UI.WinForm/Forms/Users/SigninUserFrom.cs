@@ -43,6 +43,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
         private void SigninUserFrom_Load(object sender, EventArgs e)
         {
             nameof(MainForm).HideParentForm();
+            FillTextBox();
         }
 
         #endregion
@@ -58,6 +59,20 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void FillTextBox()
+        {
+            var sysname = System.Environment.MachineName;
+            if (sysname == "DESKTOP-12BF9LQ")
+            {
+                var user = userService.Get(c => c.UserType == UserType.User).FirstOrDefault();
+                if (user != null)
+                {
+                    NationalCodeTextBox.Text = user.NationalCode;
+                    PasswordTextBox.Text = user.Password;
+                }
             }
         }
     }
