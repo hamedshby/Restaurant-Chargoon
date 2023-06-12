@@ -41,7 +41,7 @@ namespace Restaurant_Chargoon.UI.WinForm
 		{
 			User user = new User();
 			user.Name = "h";
-			user.CheckMinLength();
+			var res= user.ModelState();
 		}
 	}
 }
