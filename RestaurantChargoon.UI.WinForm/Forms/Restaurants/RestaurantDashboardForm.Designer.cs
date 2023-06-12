@@ -76,7 +76,7 @@
             // 
             Id.DataPropertyName = "Id";
             Id.HeaderText = "Id";
-            Id.MinimumWidth = 6;
+            Id.MinimumWidth = 8;
             Id.Name = "Id";
             Id.ReadOnly = true;
             Id.Visible = false;
@@ -137,7 +137,7 @@
             // ShowFactors
             // 
             ShowFactors.HeaderText = "مشاهده فاکتورها";
-            ShowFactors.MinimumWidth = 6;
+            ShowFactors.MinimumWidth = 20;
             ShowFactors.Name = "ShowFactors";
             ShowFactors.ReadOnly = true;
             ShowFactors.Text = "مشاهده فاکتورها";

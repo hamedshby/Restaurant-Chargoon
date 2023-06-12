@@ -1,4 +1,6 @@
-﻿using Restaurant_Chargoon.UI.WinForm;
+﻿using FluentResults;
+using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.UI.WinForm.Forms.Restaurants;
 using RestaurantChargoon.UI.WinForm.Resources;
@@ -31,7 +33,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             nameof(SigninUserFrom).HideParentForm();
         }
 
-        private void RestaurantDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void RestaurantDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Program.RestaurantId = RestaurantDataGridView.GetRowClickedIdValue(e);
             if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.ShowMenu].Index)
@@ -45,6 +47,17 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             else if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.ShowFactors].Index)
             {
                 typeof(RestaurantFactorsForm).ShowDialog();
+            }
+            else if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.Delete].Index)
+            {
+                DialogResult dialogResult = MessageBox.Show("آیا از حذف این مورد مطمئن هستید؟ ", "هشدار ", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Result<int> result = await DeleteRestaurantAsync(Program.RestaurantId);
+                    if (result.IsSuccess)
+                        RestaurantDataGridView.Rows.RemoveAt(e.RowIndex);
+                    result.PrintResultMessages();
+                }
             }
         }
         private void RestaurantDashboardForm_VisibleChanged(object sender, EventArgs e)
@@ -67,6 +80,13 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             {
                 RestaurantDataGridView.Fill(foods);
             }
+        }
+        public async Task<Result<int>> DeleteRestaurantAsync(int restaurantid)
+        {
+            var restaurant = restaurantService.GetById(restaurantid);
+            restaurant.IsDeleted = true;
+            var result = await restaurantService.UpdateAsync(restaurant);
+            return result;
         }
 
         #endregion
