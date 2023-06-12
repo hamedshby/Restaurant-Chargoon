@@ -36,6 +36,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
         private async void RestaurantDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Program.RestaurantId = RestaurantDataGridView.GetRowClickedIdValue(e);
+            int restaurantid = RestaurantDataGridView.GetRowClickedIdValue(e);
             if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.ShowMenu].Index)
             {
                 typeof(FoodForm).ShowDialog();
@@ -53,7 +54,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
                 DialogResult dialogResult = MessageBox.Show("آیا از حذف این مورد مطمئن هستید؟ ", "هشدار ", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    Result<int> result = await DeleteRestaurantAsync(Program.RestaurantId);
+                    Result<int> result = await DeleteRestaurantAsync(restaurantid);
                     if (result.IsSuccess)
                         RestaurantDataGridView.Rows.RemoveAt(e.RowIndex);
                     result.PrintResultMessages();
