@@ -29,6 +29,9 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("RestaurantId")
                         .HasColumnType("int");
 
@@ -59,6 +62,10 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
 
                     b.Property<int>("FactorId")
                         .HasColumnType("int");
+
+                    b.Property<string>("FoodId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FoodName")
                         .IsRequired()
