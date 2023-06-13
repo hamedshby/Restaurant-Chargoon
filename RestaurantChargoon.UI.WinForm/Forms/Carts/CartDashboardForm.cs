@@ -57,6 +57,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 			{
 				factorDetail.Id = 0;
 			}
+			cart.RestaurantName = restaurantService.GetById(cart.RestaurantId).Name;
 			var result = await factorService.AddAsync(cart);
 			result.PrintResultMessages();
 			if (result.IsSuccess)
