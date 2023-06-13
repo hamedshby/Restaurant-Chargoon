@@ -80,7 +80,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 
 		public void FillgridView()
 		{
-			var factordetails = cart.FactorDetails.Select(c => new { c.Id, c.FoodName, c.Price, FoodType = c.FoodType.GetDisplayName() }).ToList();
+			var factordetails = cart.FactorDetails.Select(c => new { c.Id, c.FoodName, c.Price, FoodType = c.FoodType.GetDisplayName() , count=c.count }).ToList();
 			if (factordetails.Any())
 			{
 				factorDetailsDataGridView.Fill(factordetails);

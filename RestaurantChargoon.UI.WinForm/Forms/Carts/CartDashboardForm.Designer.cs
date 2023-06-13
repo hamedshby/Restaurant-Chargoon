@@ -33,12 +33,13 @@
             this.UserNameTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.factorDetailsDataGridView = new System.Windows.Forms.DataGridView();
+            this.SaveFactorButton = new System.Windows.Forms.Button();
             this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FoodName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.SaveFactorButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.factorDetailsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,6 +92,7 @@
             this.FoodName,
             this.Price,
             this.FoodType,
+            this.count,
             this.Delete});
             this.factorDetailsDataGridView.Location = new System.Drawing.Point(-1, 92);
             this.factorDetailsDataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -99,9 +101,20 @@
             this.factorDetailsDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.factorDetailsDataGridView.RowHeadersWidth = 51;
             this.factorDetailsDataGridView.RowTemplate.Height = 29;
-            this.factorDetailsDataGridView.Size = new System.Drawing.Size(420, 140);
+            this.factorDetailsDataGridView.Size = new System.Drawing.Size(848, 140);
             this.factorDetailsDataGridView.TabIndex = 5;
             this.factorDetailsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.factorDetailsDataGridView_CellContentClick);
+            // 
+            // SaveFactorButton
+            // 
+            this.SaveFactorButton.Location = new System.Drawing.Point(10, 52);
+            this.SaveFactorButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SaveFactorButton.Name = "SaveFactorButton";
+            this.SaveFactorButton.Size = new System.Drawing.Size(124, 22);
+            this.SaveFactorButton.TabIndex = 6;
+            this.SaveFactorButton.Text = "تایید نهایی";
+            this.SaveFactorButton.UseVisualStyleBackColor = true;
+            this.SaveFactorButton.Click += new System.EventHandler(this.SaveFactorButton_Click);
             // 
             // IdColumn
             // 
@@ -140,6 +153,13 @@
             this.FoodType.ReadOnly = true;
             this.FoodType.Width = 125;
             // 
+            // count
+            // 
+            this.count.DataPropertyName = "count";
+            this.count.HeaderText = "تعداد";
+            this.count.Name = "count";
+            this.count.ReadOnly = true;
+            // 
             // Delete
             // 
             this.Delete.HeaderText = "حذف";
@@ -152,22 +172,11 @@
             this.Delete.UseColumnTextForButtonValue = true;
             this.Delete.Width = 125;
             // 
-            // SaveFactorButton
-            // 
-            this.SaveFactorButton.Location = new System.Drawing.Point(10, 52);
-            this.SaveFactorButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.SaveFactorButton.Name = "SaveFactorButton";
-            this.SaveFactorButton.Size = new System.Drawing.Size(124, 22);
-            this.SaveFactorButton.TabIndex = 6;
-            this.SaveFactorButton.Text = "تایید نهایی";
-            this.SaveFactorButton.UseVisualStyleBackColor = true;
-            this.SaveFactorButton.Click += new System.EventHandler(this.SaveFactorButton_Click);
-            // 
             // CartDashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(418, 233);
+            this.ClientSize = new System.Drawing.Size(846, 233);
             this.Controls.Add(this.SaveFactorButton);
             this.Controls.Add(this.factorDetailsDataGridView);
             this.Controls.Add(this.UserNameTextBox);
@@ -192,10 +201,11 @@
 		private Label label2;
 		public DataGridView factorDetailsDataGridView;
 		private Button SaveFactorButton;
-		private DataGridViewTextBoxColumn IdColumn;
-		private DataGridViewTextBoxColumn FoodName;
-		private DataGridViewTextBoxColumn Price;
-		private DataGridViewTextBoxColumn FoodType;
-		private DataGridViewButtonColumn Delete;
-	}
+        private DataGridViewTextBoxColumn IdColumn;
+        private DataGridViewTextBoxColumn FoodName;
+        private DataGridViewTextBoxColumn Price;
+        private DataGridViewTextBoxColumn FoodType;
+        private DataGridViewTextBoxColumn count;
+        private DataGridViewButtonColumn Delete;
+    }
 }
