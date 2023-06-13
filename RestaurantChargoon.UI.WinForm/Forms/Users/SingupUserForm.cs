@@ -22,13 +22,16 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			var user = GetUser();
 			if (!user.CheckModelState())
 				return;
-
-			var addResult = await userService.AddAsync(user);
-			addResult.PrintResultMessages();
-			if (addResult.IsSuccess)
-			{
-				this.Close();
+            if (userService.GetByNationalCode(user.NationalCode)==null)
+            {
+				var addResult = await userService.AddAsync(user);
+				addResult.PrintResultMessages();
+				if (addResult.IsSuccess)
+				{
+					this.Close();
+				}
 			}
+			FormService.ShowErrorMessageBox("این کاربر قبلا ثبت نام کرده است");
 		}
 
 		private void SingupUserForm_Load(object sender, EventArgs e)
