@@ -12,15 +12,16 @@ namespace RestaurantChargoon.Services.ExtensionMethods
 			Result<T> result = new Result<T>();
 			var attrresult = CheckMinLength(obj);
 			if (attrresult.IsFailed)
-				result.Errors.AddRange(attrresult.Errors);
+			result.WithErrors(attrresult.Errors);			
+			
 
 			attrresult = CheckMaxLength(obj);
 			if (attrresult.IsFailed)
-				result.Errors.AddRange(attrresult.Errors);
+				result.WithErrors(attrresult.Errors);
 
 			attrresult = CheckRegex(obj);
 			if (attrresult.IsFailed)
-				result.Errors.AddRange(attrresult.Errors);
+				result.WithErrors(attrresult.Errors);
 
 			return result;
 		}
@@ -31,15 +32,23 @@ namespace RestaurantChargoon.Services.ExtensionMethods
 			var prop = type.GetProperties();
 			foreach (var property in prop)
 			{
-				MinLengthAttribute? propertyLength = property.GetCustomAttribute(typeof(MinLengthAttribute)) as MinLengthAttribute;
+				DisplayAttribute? display = property.GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
+				string displayName = string.Empty;
+				if (display != null)
+				{
+					displayName = display.Name;
+				}
 
+				MinLengthAttribute? propertyLength = property.GetCustomAttribute(typeof(MinLengthAttribute)) as MinLengthAttribute;
 				if (propertyLength != null)
 				{
 					int? len = ((string)property.GetValue(obj))?.Length;
 					if (len < propertyLength.Length)
 					{
 						string msg = propertyLength.ErrorMessage;
-						result.WithError(msg.Replace("{0}", propertyLength.Length.ToString()));
+						msg = msg.Replace("{0}", propertyLength.Length.ToString());
+						msg = msg.Replace("{1}", displayName);
+						result.WithError(msg);
 					}
 				}
 			}
@@ -57,11 +66,20 @@ namespace RestaurantChargoon.Services.ExtensionMethods
 
 				if (propertyLength != null)
 				{
+					DisplayAttribute? display = property.GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
+					string displayName = string.Empty;
+					if (display != null)
+					{
+						displayName = display.Name;
+					}
+
 					int? len = ((string)property.GetValue(obj))?.Length;
 					if (len > propertyLength.Length)
 					{
 						string msg = propertyLength.ErrorMessage;
-						result.WithError(msg.Replace("{0}", propertyLength.Length.ToString()));
+						msg = msg.Replace("{0}", propertyLength.Length.ToString());
+						msg = msg.Replace("{1}", displayName);
+						result.WithError(msg);
 					}
 
 				}
@@ -80,13 +98,12 @@ namespace RestaurantChargoon.Services.ExtensionMethods
 
 				if (entityProperty != null)
 				{
-					string? text = ((string)property.GetValue(obj))??string.Empty;
+					string? text = ((string)property.GetValue(obj)) ?? string.Empty;
 					if (!(Regex.IsMatch(text, entityProperty.Pattern)))
 					{
 						string msg = entityProperty.ErrorMessage;
 						result.WithError(msg);
 					}
-
 				}
 			}
 			return result;

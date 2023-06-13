@@ -53,7 +53,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 				.Select(c => new
 				{
 					c.Id,
-					RestaurantName = restaurantService.GetById(c.RestaurantId).Name,
+					c.RestaurantName,
 					TotalPrice = factorDetailService.SumOfFactor(c.Id)
 				})
 				.OrderByDescending(c => c.Id)

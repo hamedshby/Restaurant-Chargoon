@@ -52,15 +52,15 @@ namespace RestaurantChargoon.Infrastructure.EF.Context
 				.Property(f => f.UserType)
 				.HasConversion(new EnumToStringConverter<UserType>());
 
-			modelBuilder.Entity<Factor>()
-		.HasOne(f => f.Restaurant)
-		.WithMany()
-		.HasForeignKey(f => f.RestaurantId);
+		//	modelBuilder.Entity<Factor>()
+		//.HasOne(f => f.Restaurant)
+		//.WithMany()
+		//.HasForeignKey(f => f.RestaurantId);
 
-			modelBuilder.Entity<Factor>()
-				.HasMany(f => f.FactorDetails)
-				.WithOne(fd => fd.Factor)
-				.HasForeignKey(fd => fd.FactorId);
+		//	modelBuilder.Entity<Factor>()
+		//		.HasMany(f => f.FactorDetails)
+		//		.WithOne(fd => fd.Factor)
+		//		.HasForeignKey(fd => fd.FactorId);
 
 			modelBuilder.Entity<Factor>()
 		.HasOne(f => f.User)

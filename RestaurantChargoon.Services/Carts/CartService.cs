@@ -1,23 +1,25 @@
 ﻿using RestaurantChargoon.Domain.Entities;
-using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.Foods;
+using RestaurantChargoon.Services.Restaurants;
 
 namespace RestaurantChargoon.Services.Carts
 {
-	public class CartService //: InMemoryRepository<Cart>
+	public class CartService
 	{
 		private readonly FoodService foodService;
+		private readonly RestaurantService restaurantService;
 		Cart cart;
 		public CartService()
 		{
 			cart = new Cart();
 			foodService = new FoodService();
+			this.restaurantService = new RestaurantService();
 		}
 
-			public Cart CreateUserCart(int foodId, int userId, int restaurantId)
+		public Cart CreateUserCart(int foodId, int userId, int restaurantId)
 		{
 			Food food = foodService.GetById(foodId);
-
+			string restaurantName = restaurantService.GetById(restaurantId).Name;
 			var factorDetails = new List<FactorDetail>()
 			{
 				new FactorDetail() {
@@ -26,7 +28,7 @@ namespace RestaurantChargoon.Services.Carts
 				Price = food.Price,
 				FoodType = food.FoodType,
 				count=1
-				
+
 				}
 			};
 			Cart cart = new Cart()
@@ -34,7 +36,7 @@ namespace RestaurantChargoon.Services.Carts
 				UserId = userId,
 				RestaurantId = restaurantId,
 				FactorDetails = factorDetails,
-				Date=DateTime.Now
+				RestaurantName= restaurantName
 			};
 			return cart;
 		}
@@ -51,12 +53,12 @@ namespace RestaurantChargoon.Services.Carts
 				factorDetail.count = 1;
 				cart.FactorDetails = new List<FactorDetail>() { factorDetail };
 			}
-            else
-            {
-				foreach(FactorDetail fd in cart.FactorDetails)
-                {
-                    if (fd.FoodId == factorDetail.FoodId)
-                    {
+			else
+			{
+				foreach (FactorDetail fd in cart.FactorDetails)
+				{
+					if (fd.FoodId == factorDetail.FoodId)
+					{
 						factorDetail.count += 1;
 						cart.FactorDetails.Remove(fd);
 						break;

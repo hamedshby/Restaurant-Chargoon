@@ -28,12 +28,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
 			FoodDataGridView = new DataGridView();
 			showcartButton = new Button();
 			Id = new DataGridViewTextBoxColumn();
 			NameColumn = new DataGridViewTextBoxColumn();
 			PriceColumn = new DataGridViewTextBoxColumn();
 			FoodTypeColumn = new DataGridViewTextBoxColumn();
+			Count = new DataGridViewComboBoxColumn();
 			AddToCart = new DataGridViewButtonColumn();
 			((System.ComponentModel.ISupportInitialize)FoodDataGridView).BeginInit();
 			SuspendLayout();
@@ -44,14 +46,14 @@
 			FoodDataGridView.AllowUserToDeleteRows = false;
 			FoodDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 			FoodDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			FoodDataGridView.Columns.AddRange(new DataGridViewColumn[] { Id, NameColumn, PriceColumn, FoodTypeColumn, AddToCart });
+			FoodDataGridView.Columns.AddRange(new DataGridViewColumn[] { Id, NameColumn, PriceColumn, FoodTypeColumn, Count, AddToCart });
 			FoodDataGridView.Location = new Point(0, 48);
 			FoodDataGridView.Name = "FoodDataGridView";
 			FoodDataGridView.ReadOnly = true;
 			FoodDataGridView.RightToLeft = RightToLeft.Yes;
 			FoodDataGridView.RowHeadersWidth = 51;
 			FoodDataGridView.RowTemplate.Height = 29;
-			FoodDataGridView.Size = new Size(721, 276);
+			FoodDataGridView.Size = new Size(726, 276);
 			FoodDataGridView.TabIndex = 1;
 			FoodDataGridView.CellContentClick += FoodDataGridView_CellContentClick;
 			// 
@@ -102,6 +104,20 @@
 			FoodTypeColumn.ReadOnly = true;
 			FoodTypeColumn.Width = 125;
 			// 
+			// Count
+			// 
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = null;
+			Count.DefaultCellStyle = dataGridViewCellStyle1;
+			Count.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
+			Count.HeaderText = "تعداد";
+			Count.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" });
+			Count.MaxDropDownItems = 20;
+			Count.MinimumWidth = 6;
+			Count.Name = "Count";
+			Count.ReadOnly = true;
+			Count.Width = 125;
+			// 
 			// AddToCart
 			// 
 			AddToCart.HeaderText = "افزودن به سبد خرید";
@@ -116,7 +132,7 @@
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(721, 324);
+			ClientSize = new Size(726, 324);
 			Controls.Add(showcartButton);
 			Controls.Add(FoodDataGridView);
 			Name = "FoodDashboardUserForm";
@@ -130,12 +146,13 @@
 		#endregion
 
 		public DataGridView FoodDataGridView;
-		private DataGridViewTextBoxColumn NameColumn;
 		private DataGridViewTextBoxColumn IdColumn;
-		private DataGridViewTextBoxColumn PriceColumn;
-		private DataGridViewTextBoxColumn FoodTypeColumn;
 		private Button showcartButton;
 		private DataGridViewTextBoxColumn Id;
+		private DataGridViewTextBoxColumn NameColumn;
+		private DataGridViewTextBoxColumn PriceColumn;
+		private DataGridViewTextBoxColumn FoodTypeColumn;
+		private DataGridViewComboBoxColumn Count;
 		private DataGridViewButtonColumn AddToCart;
 	}
 }

@@ -32,23 +32,34 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
         private async void SaveButton_Click(object sender, EventArgs e)
         {
-            var foodResult = GetFoodResult();
-            if (foodResult.IsFailed)
-            {
-                foodResult.PrintResultMessages();
-                return;
-            }
-            var food = foodResult.Value;
+            var food = GetFood();
+			if (!food.CheckModelState())
+				return;
+
             food.RestaurantId = Program.RestaurantId;
             var result = await foodService.AddAsync(food);
             result.PrintResultMessages();
         }
 
-        #endregion
+		private void PricetextBox_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+			{
+				e.Handled = true;
+			}
+
+			// only allow one decimal point
+			if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+			{
+				e.Handled = true;
+			}
+		}
+
+		#endregion
 
 
-        #region Methods
-        private void SetFoodTypeComboBox()
+		#region Methods
+		private void SetFoodTypeComboBox()
         {
             var foodTypes = Enum.GetValues(typeof(FoodType)).Cast<FoodType>();
             foreach (var foodType in foodTypes)
@@ -57,30 +68,17 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             }
         }
 
-        private Result<Food> GetFoodResult()
+        private Food GetFood()
         {
-            var foodResult = new FoodBuilder()
-                .GetName(NameTextBox.Text)
-                .GetPrice(PricetextBox.Text)
-            .GetFoodType((FoodType)FoodTypeComboBox.SelectedIndex + 1)
-            .Build();
-            return foodResult;
+            var food = new Food();
+            food.Name = NameTextBox.Text.Trim();
+            food.Price = decimal.Parse(PricetextBox.Text.Trim());
+            food.FoodType = (FoodType)FoodTypeComboBox.SelectedIndex + 1;
+            return food;
         }
 
         #endregion
 
-        private void PricetextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
-
-            // only allow one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
-        }
+       
     }
 }

@@ -80,19 +80,19 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 
 		public void FillgridView()
 		{
-			var factordetails = cart.FactorDetails.Select(c => new { c.Id, c.FoodName, c.Price, FoodType = c.FoodType.GetDisplayName() }).ToList();
+			var factordetails = cart.FactorDetails.Select(c => new { c.Id, c.FoodName, c.Price, c.count, FoodType = c.FoodType.GetDisplayName() }).ToList();
 			if (factordetails.Any())
 			{
 				factorDetailsDataGridView.Fill(factordetails);
 			}
 		}
 
-        private void EnableTextBox(bool enableTextBox)
-        {
-            UserNameTextBox.Enabled = enableTextBox;
-            RestaurantNametextBox.Enabled = enableTextBox;
-        }
-        #endregion
+		private void EnableTextBox(bool enableTextBox)
+		{
+			UserNameTextBox.Enabled = enableTextBox;
+			RestaurantNametextBox.Enabled = enableTextBox;
+		}
+		#endregion
 
-    }
+	}
 }

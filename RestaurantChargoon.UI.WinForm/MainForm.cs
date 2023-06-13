@@ -34,13 +34,15 @@ namespace Restaurant_Chargoon.UI.WinForm
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			TestAttr();
+			
 		}
 
 		private void TestAttr()
 		{
 			User user = new User();
 			user.Name = "h";
+			user.NationalCode = "sss";
+			user.Password = "Password";
 			var res= user.ModelState();
 		}
 	}

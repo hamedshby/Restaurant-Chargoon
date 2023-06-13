@@ -1,4 +1,6 @@
 ﻿using FluentResults;
+using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Services.ExtensionMethods;
 
 namespace RestaurantChargoon.UI.WinForm.Services
 {
@@ -88,6 +90,18 @@ namespace RestaurantChargoon.UI.WinForm.Services
 		{
 			Form form = (Form)Activator.CreateInstance(formType);
 			form.ShowDialog();
+		}
+
+
+		public static bool CheckModelState<T>(this T obj ) where T : class
+		{
+			var result = obj.ModelState();
+			if (result.IsFailed)
+			{
+				result.PrintResultMessages();
+				return false;
+			}
+			return true;
 		}
 
 	}
