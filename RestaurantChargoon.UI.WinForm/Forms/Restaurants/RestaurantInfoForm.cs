@@ -42,8 +42,9 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 			var restaurant = GetRestaurant();
 			if (!restaurant.CheckModelState())
 				return;
-
+			restaurant.UserId = Program.userLogin.Id;
 			restaurant.Id = Program.RestaurantId;
+
 			var editResult = await restaurantService.UpdateAsync(restaurant);
 			editResult.PrintResultMessages();
 			if (editResult.IsSuccess)
@@ -65,20 +66,20 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 			}
 		}
 
-		//private Restaurant GetRes()
-		//      {
-		//          var restaurant = restaurantService.Get(c => c.Id == Program.RestaurantId).FirstOrDefault();
-		//          if (restaurant != null)
-		//          {
-		//              restaurant.Name = ResturantNameTextBox.Text;
-		//              restaurant.StartTime = FromTimePicker.Text;
-		//              restaurant.EndTime = ToTimePicker.Text;
-		//              restaurant.Address = AddressTextBox.Text;
-		//          }
-		//          return restaurant;
-		//      }
+        private Restaurant GetRes ()
+        {
+            var restaurant = restaurantService.Get(c => c.Id == Program.RestaurantId).FirstOrDefault();
+            if (restaurant != null)
+            {
+                restaurant.Name = ResturantNameTextBox.Text;
+                restaurant.StartTime = FromTimePicker.Text;
+                restaurant.EndTime = ToTimePicker.Text;
+                restaurant.Address = AddressTextBox.Text;
+            }
+            return restaurant;
+        }
 
-		private void EnableTextBox(bool enableTextBox)
+        private void EnableTextBox(bool enableTextBox)
 		{
 			ResturantNameTextBox.Enabled = enableTextBox;
 			FromTimePicker.Enabled = enableTextBox;
