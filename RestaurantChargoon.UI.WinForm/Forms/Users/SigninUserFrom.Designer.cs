@@ -28,77 +28,81 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            NationalCodeTextBox = new TextBox();
-            PasswordTextBox = new TextBox();
-            Loginbtn = new Button();
-            SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.NationalCodeTextBox = new System.Windows.Forms.TextBox();
+            this.PasswordTextBox = new System.Windows.Forms.TextBox();
+            this.Loginbtn = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(286, 39);
-            label1.Name = "label1";
-            label1.Size = new Size(56, 20);
-            label1.TabIndex = 0;
-            label1.Text = "کد ملی";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(250, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "کد ملی";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(286, 107);
-            label2.Name = "label2";
-            label2.Size = new Size(48, 20);
-            label2.TabIndex = 1;
-            label2.Text = "پسورد";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(250, 80);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 15);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "پسورد";
             // 
             // NationalCodeTextBox
             // 
-            NationalCodeTextBox.Location = new Point(94, 39);
-            NationalCodeTextBox.Name = "NationalCodeTextBox";
-            NationalCodeTextBox.Size = new Size(151, 27);
-            NationalCodeTextBox.TabIndex = 3;
-            NationalCodeTextBox.Text = "9876543210";
-            NationalCodeTextBox.KeyPress += NationalCodeTextBox_KeyPress;
+            this.NationalCodeTextBox.Location = new System.Drawing.Point(82, 29);
+            this.NationalCodeTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.NationalCodeTextBox.Name = "NationalCodeTextBox";
+            this.NationalCodeTextBox.Size = new System.Drawing.Size(133, 23);
+            this.NationalCodeTextBox.TabIndex = 3;
+            this.NationalCodeTextBox.Text = "9876543210";
             // 
             // PasswordTextBox
             // 
-            PasswordTextBox.Location = new Point(94, 107);
-            PasswordTextBox.Name = "PasswordTextBox";
-            PasswordTextBox.Size = new Size(151, 27);
-            PasswordTextBox.TabIndex = 4;
-            PasswordTextBox.Text = "123ab";
-            PasswordTextBox.UseSystemPasswordChar = true;
+            this.PasswordTextBox.Location = new System.Drawing.Point(82, 80);
+            this.PasswordTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.Size = new System.Drawing.Size(133, 23);
+            this.PasswordTextBox.TabIndex = 4;
+            this.PasswordTextBox.Text = "123ab";
+            this.PasswordTextBox.UseSystemPasswordChar = true;
             // 
             // Loginbtn
             // 
-            Loginbtn.Location = new Point(94, 187);
-            Loginbtn.Name = "Loginbtn";
-            Loginbtn.Size = new Size(151, 35);
-            Loginbtn.TabIndex = 7;
-            Loginbtn.Text = "ورود";
-            Loginbtn.UseVisualStyleBackColor = true;
-            Loginbtn.Click += enter_Click;
+            this.Loginbtn.Location = new System.Drawing.Point(82, 140);
+            this.Loginbtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Loginbtn.Name = "Loginbtn";
+            this.Loginbtn.Size = new System.Drawing.Size(132, 26);
+            this.Loginbtn.TabIndex = 7;
+            this.Loginbtn.Text = "ورود";
+            this.Loginbtn.UseVisualStyleBackColor = true;
+            this.Loginbtn.Click += new System.EventHandler(this.enter_Click);
             // 
             // SigninUserFrom
             // 
-            AcceptButton = Loginbtn;
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(371, 261);
-            Controls.Add(Loginbtn);
-            Controls.Add(PasswordTextBox);
-            Controls.Add(NationalCodeTextBox);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Name = "SigninUserFrom";
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "فرم ورود کاربر";
-            FormClosed += SigninUserFrom_FormClosed;
-            Load += SigninUserFrom_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AcceptButton = this.Loginbtn;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(325, 196);
+            this.Controls.Add(this.Loginbtn);
+            this.Controls.Add(this.PasswordTextBox);
+            this.Controls.Add(this.NationalCodeTextBox);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "SigninUserFrom";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "فرم ورود کاربر";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SigninUserFrom_FormClosed);
+            this.Load += new System.EventHandler(this.SigninUserFrom_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
