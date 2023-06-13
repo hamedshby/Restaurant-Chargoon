@@ -1,6 +1,6 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Domain.Entities;
-using RestaurantChargoon.Services.ExtensionMethods;
+using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.Users;
 using RestaurantChargoon.UI.WinForm.Services;
 
@@ -19,7 +19,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		#region Events
 		private async void singup_Click(object sender, EventArgs e)
 		{
-			var user = GetUser();			
+			var user = GetUser();
 			if (!user.CheckModelState())
 				return;
 
@@ -65,7 +65,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 				LastName = LastNameTetxtBox.Text.Trim(),
 				NationalCode = NationalCodeTetxtBox.Text.Trim(),
 				Password = PasswordTetxtBox.Text.Trim(),
-				Address = AddressTetxtBox.Text.Trim()
+				Address = AddressTetxtBox.Text.Trim(),
+				UserType=RestaurantManagerCheckBox.Checked?UserType.RestaurantManager:UserType.User
 			};
 			return user;
 		}
