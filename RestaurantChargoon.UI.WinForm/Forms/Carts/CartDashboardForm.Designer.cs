@@ -101,6 +101,7 @@
             this.factorDetailsDataGridView.RowTemplate.Height = 29;
             this.factorDetailsDataGridView.Size = new System.Drawing.Size(420, 140);
             this.factorDetailsDataGridView.TabIndex = 5;
+            this.factorDetailsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.factorDetailsDataGridView_CellContentClick);
             // 
             // IdColumn
             // 

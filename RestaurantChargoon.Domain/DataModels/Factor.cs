@@ -6,7 +6,8 @@
 		public Restaurant Restaurant { get; set; }
 		public int UserId { get; set; }
 		public User User { get; set; }
-		public ICollection<FactorDetail> FactorDetails { get; set; }
+        public DateTime Date { get; set; }
+        public ICollection<FactorDetail> FactorDetails { get; set; }
 
 
 	}
