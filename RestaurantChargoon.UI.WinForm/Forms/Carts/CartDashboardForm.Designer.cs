@@ -28,158 +28,170 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			label1 = new Label();
-			RestaurantNametextBox = new TextBox();
-			UserNameTextBox = new TextBox();
-			label2 = new Label();
-			factorDetailsDataGridView = new DataGridView();
-			IdColumn = new DataGridViewTextBoxColumn();
-			FoodName = new DataGridViewTextBoxColumn();
-			Price = new DataGridViewTextBoxColumn();
-			count = new DataGridViewTextBoxColumn();
-			FoodType = new DataGridViewTextBoxColumn();
-			Delete = new DataGridViewButtonColumn();
-			SaveFactorButton = new Button();
-			((System.ComponentModel.ISupportInitialize)factorDetailsDataGridView).BeginInit();
-			SuspendLayout();
-			// 
-			// label1
-			// 
-			label1.AutoSize = true;
-			label1.Location = new Point(570, 22);
-			label1.Name = "label1";
-			label1.Size = new Size(81, 20);
-			label1.TabIndex = 1;
-			label1.Text = "نام رستوران";
-			// 
-			// RestaurantNametextBox
-			// 
-			RestaurantNametextBox.Location = new Point(367, 22);
-			RestaurantNametextBox.Name = "RestaurantNametextBox";
-			RestaurantNametextBox.ReadOnly = true;
-			RestaurantNametextBox.Size = new Size(171, 27);
-			RestaurantNametextBox.TabIndex = 2;
-			// 
-			// UserNameTextBox
-			// 
-			UserNameTextBox.Location = new Point(367, 71);
-			UserNameTextBox.Name = "UserNameTextBox";
-			UserNameTextBox.ReadOnly = true;
-			UserNameTextBox.Size = new Size(171, 27);
-			UserNameTextBox.TabIndex = 4;
-			// 
-			// label2
-			// 
-			label2.AutoSize = true;
-			label2.Location = new Point(570, 71);
-			label2.Name = "label2";
-			label2.Size = new Size(60, 20);
-			label2.TabIndex = 3;
-			label2.Text = "نام کاربر";
-			// 
-			// factorDetailsDataGridView
-			// 
-			factorDetailsDataGridView.AllowUserToAddRows = false;
-			factorDetailsDataGridView.AllowUserToDeleteRows = false;
-			factorDetailsDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-			factorDetailsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			factorDetailsDataGridView.Columns.AddRange(new DataGridViewColumn[] { IdColumn, FoodName, Price, count, FoodType, Delete });
-			factorDetailsDataGridView.Location = new Point(-1, 123);
-			factorDetailsDataGridView.Name = "factorDetailsDataGridView";
-			factorDetailsDataGridView.ReadOnly = true;
-			factorDetailsDataGridView.RightToLeft = RightToLeft.Yes;
-			factorDetailsDataGridView.RowHeadersWidth = 51;
-			factorDetailsDataGridView.RowTemplate.Height = 29;
-			factorDetailsDataGridView.Size = new Size(667, 187);
-			factorDetailsDataGridView.TabIndex = 5;
-			factorDetailsDataGridView.CellContentClick += factorDetailsDataGridView_CellContentClick;
-			// 
-			// IdColumn
-			// 
-			IdColumn.DataPropertyName = "Id";
-			IdColumn.HeaderText = "Id";
-			IdColumn.MinimumWidth = 6;
-			IdColumn.Name = "IdColumn";
-			IdColumn.ReadOnly = true;
-			IdColumn.Visible = false;
-			IdColumn.Width = 125;
-			// 
-			// FoodName
-			// 
-			FoodName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-			FoodName.DataPropertyName = "FoodName";
-			FoodName.HeaderText = "نام";
-			FoodName.MinimumWidth = 6;
-			FoodName.Name = "FoodName";
-			FoodName.ReadOnly = true;
-			// 
-			// Price
-			// 
-			Price.DataPropertyName = "Price";
-			Price.HeaderText = "قیمت";
-			Price.MinimumWidth = 6;
-			Price.Name = "Price";
-			Price.ReadOnly = true;
-			Price.Width = 125;
-			// 
-			// count
-			// 
-			count.DataPropertyName = "count";
-			count.HeaderText = "تعداد";
-			count.MinimumWidth = 6;
-			count.Name = "count";
-			count.ReadOnly = true;
-			count.Width = 125;
-			// 
-			// FoodType
-			// 
-			FoodType.DataPropertyName = "FoodType";
-			FoodType.HeaderText = "نوع";
-			FoodType.MinimumWidth = 6;
-			FoodType.Name = "FoodType";
-			FoodType.ReadOnly = true;
-			FoodType.Width = 125;
-			// 
-			// Delete
-			// 
-			Delete.HeaderText = "حذف";
-			Delete.MinimumWidth = 6;
-			Delete.Name = "Delete";
-			Delete.ReadOnly = true;
-			Delete.Resizable = DataGridViewTriState.True;
-			Delete.SortMode = DataGridViewColumnSortMode.Automatic;
-			Delete.Text = "حذف";
-			Delete.UseColumnTextForButtonValue = true;
-			Delete.Width = 125;
-			// 
-			// SaveFactorButton
-			// 
-			SaveFactorButton.Location = new Point(11, 69);
-			SaveFactorButton.Name = "SaveFactorButton";
-			SaveFactorButton.Size = new Size(142, 29);
-			SaveFactorButton.TabIndex = 6;
-			SaveFactorButton.Text = "تایید نهایی";
-			SaveFactorButton.UseVisualStyleBackColor = true;
-			SaveFactorButton.Click += SaveFactorButton_Click;
-			// 
-			// CartDashboardForm
-			// 
-			AutoScaleDimensions = new SizeF(8F, 20F);
-			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(665, 311);
-			Controls.Add(SaveFactorButton);
-			Controls.Add(factorDetailsDataGridView);
-			Controls.Add(UserNameTextBox);
-			Controls.Add(label2);
-			Controls.Add(RestaurantNametextBox);
-			Controls.Add(label1);
-			Name = "CartDashboardForm";
-			Text = "CartDashboardForm";
-			FormClosed += CartDashboardForm_FormClosed;
-			Load += CartDashboardForm_Load;
-			((System.ComponentModel.ISupportInitialize)factorDetailsDataGridView).EndInit();
-			ResumeLayout(false);
-			PerformLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.RestaurantNametextBox = new System.Windows.Forms.TextBox();
+            this.UserNameTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.factorDetailsDataGridView = new System.Windows.Forms.DataGridView();
+            this.SaveFactorButton = new System.Windows.Forms.Button();
+            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FoodName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.factorDetailsDataGridView)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(337, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 15);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "نام رستوران";
+            // 
+            // RestaurantNametextBox
+            // 
+            this.RestaurantNametextBox.Location = new System.Drawing.Point(159, 18);
+            this.RestaurantNametextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RestaurantNametextBox.Name = "RestaurantNametextBox";
+            this.RestaurantNametextBox.ReadOnly = true;
+            this.RestaurantNametextBox.Size = new System.Drawing.Size(150, 23);
+            this.RestaurantNametextBox.TabIndex = 2;
+            // 
+            // UserNameTextBox
+            // 
+            this.UserNameTextBox.Location = new System.Drawing.Point(159, 55);
+            this.UserNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UserNameTextBox.Name = "UserNameTextBox";
+            this.UserNameTextBox.ReadOnly = true;
+            this.UserNameTextBox.Size = new System.Drawing.Size(150, 23);
+            this.UserNameTextBox.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(337, 55);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 15);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "نام کاربر";
+            // 
+            // factorDetailsDataGridView
+            // 
+            this.factorDetailsDataGridView.AllowUserToAddRows = false;
+            this.factorDetailsDataGridView.AllowUserToDeleteRows = false;
+            this.factorDetailsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.factorDetailsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.factorDetailsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdColumn,
+            this.FoodName,
+            this.Price,
+            this.FoodType,
+            this.count,
+            this.Delete});
+            this.factorDetailsDataGridView.Location = new System.Drawing.Point(-1, 92);
+            this.factorDetailsDataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.factorDetailsDataGridView.Name = "factorDetailsDataGridView";
+            this.factorDetailsDataGridView.ReadOnly = true;
+            this.factorDetailsDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.factorDetailsDataGridView.RowHeadersWidth = 51;
+            this.factorDetailsDataGridView.RowTemplate.Height = 29;
+            this.factorDetailsDataGridView.Size = new System.Drawing.Size(848, 140);
+            this.factorDetailsDataGridView.TabIndex = 5;
+            this.factorDetailsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.factorDetailsDataGridView_CellContentClick);
+            // 
+            // SaveFactorButton
+            // 
+            this.SaveFactorButton.Location = new System.Drawing.Point(10, 52);
+            this.SaveFactorButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SaveFactorButton.Name = "SaveFactorButton";
+            this.SaveFactorButton.Size = new System.Drawing.Size(124, 22);
+            this.SaveFactorButton.TabIndex = 6;
+            this.SaveFactorButton.Text = "تایید نهایی";
+            this.SaveFactorButton.UseVisualStyleBackColor = true;
+            this.SaveFactorButton.Click += new System.EventHandler(this.SaveFactorButton_Click);
+            // 
+            // IdColumn
+            // 
+            this.IdColumn.DataPropertyName = "Id";
+            this.IdColumn.HeaderText = "Id";
+            this.IdColumn.MinimumWidth = 6;
+            this.IdColumn.Name = "IdColumn";
+            this.IdColumn.ReadOnly = true;
+            this.IdColumn.Visible = false;
+            this.IdColumn.Width = 125;
+            // 
+            // FoodName
+            // 
+            this.FoodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.FoodName.DataPropertyName = "FoodName";
+            this.FoodName.HeaderText = "نام";
+            this.FoodName.MinimumWidth = 6;
+            this.FoodName.Name = "FoodName";
+            this.FoodName.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "قیمت";
+            this.Price.MinimumWidth = 6;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.Width = 125;
+            // 
+            // FoodType
+            // 
+            this.FoodType.DataPropertyName = "FoodType";
+            this.FoodType.HeaderText = "نوع";
+            this.FoodType.MinimumWidth = 6;
+            this.FoodType.Name = "FoodType";
+            this.FoodType.ReadOnly = true;
+            this.FoodType.Width = 125;
+            // 
+            // count
+            // 
+            this.count.DataPropertyName = "count";
+            this.count.HeaderText = "تعداد";
+            this.count.Name = "count";
+            this.count.ReadOnly = true;
+            // 
+            // Delete
+            // 
+            this.Delete.HeaderText = "حذف";
+            this.Delete.MinimumWidth = 6;
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Delete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Delete.Text = "حذف";
+            this.Delete.UseColumnTextForButtonValue = true;
+            this.Delete.Width = 125;
+            // 
+            // CartDashboardForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(846, 233);
+            this.Controls.Add(this.SaveFactorButton);
+            this.Controls.Add(this.factorDetailsDataGridView);
+            this.Controls.Add(this.UserNameTextBox);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.RestaurantNametextBox);
+            this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "CartDashboardForm";
+            this.Text = "CartDashboardForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CartDashboardForm_FormClosed);
+            this.Load += new System.EventHandler(this.CartDashboardForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.factorDetailsDataGridView)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
 		}
 
 		#endregion
@@ -192,7 +204,6 @@
 		private DataGridViewTextBoxColumn IdColumn;
 		private DataGridViewTextBoxColumn FoodName;
 		private DataGridViewTextBoxColumn Price;
-		private DataGridViewTextBoxColumn count;
 		private DataGridViewTextBoxColumn FoodType;
 		private DataGridViewButtonColumn Delete;
 	}
