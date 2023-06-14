@@ -1,5 +1,4 @@
-﻿using FluentResults;
-using Restaurant_Chargoon.UI.WinForm;
+﻿using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.Users;
@@ -41,16 +40,13 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 
 		private async void SaveButton_Click(object sender, EventArgs e)
 		{
-			var UserResult = GetUserResult();
-			if (UserResult.IsFailed)
-			{
-				UserResult.PrintResultMessages();
-				return;
-			}
 			var user = GetUser();
-			var result = await userService.UpdateAsync(user);
-			result.PrintResultMessages();
-			if (UserResult.IsSuccess)
+			if (!user.CheckModelState())
+				return;
+
+			var editResult = await userService.UpdateAsync(user);
+			editResult.PrintResultMessages();
+			if (editResult.IsSuccess)
 				ChangeEnableStatus(false);
 		}
 
@@ -82,20 +78,21 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 			RestaurantManagerCheckBox.Enabled = enable;
 		}
 
-		public Result<User> GetUserResult()
-		{
-			UserType userStatus = RestaurantManagerCheckBox.Checked ? UserType.RestaurantManager : UserType.User;
-			var result = new UserBuilder()
-				.GetName(NameTetxtBox.Text)
-				.GetFamily(LastNameTetxtBox.Text)
-				.GetAddress(AddressTetxtBox.Text)
-				.GetPassword(PasswordTetxtBox.Text)
-				.GetNationalCode(NationalCodeTetxtBox.Text)
-				.GetUserType(userStatus)
-				.Build();
 
-			return result;
-		}
+		//public Result<User> GetUserResult()
+		//{
+		//	UserType userStatus = RestaurantManagerCheckBox.Checked ? UserType.RestaurantManager : UserType.User;
+		//	var result = new UserBuilder()
+		//		.GetName(NameTetxtBox.Text)
+		//		.GetFamily(LastNameTetxtBox.Text)
+		//		.GetAddress(AddressTetxtBox.Text)
+		//		.GetPassword(PasswordTetxtBox.Text)
+		//		.GetNationalCode(NationalCodeTetxtBox.Text)
+		//		.GetUserType(userStatus)
+		//		.Build();
+
+		//	return result;
+		//}
 
 		public User GetUser()
 		{

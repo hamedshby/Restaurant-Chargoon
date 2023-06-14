@@ -67,7 +67,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             var sysname = System.Environment.MachineName;
             if (sysname == "DESKTOP-12BF9LQ")
             {
-                var user = userService.Get(c => c.UserType == UserType.User).FirstOrDefault();
+                var user = userService.Get(c => c.UserType == UserType.RestaurantManager).FirstOrDefault();
                 if (user != null)
                 {
                     NationalCodeTextBox.Text = user.NationalCode;

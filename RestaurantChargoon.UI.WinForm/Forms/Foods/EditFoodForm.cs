@@ -1,5 +1,4 @@
-﻿using FluentResults;
-using RestaurantChargoon.Domain.Entities;
+﻿using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Foods;
@@ -12,28 +11,21 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 	{
 		private readonly FoodService foodService;
 		private int foodid;
-		
+
 		public EditFoodForm(int FoodId)
 		{
 			InitializeComponent();
 			this.foodService = new FoodService();
 			foodid = FoodId;
-			
+
 		}
 
 		private async void SaveButton_Click(object sender, EventArgs e)
 		{
-			var foodResult = GetFoodResult();
-			if (foodResult.IsFailed)
-			{
-				foodResult.PrintResultMessages();
+			var food = GetFood();
+			if (!food.CheckModelState())
 				return;
-			}
-			var food2 = foodService.GetById(foodid);
-			food2.Name = NameTextBox.Text;
-			food2.FoodType = (FoodType)FoodTypeComboBox.SelectedIndex + 1;
-			food2.Price = Convert.ToDecimal(PricetextBox.Text);
-			var result = await foodService.UpdateAsync(food2);
+			var result = await foodService.UpdateAsync(food);
 			result.PrintResultMessages();
 		}
 		private void SetFoodTypeComboBox()
@@ -44,16 +36,16 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 				FoodTypeComboBox.Items.Add(foodType.GetDisplayName());
 			}
 		}
-		private Result<Food> GetFoodResult()
-		{
-			var foodResult = new FoodBuilder()
-				.GetName(NameTextBox.Text)
-				.GetPrice(PricetextBox.Text)
-			.GetFoodType((FoodType)FoodTypeComboBox.SelectedIndex + 1)
-			.Build();
-			return foodResult;
-		}
 
+
+		private Food GetFood()
+		{
+			var food = foodService.GetById(foodid);
+			food.Name = NameTextBox.Text.Trim();
+			food.Price = decimal.Parse(PricetextBox.Text.Trim());
+			food.FoodType = (FoodType)FoodTypeComboBox.SelectedIndex + 1;
+			return food;
+		}
 		private void EditFoodForm_Load(object sender, EventArgs e)
 		{
 			Food food = foodService.GetById(foodid);
@@ -70,8 +62,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 
 		}
 
-        private void PricetextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
+		private void PricetextBox_KeyPress(object sender, KeyPressEventArgs e)
+		{
 			if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
 			{
 				e.Handled = true;
@@ -83,5 +75,5 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 				e.Handled = true;
 			}
 		}
-    }
+	}
 }

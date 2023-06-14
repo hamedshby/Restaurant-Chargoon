@@ -29,24 +29,6 @@ namespace RestaurantChargoon.UI.WinForm.Services
 				ShowInfoMessageBox(messages);
 		}
 
-		public static void AddBottonColumn(this DataGridView dataGridView, string name)
-		{
-			bool columnExist = false;
-			foreach (DataGridViewColumn column in dataGridView.Columns)
-			{
-				if (column.Name == name)
-					columnExist = true;
-			}
-			if (!columnExist)
-			{
-				DataGridViewButtonColumn newColumn = new DataGridViewButtonColumn();
-				newColumn.Name = name;
-				newColumn.Text = name;
-				newColumn.UseColumnTextForButtonValue = true;
-				dataGridView.Columns.Add(newColumn);
-			}
-		}
-
 		public static void HideParentForm(this string formName)
 		{
 			Form formToShow = Application.OpenForms[formName];

@@ -22,16 +22,17 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			var user = GetUser();
 			if (!user.CheckModelState())
 				return;
-            if (userService.GetByNationalCode(user.NationalCode)==null)
-            {
-				var addResult = await userService.AddAsync(user);
-				addResult.PrintResultMessages();
-				if (addResult.IsSuccess)
-				{
-					this.Close();
-				}
+			if (userService.GetByNationalCode(user.NationalCode) != null)
+			{
+				FormService.ShowErrorMessageBox("این کاربر قبلا ثبت نام کرده است");
+				return;
 			}
-			FormService.ShowErrorMessageBox("این کاربر قبلا ثبت نام کرده است");
+			var addResult = await userService.AddAsync(user);
+			addResult.PrintResultMessages();
+			if (addResult.IsSuccess)
+			{
+				this.Close();
+			}
 		}
 
 		private void SingupUserForm_Load(object sender, EventArgs e)
@@ -69,7 +70,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 				NationalCode = NationalCodeTetxtBox.Text.Trim(),
 				Password = PasswordTetxtBox.Text.Trim(),
 				Address = AddressTetxtBox.Text.Trim(),
-				UserType=RestaurantManagerCheckBox.Checked?UserType.RestaurantManager:UserType.User
+				UserType = RestaurantManagerCheckBox.Checked ? UserType.RestaurantManager : UserType.User
 			};
 			return user;
 		}
