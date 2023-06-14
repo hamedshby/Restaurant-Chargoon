@@ -1,4 +1,6 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.UI.WinForm.Forms.Foods;
 using RestaurantChargoon.UI.WinForm.Forms.Users;
@@ -34,6 +36,13 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 			if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.Select].Index)
 			{
 				Program.RestaurantId = RestaurantDataGridView.GetRowClickedIdValue(e);
+				Restaurant restaurant=restaurantService.GetById(Program.RestaurantId);
+				bool isTimeToOrder = restaurant.CheckTimeToOrder();
+				if(!isTimeToOrder) 
+				{
+					FormService.ShowErrorMessageBox("در حال حاضر در ساعت کاری رستوران قرار نداریم. لطفا رستوران دیگری انتخاب کنید");
+					return;
+				}
 				typeof(FoodDashboardUserForm).ShowDialog();
 			}
 		}

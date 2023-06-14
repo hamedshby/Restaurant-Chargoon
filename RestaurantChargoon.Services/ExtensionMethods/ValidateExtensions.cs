@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using Newtonsoft.Json.Linq;
+using RestaurantChargoon.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -131,5 +132,17 @@ namespace RestaurantChargoon.Services.ExtensionMethods
 			return result;
 		}
 
+
+		public static bool CheckTimeToOrder(this Restaurant restaurant)
+		{
+			int.TryParse(restaurant.StartTime.Replace(":",""),out int startTime);
+			int.TryParse(restaurant.EndTime.Replace(":", ""), out int endTime);
+			int nowTime = int.Parse(DateTime.Now.Hour.ToString("00") + DateTime.Now.Minute.ToString("00"));
+			if (startTime == 0 && endTime == 0)
+				return true;
+			if(nowTime>startTime & nowTime<endTime)
+				return true;
+			return false;
+		}
 	}
 }
