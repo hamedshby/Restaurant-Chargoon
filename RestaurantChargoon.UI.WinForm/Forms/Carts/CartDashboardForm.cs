@@ -53,12 +53,6 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 
 		private async void SaveFactorButton_Click(object sender, EventArgs e)
 		{
-			foreach (var factorDetail in cart.FactorDetails)
-			{
-				factorDetail.Id = 0;
-				var price = Math.Round(factorDetail.Price, 0); ;
-				factorDetail.Price = price;
-			}
 			cart.RestaurantName = restaurantService.GetById(cart.RestaurantId).Name;
 			var result = await factorService.AddAsync(cart);
 			result.PrintResultMessages();
