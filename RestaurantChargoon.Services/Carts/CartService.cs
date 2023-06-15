@@ -21,19 +21,21 @@ namespace RestaurantChargoon.Services.Carts
             Food food = foodService.GetById(foodId);
             string restaurantName = restaurantService.GetById(restaurantId).Name;
             int count = 1;
-            if (cart != null && cart.FactorDetails != null)
+            if (cart.FactorDetails != null)
             {
-                count = cart.FactorDetails.FirstOrDefault(c => c.FoodId.Equals(foodId.ToString())).count;
+                var factordetail = cart.FactorDetails.FirstOrDefault(c => c.FoodId.Equals(foodId));
+                if(factordetail != null) 
+                    count = factordetail.Count;
             }
 
             var factorDetails = new List<FactorDetail>()
             {
                 new FactorDetail() {
                 FoodName = food.Name,
-                FoodId = food.Id.ToString(),
+                FoodId = food.Id,
                 Price = food.Price,
                 FoodType = food.FoodType,
-                count=count
+                Count=count
                 }
             };
             Cart newcart = new Cart()
@@ -52,10 +54,9 @@ namespace RestaurantChargoon.Services.Carts
             var factorDetail = newCart.FactorDetails.Single();
             if (cart.UserId == 0)
             {
-
                 cart.RestaurantId = newCart.RestaurantId;
                 cart.UserId = newCart.UserId;
-                factorDetail.count = 1;
+                factorDetail.Count = 1;
                 cart.FactorDetails = new List<FactorDetail>() { factorDetail };
             }
             else
@@ -64,7 +65,7 @@ namespace RestaurantChargoon.Services.Carts
                 {
                     if (fd.FoodId == factorDetail.FoodId)
                     {
-                        factorDetail.count += 1;
+                        factorDetail.Count += 1;
                         cart.FactorDetails.Remove(fd);
                         break;
                     }

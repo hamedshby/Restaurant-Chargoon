@@ -54,7 +54,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 				c.Id,
 				UserName = userService.GetById(c.UserId).Name,
 				RestaurantName = restaurantService.GetById(c.RestaurantId).Name,
-				TotalPrice = factorDetailService.SumOfFactor(c.Id)
+				TotalPrice = factorDetailService.SumOfFactor(c)
 			})
 				.OrderByDescending(c => c.Id)
 				.ToList();

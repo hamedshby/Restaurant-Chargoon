@@ -1,5 +1,6 @@
 ﻿using RestaurantChargoon.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestaurantChargoon.Domain.Entities
 {
@@ -29,8 +30,10 @@ namespace RestaurantChargoon.Domain.Entities
 		[Display(Name = "رمز ورود")]
 		[Required(ErrorMessage = "لطفا {0} را وارد نمایید")]
 		[RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d).{5,}$", ErrorMessage = "رمز عبور باید حداقل 5 کاراکتر و شامل حرف و عدد باشد")]
+		[Column(TypeName = "nvarchar(50)")]
 		public string Password { get; set; }
 		public bool IsDeleted { get; set; }
+		[Column(TypeName = "nvarchar(50)")]
 		public UserType UserType { get; set; }
 	}
 

@@ -5,9 +5,10 @@ namespace RestaurantChargoon.Services.Factors
 {
 	public class FactorDetailService : BaseService<FactorDetail>
 	{
-		public decimal SumOfFactor(int facotrId)
+		public decimal SumOfFactor(Factor factor)
 		{
-			var totalPrice = repository.Get(c => c.FactorId == facotrId).Sum(c => c.Price);
+			var factorDetails=repository.Get(c=>c.FactorId==factor.Id).ToList();
+			var totalPrice = factorDetails.Sum(c => c.Price * c.Count);
 			return totalPrice;
 		}
 	}

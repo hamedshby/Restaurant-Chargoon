@@ -5,6 +5,7 @@ using RestaurantChargoon.Services.Factors;
 using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.Services.Users;
 using RestaurantChargoon.UI.WinForm.Forms.Foods;
+using RestaurantChargoon.UI.WinForm.Forms.Restaurants;
 using RestaurantChargoon.UI.WinForm.Resources;
 using RestaurantChargoon.UI.WinForm.Services;
 
@@ -32,8 +33,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 		private void CartDashboardForm_Load(object sender, EventArgs e)
 		{
 			nameof(FoodDashboardUserForm).HideParentForm();
-			FillRestaurantNameUserNameTextBox();
-			EnableTextBox(false);
+			FillTextBox();
 			FillgridView();
 		}
 		private void CartDashboardForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -56,13 +56,16 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 			foreach (var factorDetail in cart.FactorDetails)
 			{
 				factorDetail.Id = 0;
+				var price = Math.Round(factorDetail.Price, 0); ;
+				factorDetail.Price = price;
 			}
 			cart.RestaurantName = restaurantService.GetById(cart.RestaurantId).Name;
 			var result = await factorService.AddAsync(cart);
 			result.PrintResultMessages();
 			if (result.IsSuccess)
 			{
-				nameof(FoodDashboardUserForm).ShowParentForm();
+				nameof(FoodDashboardUserForm).CloseParentForm();
+				nameof(RestaurantDashboardUserForm).ShowParentForm();
 				this.Close();
 			}
 		}
@@ -71,27 +74,23 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 
 
 		#region Methods
-		private void FillRestaurantNameUserNameTextBox()
+		private void FillTextBox()
 		{
 			string restaurantName = restaurantService.GetById(cart.RestaurantId).Name;
 			string userName = userService.GetById(cart.UserId).Name;
+			var total = cart.FactorDetails.Sum(c => c.Price * c.Count);
 			RestaurantNametextBox.Text = restaurantName;
 			UserNameTextBox.Text = userName;
+			TotalTextBox.Text = total.ToString();
 		}
 
 		public void FillgridView()
 		{
-			var factordetails = cart.FactorDetails.Select(c => new { c.Id, c.FoodName, c.Price, c.count, FoodType = c.FoodType.GetDisplayName() }).ToList();
+			var factordetails = cart.FactorDetails.Select(c => new { c.Id, c.FoodName, c.Price, c.Count, FoodType = c.FoodType.GetDisplayName() }).ToList();
 			if (factordetails.Any())
 			{
 				factorDetailsDataGridView.Fill(factordetails);
 			}
-		}
-
-		private void EnableTextBox(bool enableTextBox)
-		{
-			UserNameTextBox.Enabled = enableTextBox;
-			RestaurantNametextBox.Enabled = enableTextBox;
 		}
 		#endregion
 

@@ -34,8 +34,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 		public void FillGridView()
 		{
 			var factorDetails = factorDetailService.Get(c => c.FactorId == factorId)
-				.Select(c => new { c.FoodName, c.Price, FoodType = c.FoodType.GetDisplayName() })
-				.ToList();
+				.Select(c => new { c.FoodName, c.Count, c.Price, FoodType = c.FoodType.GetDisplayName(),Sum=c.Count*c.Price })
+				.ToList(); ;
 			if (factorDetails.Any())
 			{
 				FactcorDetailDataGridView.Fill(factorDetails);

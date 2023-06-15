@@ -1,4 +1,5 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Factors;
 using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.UI.WinForm.Resources;
@@ -54,15 +55,14 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 				{
 					c.Id,
 					c.RestaurantName,
-					TotalPrice = factorDetailService.SumOfFactor(c.Id)
+					OrderDate = c.CreateDate.ToPersianDate(),
+					TotalPrice = factorDetailService.SumOfFactor(c)
 				})
 				.OrderByDescending(c => c.Id)
 				.ToList();
 			if (factors.Any())
 			{
-				BindingSource bindingSource = new BindingSource();
-				bindingSource.DataSource = factors;
-				UserFactorDataGridView.DataSource = bindingSource;
+				UserFactorDataGridView.Fill(factors);
 			}
 		}
 		#endregion

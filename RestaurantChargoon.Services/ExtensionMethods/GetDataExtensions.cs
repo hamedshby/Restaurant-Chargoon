@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Reflection;
-using FluentResults;
 
 namespace RestaurantChargoon.Services.ExtensionMethods
 {
@@ -13,6 +13,17 @@ namespace RestaurantChargoon.Services.ExtensionMethods
 							.FirstOrDefault()?
 							.GetCustomAttribute<DisplayAttribute>()
 							?.GetName() ?? enumValue.ToString();
+		}
+
+		public static string ToPersianDate(this DateTime date)
+		{
+			PersianCalendar pc = new PersianCalendar();
+			string persiandate =
+				pc.GetHour(date).ToString("00") + ":" + pc.GetMinute(date).ToString("00") + " " +
+				pc.GetYear(date).ToString() + "/" +
+				pc.GetMonth(date).ToString("00") + "/" + pc.GetDayOfMonth(date).ToString("00");
+				
+			return persiandate;
 		}
 	}
 }

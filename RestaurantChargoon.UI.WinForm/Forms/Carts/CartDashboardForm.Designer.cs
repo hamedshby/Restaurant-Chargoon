@@ -33,13 +33,15 @@
 			UserNameTextBox = new TextBox();
 			label2 = new Label();
 			factorDetailsDataGridView = new DataGridView();
-			SaveFactorButton = new Button();
 			IdColumn = new DataGridViewTextBoxColumn();
 			FoodName = new DataGridViewTextBoxColumn();
 			Price = new DataGridViewTextBoxColumn();
 			FoodType = new DataGridViewTextBoxColumn();
 			Count = new DataGridViewTextBoxColumn();
 			Delete = new DataGridViewButtonColumn();
+			SaveFactorButton = new Button();
+			TotalTextBox = new TextBox();
+			label3 = new Label();
 			((System.ComponentModel.ISupportInitialize)factorDetailsDataGridView).BeginInit();
 			SuspendLayout();
 			// 
@@ -47,7 +49,7 @@
 			// 
 			label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 			label1.AutoSize = true;
-			label1.Location = new Point(860, 22);
+			label1.Location = new Point(684, 22);
 			label1.Name = "label1";
 			label1.Size = new Size(81, 20);
 			label1.TabIndex = 1;
@@ -56,7 +58,8 @@
 			// RestaurantNametextBox
 			// 
 			RestaurantNametextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-			RestaurantNametextBox.Location = new Point(657, 22);
+			RestaurantNametextBox.Enabled = false;
+			RestaurantNametextBox.Location = new Point(481, 22);
 			RestaurantNametextBox.Name = "RestaurantNametextBox";
 			RestaurantNametextBox.ReadOnly = true;
 			RestaurantNametextBox.Size = new Size(171, 27);
@@ -65,7 +68,8 @@
 			// UserNameTextBox
 			// 
 			UserNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-			UserNameTextBox.Location = new Point(657, 71);
+			UserNameTextBox.Enabled = false;
+			UserNameTextBox.Location = new Point(481, 71);
 			UserNameTextBox.Name = "UserNameTextBox";
 			UserNameTextBox.ReadOnly = true;
 			UserNameTextBox.Size = new Size(171, 27);
@@ -75,7 +79,7 @@
 			// 
 			label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 			label2.AutoSize = true;
-			label2.Location = new Point(860, 71);
+			label2.Location = new Point(684, 71);
 			label2.Name = "label2";
 			label2.Size = new Size(60, 20);
 			label2.TabIndex = 3;
@@ -94,19 +98,9 @@
 			factorDetailsDataGridView.RightToLeft = RightToLeft.Yes;
 			factorDetailsDataGridView.RowHeadersWidth = 51;
 			factorDetailsDataGridView.RowTemplate.Height = 29;
-			factorDetailsDataGridView.Size = new Size(969, 187);
+			factorDetailsDataGridView.Size = new Size(793, 187);
 			factorDetailsDataGridView.TabIndex = 5;
 			factorDetailsDataGridView.CellContentClick += factorDetailsDataGridView_CellContentClick;
-			// 
-			// SaveFactorButton
-			// 
-			SaveFactorButton.Location = new Point(11, 69);
-			SaveFactorButton.Name = "SaveFactorButton";
-			SaveFactorButton.Size = new Size(142, 29);
-			SaveFactorButton.TabIndex = 6;
-			SaveFactorButton.Text = "تایید نهایی";
-			SaveFactorButton.UseVisualStyleBackColor = true;
-			SaveFactorButton.Click += SaveFactorButton_Click;
 			// 
 			// IdColumn
 			// 
@@ -166,11 +160,43 @@
 			Delete.UseColumnTextForButtonValue = true;
 			Delete.Width = 125;
 			// 
+			// SaveFactorButton
+			// 
+			SaveFactorButton.Location = new Point(11, 69);
+			SaveFactorButton.Name = "SaveFactorButton";
+			SaveFactorButton.Size = new Size(142, 29);
+			SaveFactorButton.TabIndex = 6;
+			SaveFactorButton.Text = "تایید نهایی";
+			SaveFactorButton.UseVisualStyleBackColor = true;
+			SaveFactorButton.Click += SaveFactorButton_Click;
+			// 
+			// TotalTextBox
+			// 
+			TotalTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			TotalTextBox.Enabled = false;
+			TotalTextBox.Location = new Point(154, 22);
+			TotalTextBox.Name = "TotalTextBox";
+			TotalTextBox.ReadOnly = true;
+			TotalTextBox.Size = new Size(171, 27);
+			TotalTextBox.TabIndex = 8;
+			// 
+			// label3
+			// 
+			label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			label3.AutoSize = true;
+			label3.Location = new Point(348, 29);
+			label3.Name = "label3";
+			label3.Size = new Size(79, 20);
+			label3.TabIndex = 7;
+			label3.Text = "جمع فاکتور";
+			// 
 			// CartDashboardForm
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(967, 311);
+			ClientSize = new Size(791, 311);
+			Controls.Add(TotalTextBox);
+			Controls.Add(label3);
 			Controls.Add(SaveFactorButton);
 			Controls.Add(factorDetailsDataGridView);
 			Controls.Add(UserNameTextBox);
@@ -178,6 +204,7 @@
 			Controls.Add(RestaurantNametextBox);
 			Controls.Add(label1);
 			Name = "CartDashboardForm";
+			StartPosition = FormStartPosition.CenterScreen;
 			Text = "CartDashboardForm";
 			FormClosed += CartDashboardForm_FormClosed;
 			Load += CartDashboardForm_Load;
@@ -199,5 +226,7 @@
 		private DataGridViewTextBoxColumn FoodType;
 		private DataGridViewTextBoxColumn Count;
 		private DataGridViewButtonColumn Delete;
+		private TextBox TotalTextBox;
+		private Label label3;
 	}
 }

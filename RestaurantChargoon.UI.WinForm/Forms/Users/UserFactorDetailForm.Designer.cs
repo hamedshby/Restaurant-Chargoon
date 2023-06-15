@@ -30,8 +30,10 @@
 		{
 			FactcorDetailDataGridView = new DataGridView();
 			FoodName = new DataGridViewTextBoxColumn();
-			Price = new DataGridViewTextBoxColumn();
 			FoodType = new DataGridViewTextBoxColumn();
+			Price = new DataGridViewTextBoxColumn();
+			Count = new DataGridViewTextBoxColumn();
+			Sum = new DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)FactcorDetailDataGridView).BeginInit();
 			SuspendLayout();
 			// 
@@ -40,7 +42,7 @@
 			FactcorDetailDataGridView.AllowUserToAddRows = false;
 			FactcorDetailDataGridView.AllowUserToDeleteRows = false;
 			FactcorDetailDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			FactcorDetailDataGridView.Columns.AddRange(new DataGridViewColumn[] { FoodName, Price, FoodType });
+			FactcorDetailDataGridView.Columns.AddRange(new DataGridViewColumn[] { FoodName, FoodType, Price, Count, Sum });
 			FactcorDetailDataGridView.Dock = DockStyle.Fill;
 			FactcorDetailDataGridView.Location = new Point(0, 0);
 			FactcorDetailDataGridView.Name = "FactcorDetailDataGridView";
@@ -48,7 +50,7 @@
 			FactcorDetailDataGridView.RightToLeft = RightToLeft.Yes;
 			FactcorDetailDataGridView.RowHeadersWidth = 51;
 			FactcorDetailDataGridView.RowTemplate.Height = 29;
-			FactcorDetailDataGridView.Size = new Size(576, 242);
+			FactcorDetailDataGridView.Size = new Size(610, 242);
 			FactcorDetailDataGridView.TabIndex = 0;
 			// 
 			// FoodName
@@ -60,15 +62,6 @@
 			FoodName.Name = "FoodName";
 			FoodName.ReadOnly = true;
 			// 
-			// Price
-			// 
-			Price.DataPropertyName = "Price";
-			Price.HeaderText = "قیمت";
-			Price.MinimumWidth = 6;
-			Price.Name = "Price";
-			Price.ReadOnly = true;
-			Price.Width = 125;
-			// 
 			// FoodType
 			// 
 			FoodType.DataPropertyName = "FoodType";
@@ -78,11 +71,38 @@
 			FoodType.ReadOnly = true;
 			FoodType.Width = 125;
 			// 
+			// Price
+			// 
+			Price.DataPropertyName = "Price";
+			Price.HeaderText = "قیمت";
+			Price.MinimumWidth = 6;
+			Price.Name = "Price";
+			Price.ReadOnly = true;
+			Price.Width = 125;
+			// 
+			// Count
+			// 
+			Count.DataPropertyName = "Count";
+			Count.HeaderText = "تعداد";
+			Count.MinimumWidth = 6;
+			Count.Name = "Count";
+			Count.ReadOnly = true;
+			Count.Width = 125;
+			// 
+			// Sum
+			// 
+			Sum.DataPropertyName = "Sum";
+			Sum.HeaderText = "جمع";
+			Sum.MinimumWidth = 6;
+			Sum.Name = "Sum";
+			Sum.ReadOnly = true;
+			Sum.Width = 125;
+			// 
 			// UserFactorDetailForm
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(576, 242);
+			ClientSize = new Size(610, 242);
 			Controls.Add(FactcorDetailDataGridView);
 			Name = "UserFactorDetailForm";
 			StartPosition = FormStartPosition.CenterScreen;
@@ -97,7 +117,9 @@
 
 		private DataGridView FactcorDetailDataGridView;
 		private DataGridViewTextBoxColumn FoodName;
-		private DataGridViewTextBoxColumn Price;
 		private DataGridViewTextBoxColumn FoodType;
+		private DataGridViewTextBoxColumn Price;
+		private DataGridViewTextBoxColumn Count;
+		private DataGridViewTextBoxColumn Sum;
 	}
 }

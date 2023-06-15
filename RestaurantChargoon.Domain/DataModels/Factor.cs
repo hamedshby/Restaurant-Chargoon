@@ -1,8 +1,11 @@
-﻿namespace RestaurantChargoon.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace RestaurantChargoon.Domain.Entities
 {
 	public class Factor : BaseEntity
 	{
 		public int RestaurantId { get; set; }
+		[Column(TypeName = "nvarchar(50)")]
 		public string? RestaurantName { get; set; }
 		public int UserId { get; set; }
 		public User User { get; set; }

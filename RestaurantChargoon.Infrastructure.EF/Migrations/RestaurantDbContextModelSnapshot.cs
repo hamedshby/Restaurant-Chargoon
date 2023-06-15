@@ -33,7 +33,7 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("RestaurantName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -55,19 +55,21 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("FactorId")
                         .HasColumnType("int");
 
-                    b.Property<string>("FoodId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FoodId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FoodName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("FoodType")
                         .HasColumnType("int");
@@ -77,9 +79,6 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("count")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -100,7 +99,7 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
 
                     b.Property<string>("FoodType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -113,7 +112,7 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,0)");
 
                     b.Property<int>("RestaurantId")
                         .HasColumnType("int");
@@ -211,14 +210,14 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 

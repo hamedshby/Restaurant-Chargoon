@@ -45,6 +45,15 @@ namespace RestaurantChargoon.UI.WinForm.Services
 				formToShow.Show();
 			}
 		}
+		public static void CloseParentForm(this string formName)
+		{
+			Form formToShow = Application.OpenForms[formName];
+			if (formToShow != null)
+			{
+				formToShow.Close();
+			}
+		}
+
 
 		public static int GetRowClickedIdValue(this DataGridView dataGridView, DataGridViewCellEventArgs e, string columnName = "Id")
 		{
