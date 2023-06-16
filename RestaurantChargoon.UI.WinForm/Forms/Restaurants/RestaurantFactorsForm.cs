@@ -1,5 +1,6 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Domain.Contracts;
+using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.UI.WinForm.Forms.Users;
 using RestaurantChargoon.UI.WinForm.Resources;
 using RestaurantChargoon.UI.WinForm.Services;
@@ -33,7 +34,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 			if (e.ColumnIndex == UserFactorDataGridView.Columns[Resource.Detail].Index)
 			{
 				int factorId = UserFactorDataGridView.GetRowClickedIdValue(e);
-				UserFactorDetailForm form = new UserFactorDetailForm(factorId,_unit);
+				UserFactorDetailForm form = new UserFactorDetailForm(factorId, _unit);
 				form.ShowDialog();
 			}
 		}
@@ -46,6 +47,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 				c.Id,
 				UserName = _unit.User.GetById(c.UserId).Name,
 				RestaurantName = _unit.Restaurant.GetById(c.RestaurantId).Name,
+				OrderDate = c.CreateDate.ToPersianDate(),
 				TotalPrice = _unit.FactorDetail.SumOfFactor(c)
 			})
 				.OrderByDescending(c => c.Id)

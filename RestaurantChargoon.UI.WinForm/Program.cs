@@ -4,15 +4,14 @@ using RestaurantChargoon.Domain.Contracts;
 using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.Infrastructure.EF.Context;
 using RestaurantChargoon.Infrastructure.EF.Repositories;
+using RestaurantChargoon.Services.Carts;
 using RestaurantChargoon.Services.CommonServices;
-using RestaurantChargoon.UI.WinForm.Forms;
-using System.Configuration;
 using Unity;
 
 namespace Restaurant_Chargoon.UI.WinForm
 {
 	internal static class Program
-    {
+	{
 		private static IUnityContainer container;
 		public static User userLogin;
 		public static int RestaurantId;
@@ -20,11 +19,11 @@ namespace Restaurant_Chargoon.UI.WinForm
 		///  The main entry point for the application.
 		/// </summary>
 		[STAThread]
-        static void Main()
-        {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
+		static void Main()
+		{
+			// To customize application configuration such as set high DPI settings or default font,
+			// see https://aka.ms/applicationconfiguration.
+			ApplicationConfiguration.Initialize();
 
 			//container = new UnityContainer();
 			//container.RegisterType(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -46,15 +45,23 @@ namespace Restaurant_Chargoon.UI.WinForm
 				var form1 = serviceProvider.GetRequiredService<MainForm>();
 				Application.Run(form1);
 			}
-        }
+		}
 
 		private static void ConfigureServices(ServiceCollection services)
-		{			
-			services.AddDbContext<RestaurantDbContext>(c => c.UseSqlServer("server=.;initial catalog=Restaurant;integrated security=true;TrustServerCertificate=True"));
-			services.AddScoped<IUnitOfWork, UnitOfWork>();
+		{
+			services.AddDbContext<RestaurantDbContext>(c =>
+			{
+				c.UseSqlServer("server=.;initial catalog=Restaurant;integrated security=true;TrustServerCertificate=True");
+				c.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+			});
+			services.AddTransient<IUnitOfWork, UnitOfWork>();
 			services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 			services.AddTransient(typeof(IFactorDetailRepository), typeof(FactorDetailRepository));
+			services.AddTransient(typeof(IFactorRepository), typeof(FactorRepository));
 			services.AddTransient(typeof(IUserRepository), typeof(UserRepository));
+			services.AddTransient(typeof(IRestaurantRepository), typeof(RestaurantRepository));
+			services.AddTransient(typeof(IFoodRepository), typeof(FoodRepository));
+			//services.AddTransient(typeof(ICartRepository), typeof(CartRepository));
 			services.AddScoped<MainForm>();
 		}
 	}

@@ -28,109 +28,112 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.UserFactorDataGridView = new System.Windows.Forms.DataGridView();
-            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RestaurantName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Detail = new System.Windows.Forms.DataGridViewButtonColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.UserFactorDataGridView)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // UserFactorDataGridView
-            // 
-            this.UserFactorDataGridView.AllowUserToAddRows = false;
-            this.UserFactorDataGridView.AllowUserToDeleteRows = false;
-            this.UserFactorDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.UserFactorDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.UserName,
-            this.RestaurantName,
-            this.Id,
-            this.TotalPrice,
-            this.Detail});
-            this.UserFactorDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UserFactorDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.UserFactorDataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.UserFactorDataGridView.Name = "UserFactorDataGridView";
-            this.UserFactorDataGridView.ReadOnly = true;
-            this.UserFactorDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.UserFactorDataGridView.RowHeadersWidth = 51;
-            this.UserFactorDataGridView.RowTemplate.Height = 29;
-            this.UserFactorDataGridView.Size = new System.Drawing.Size(691, 189);
-            this.UserFactorDataGridView.TabIndex = 1;
-            this.UserFactorDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UserFactorDataGridView_CellContentClick);
-            // 
-            // UserName
-            // 
-            this.UserName.DataPropertyName = "UserName";
-            this.UserName.HeaderText = "نام کاربر";
-            this.UserName.MinimumWidth = 6;
-            this.UserName.Name = "UserName";
-            this.UserName.ReadOnly = true;
-            this.UserName.Width = 125;
-            // 
-            // RestaurantName
-            // 
-            this.RestaurantName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.RestaurantName.DataPropertyName = "RestaurantName";
-            this.RestaurantName.HeaderText = "نام رستوران";
-            this.RestaurantName.MinimumWidth = 6;
-            this.RestaurantName.Name = "RestaurantName";
-            this.RestaurantName.ReadOnly = true;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "FactorId";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            this.Id.Width = 125;
-            // 
-            // TotalPrice
-            // 
-            this.TotalPrice.DataPropertyName = "TotalPrice";
-            this.TotalPrice.HeaderText = "جمع فاکتور";
-            this.TotalPrice.MinimumWidth = 6;
-            this.TotalPrice.Name = "TotalPrice";
-            this.TotalPrice.ReadOnly = true;
-            this.TotalPrice.Width = 125;
-            // 
-            // Detail
-            // 
-            this.Detail.HeaderText = "جزییات";
-            this.Detail.MinimumWidth = 6;
-            this.Detail.Name = "Detail";
-            this.Detail.ReadOnly = true;
-            this.Detail.Text = "جزییات";
-            this.Detail.UseColumnTextForButtonValue = true;
-            this.Detail.Width = 125;
-            // 
-            // RestaurantFactorsForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(691, 189);
-            this.Controls.Add(this.UserFactorDataGridView);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "RestaurantFactorsForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RestaurantFactorsForm";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RestaurantFactorsForm_FormClosed);
-            this.Load += new System.EventHandler(this.RestaurantFactorsForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.UserFactorDataGridView)).EndInit();
-            this.ResumeLayout(false);
-
+			UserFactorDataGridView = new DataGridView();
+			UserName = new DataGridViewTextBoxColumn();
+			RestaurantName = new DataGridViewTextBoxColumn();
+			OrderDate = new DataGridViewTextBoxColumn();
+			Id = new DataGridViewTextBoxColumn();
+			TotalPrice = new DataGridViewTextBoxColumn();
+			Detail = new DataGridViewButtonColumn();
+			((System.ComponentModel.ISupportInitialize)UserFactorDataGridView).BeginInit();
+			SuspendLayout();
+			// 
+			// UserFactorDataGridView
+			// 
+			UserFactorDataGridView.AllowUserToAddRows = false;
+			UserFactorDataGridView.AllowUserToDeleteRows = false;
+			UserFactorDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			UserFactorDataGridView.Columns.AddRange(new DataGridViewColumn[] { UserName, RestaurantName, OrderDate, Id, TotalPrice, Detail });
+			UserFactorDataGridView.Dock = DockStyle.Fill;
+			UserFactorDataGridView.Location = new Point(0, 0);
+			UserFactorDataGridView.Name = "UserFactorDataGridView";
+			UserFactorDataGridView.ReadOnly = true;
+			UserFactorDataGridView.RightToLeft = RightToLeft.Yes;
+			UserFactorDataGridView.RowHeadersWidth = 51;
+			UserFactorDataGridView.RowTemplate.Height = 29;
+			UserFactorDataGridView.Size = new Size(790, 252);
+			UserFactorDataGridView.TabIndex = 1;
+			UserFactorDataGridView.CellContentClick += UserFactorDataGridView_CellContentClick;
+			// 
+			// UserName
+			// 
+			UserName.DataPropertyName = "UserName";
+			UserName.HeaderText = "نام کاربر";
+			UserName.MinimumWidth = 6;
+			UserName.Name = "UserName";
+			UserName.ReadOnly = true;
+			UserName.Width = 125;
+			// 
+			// RestaurantName
+			// 
+			RestaurantName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+			RestaurantName.DataPropertyName = "RestaurantName";
+			RestaurantName.HeaderText = "نام رستوران";
+			RestaurantName.MinimumWidth = 6;
+			RestaurantName.Name = "RestaurantName";
+			RestaurantName.ReadOnly = true;
+			// 
+			// OrderDate
+			// 
+			OrderDate.DataPropertyName = "OrderDate";
+			OrderDate.HeaderText = "تاریخ سفارش";
+			OrderDate.MinimumWidth = 6;
+			OrderDate.Name = "OrderDate";
+			OrderDate.ReadOnly = true;
+			OrderDate.Width = 125;
+			// 
+			// Id
+			// 
+			Id.DataPropertyName = "Id";
+			Id.HeaderText = "FactorId";
+			Id.MinimumWidth = 6;
+			Id.Name = "Id";
+			Id.ReadOnly = true;
+			Id.Visible = false;
+			Id.Width = 125;
+			// 
+			// TotalPrice
+			// 
+			TotalPrice.DataPropertyName = "TotalPrice";
+			TotalPrice.HeaderText = "جمع فاکتور";
+			TotalPrice.MinimumWidth = 6;
+			TotalPrice.Name = "TotalPrice";
+			TotalPrice.ReadOnly = true;
+			TotalPrice.Width = 125;
+			// 
+			// Detail
+			// 
+			Detail.HeaderText = "جزییات";
+			Detail.MinimumWidth = 6;
+			Detail.Name = "Detail";
+			Detail.ReadOnly = true;
+			Detail.Text = "جزییات";
+			Detail.UseColumnTextForButtonValue = true;
+			Detail.Width = 125;
+			// 
+			// RestaurantFactorsForm
+			// 
+			AutoScaleDimensions = new SizeF(8F, 20F);
+			AutoScaleMode = AutoScaleMode.Font;
+			ClientSize = new Size(790, 252);
+			Controls.Add(UserFactorDataGridView);
+			Name = "RestaurantFactorsForm";
+			StartPosition = FormStartPosition.CenterScreen;
+			Text = "لیست فاکتورها";
+			FormClosed += RestaurantFactorsForm_FormClosed;
+			Load += RestaurantFactorsForm_Load;
+			((System.ComponentModel.ISupportInitialize)UserFactorDataGridView).EndInit();
+			ResumeLayout(false);
 		}
 
 		#endregion
 
 		private DataGridView UserFactorDataGridView;
-        private DataGridViewTextBoxColumn UserName;
-        private DataGridViewTextBoxColumn RestaurantName;
-        private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn TotalPrice;
-        private DataGridViewButtonColumn Detail;
-    }
+		private DataGridViewTextBoxColumn UserName;
+		private DataGridViewTextBoxColumn RestaurantName;
+		private DataGridViewTextBoxColumn OrderDate;
+		private DataGridViewTextBoxColumn Id;
+		private DataGridViewTextBoxColumn TotalPrice;
+		private DataGridViewButtonColumn Detail;
+	}
 }

@@ -71,7 +71,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		{
 			var food = new Food();
 			food.Name = NameTextBox.Text.Trim();
-			food.Price = decimal.Parse(PricetextBox.Text.Trim());
+			decimal.TryParse(PricetextBox.Text.Trim(), out decimal result);
+			food.Price = result;
 			food.FoodType = (FoodType)FoodTypeComboBox.SelectedIndex + 1;
 			return food;
 		}

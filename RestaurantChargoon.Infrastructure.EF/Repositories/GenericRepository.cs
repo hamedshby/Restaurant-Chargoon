@@ -18,6 +18,7 @@ namespace RestaurantChargoon.Infrastructure.EF.Repositories
 		public GenericRepository()
 		{
 			_context = new RestaurantDbContext();
+		
 		}
 
 		public IEnumerable<T> GetAll()
@@ -28,7 +29,7 @@ namespace RestaurantChargoon.Infrastructure.EF.Repositories
 
 		public IEnumerable<T> Get(Func<T, bool> predicate = null)
 		{
-			var query = _context.Set<T>().AsNoTracking().AsQueryable();
+			var query = _context.Set<T>().AsQueryable();
 			if (predicate != null)
 			{
 				query = query.Where(predicate).AsQueryable();
@@ -79,7 +80,6 @@ namespace RestaurantChargoon.Infrastructure.EF.Repositories
 			Result<int> result = new Result<int>();
 			try
 			{
-
 				result = await _context.SaveChangesAsync();
 				result.WithSuccess("عملیات با موفقیت انجام گردید");
 				return result;

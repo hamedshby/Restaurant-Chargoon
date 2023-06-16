@@ -1,5 +1,6 @@
 ﻿using RestaurantChargoon.Domain.Contracts;
 using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Services.Carts;
 using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.UI.WinForm.Forms.Foods;
 using RestaurantChargoon.UI.WinForm.Forms.Restaurants;
@@ -11,6 +12,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 	public partial class CartDashboardForm : Form
 	{
 		private readonly IUnitOfWork _unit;
+		private readonly ICartRepository _cart;
 		private Cart cart;
 
 		public CartDashboardForm(Cart cart, IUnitOfWork unit)
@@ -18,6 +20,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 			InitializeComponent();
 			this.cart = cart;
 			_unit = unit;
+			_cart = new CartRepository(_unit);
 		}
 
 		#region Events
@@ -37,7 +40,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 			if (e.ColumnIndex == factorDetailsDataGridView.Columns[Resource.Delete].Index)
 			{
 				int factorDetailId = factorDetailsDataGridView.GetRowClickedIdValue(e);
-				cart = _unit.Cart.RemoveFactorDetail(cart, factorDetailId);
+				cart = _cart.RemoveFactorDetail(cart, factorDetailId);
 				factorDetailsDataGridView.Rows.RemoveAt(e.RowIndex);
 			}
 		}

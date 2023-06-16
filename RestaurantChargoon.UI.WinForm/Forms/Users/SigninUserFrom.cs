@@ -64,7 +64,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 		private void FillTextBox()
 		{
-			var user = _unit.User.Get(c => c.UserType == UserType.RestaurantManager).FirstOrDefault();
+			var user = _unit.User.Get(c => c.UserType == UserType.RestaurantManager).OrderByDescending(c=>c.Id).FirstOrDefault();
 			if (user != null)
 			{
 				NationalCodeTextBox.Text = user.NationalCode;

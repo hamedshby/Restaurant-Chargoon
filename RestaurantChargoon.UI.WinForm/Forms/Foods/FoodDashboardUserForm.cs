@@ -1,5 +1,6 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Domain.Contracts;
+using RestaurantChargoon.Services.Carts;
 using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.UI.WinForm.Forms.Carts;
 using RestaurantChargoon.UI.WinForm.Forms.Restaurants;
@@ -12,11 +13,14 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 	public partial class FoodDashboardUserForm : Form
 	{
 		private readonly IUnitOfWork _unit;
+		private readonly ICartRepository _cart;
+
 
 		public FoodDashboardUserForm(IUnitOfWork unit)
 		{
 			InitializeComponent();
 			_unit = unit;
+			_cart = new CartRepository(_unit);
 		}
 
 		private void FoodDashboardUserForm_Load(object sender, EventArgs e)
@@ -35,7 +39,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 
 		private void showcartButton_Click(object sender, EventArgs e)
 		{
-			var cart = _unit.Cart.Get();
+			var cart = _cart.Get();
 			CartDashboardForm form = new CartDashboardForm(cart, _unit);
 			form.ShowDialog();
 		}
@@ -45,8 +49,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 			if (e.ColumnIndex == FoodDataGridView.Columns[Resource.AddToCart].Index)
 			{
 				int foodId = FoodDataGridView.GetRowClickedIdValue(e);
-				var cart = _unit.Cart.CreateUserCart(foodId, Program.userLogin.Id, Program.RestaurantId);
-				_unit.Cart.Add(cart);
+				var cart = _cart.CreateUserCart(foodId, Program.userLogin.Id, Program.RestaurantId);
+				_cart.Add(cart);
 			}
 		}
 

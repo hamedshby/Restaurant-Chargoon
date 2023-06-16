@@ -39,11 +39,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 
 		private async void SaveButton_Click(object sender, EventArgs e)
 		{
-			var restaurant = GetRestaurant();
+			var restaurant = GetRes();
 			if (!restaurant.CheckModelState())
 				return;
-			restaurant.UserId = Program.userLogin.Id;
-			restaurant.Id = Program.RestaurantId;
+			//restaurant.UserId = Program.userLogin.Id;
+			//restaurant.Id = Program.RestaurantId;
 
 			var editResult = await _unit.Restaurant.UpdateAsync(restaurant);
 			editResult.PrintResultMessages();
