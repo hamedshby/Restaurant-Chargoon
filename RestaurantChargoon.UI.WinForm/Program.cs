@@ -23,9 +23,9 @@ namespace Restaurant_Chargoon.UI.WinForm
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-			//container = new UnityContainer();
-			//container.RegisterType(typeof(IGenericRepository<>), typeof(GenericRepository<>));			
-			//Application.Run(container.Resolve<SingupUserForm>());
+			container = new UnityContainer();
+			container.RegisterType(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+			Application.Run(container.Resolve<SingupUserForm>());
 
 			userLogin = new User();
 
