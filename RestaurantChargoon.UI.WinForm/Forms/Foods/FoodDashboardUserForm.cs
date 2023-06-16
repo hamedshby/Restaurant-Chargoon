@@ -1,8 +1,6 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
-using RestaurantChargoon.Services.Carts;
+using RestaurantChargoon.Domain.Contracts;
 using RestaurantChargoon.Services.ExtensionMethods;
-using RestaurantChargoon.Services.Foods;
-using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.UI.WinForm.Forms.Carts;
 using RestaurantChargoon.UI.WinForm.Forms.Restaurants;
 using RestaurantChargoon.UI.WinForm.Resources;
@@ -13,22 +11,18 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 {
 	public partial class FoodDashboardUserForm : Form
 	{
-		private readonly FoodService foodService;
-		private readonly RestaurantService restaurantService;
-		private readonly CartService cartService;
+		private readonly IUnitOfWork _unit;
 
-		public FoodDashboardUserForm()
+		public FoodDashboardUserForm(IUnitOfWork unit)
 		{
 			InitializeComponent();
-			foodService = new FoodService();
-			restaurantService = new RestaurantService();
-			cartService = new CartService();
+			_unit = unit;
 		}
 
 		private void FoodDashboardUserForm_Load(object sender, EventArgs e)
 		{
 			nameof(RestaurantDashboardUserForm).HideParentForm();
-			string restaurantName = restaurantService.GetById(Program.RestaurantId).Name;
+			string restaurantName = _unit.Restaurant.GetById(Program.RestaurantId).Name;
 			this.Text = " منوی رستوران" + restaurantName;
 			FillGridView();
 		}
@@ -41,8 +35,8 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 
 		private void showcartButton_Click(object sender, EventArgs e)
 		{
-			var cart = cartService.Get();
-			CartDashboardForm form = new CartDashboardForm(cart);
+			var cart = _unit.Cart.Get();
+			CartDashboardForm form = new CartDashboardForm(cart, _unit);
 			form.ShowDialog();
 		}
 
@@ -51,15 +45,15 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 			if (e.ColumnIndex == FoodDataGridView.Columns[Resource.AddToCart].Index)
 			{
 				int foodId = FoodDataGridView.GetRowClickedIdValue(e);
-				var cart = cartService.CreateUserCart(foodId, Program.userLogin.Id, Program.RestaurantId);
-				cartService.Add(cart);
+				var cart = _unit.Cart.CreateUserCart(foodId, Program.userLogin.Id, Program.RestaurantId);
+				_unit.Cart.Add(cart);
 			}
 		}
 
 
 		public void FillGridView()
 		{
-			var factordetails = foodService.Get(c => c.RestaurantId == Program.RestaurantId)
+			var factordetails = _unit.Food.Get(c => c.RestaurantId == Program.RestaurantId)
 				.Select(c => new { c.Id, c.Name, c.Price, FoodType = c.FoodType.GetDisplayName() })
 				.ToList();
 			if (factordetails.Any())

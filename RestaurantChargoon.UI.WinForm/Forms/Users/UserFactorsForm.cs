@@ -1,7 +1,6 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Domain.Contracts;
 using RestaurantChargoon.Services.ExtensionMethods;
-using RestaurantChargoon.Services.Factors;
-using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.UI.WinForm.Resources;
 using RestaurantChargoon.UI.WinForm.Services;
 using System.Data;
@@ -10,16 +9,12 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 {
 	public partial class UserFactorsForm : Form
 	{
-		private readonly FactorService factorService;
-		private readonly FactorDetailService factorDetailService;
-		private readonly RestaurantService restaurantService;
+		private readonly IUnitOfWork _unit;
 
-		public UserFactorsForm()
+		public UserFactorsForm(IUnitOfWork unit)
 		{
 			InitializeComponent();
-			factorService = new FactorService();
-			this.restaurantService = new RestaurantService();
-			this.factorDetailService = new FactorDetailService();
+			_unit = unit;
 		}
 
 		#region Events
@@ -40,7 +35,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 			if (e.ColumnIndex == UserFactorDataGridView.Columns[Resource.Detail].Index)
 			{
 				int factorId = UserFactorDataGridView.GetRowClickedIdValue(e);
-				UserFactorDetailForm form = new UserFactorDetailForm(factorId);
+				UserFactorDetailForm form = new UserFactorDetailForm(factorId, _unit);
 				form.ShowDialog();
 			}
 		}
@@ -50,13 +45,13 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 		#region Methods
 		public void FillGridView()
 		{
-			var factors = factorService.Get(c => c.UserId == Program.userLogin.Id)
+			var factors = _unit.Factor.Get(c => c.UserId == Program.userLogin.Id)
 				.Select(c => new
 				{
 					c.Id,
 					c.RestaurantName,
 					OrderDate = c.CreateDate.ToPersianDate(),
-					TotalPrice = factorDetailService.SumOfFactor(c)
+					TotalPrice = _unit.FactorDetail.SumOfFactor(c)
 				})
 				.OrderByDescending(c => c.Id)
 				.ToList();

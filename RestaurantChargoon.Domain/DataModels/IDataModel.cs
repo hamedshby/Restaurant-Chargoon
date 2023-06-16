@@ -1,4 +1,4 @@
-﻿namespace RestaurantChargoon.Domain.Entities
+﻿namespace RestaurantChargoon.Domain.DataModels
 {
 	public interface IDataModel
 	{

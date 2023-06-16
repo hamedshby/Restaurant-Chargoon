@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RestaurantChargoon.Domain.Entities
+namespace RestaurantChargoon.Domain.DataModels
 {
 	public class Factor : BaseEntity
 	{
@@ -9,7 +9,7 @@ namespace RestaurantChargoon.Domain.Entities
 		public string? RestaurantName { get; set; }
 		public int UserId { get; set; }
 		public User User { get; set; }
-        public ICollection<FactorDetail> FactorDetails { get; set; }
+		public ICollection<FactorDetail> FactorDetails { get; set; }
 
 
 	}

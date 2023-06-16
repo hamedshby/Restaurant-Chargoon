@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.Domain.Enums;
 using System;
 using System.Linq;
@@ -12,6 +12,14 @@ namespace RestaurantChargoon.Infrastructure.EF.Context
 {
 	public class RestaurantDbContext : DbContext
 	{
+		public RestaurantDbContext()
+		{
+		}
+
+		public RestaurantDbContext(DbContextOptions options) : base(options)
+		{
+		}
+
 		protected override void OnConfiguring(DbContextOptionsBuilder options)
 		{
 			options.UseSqlServer("server=.;initial catalog=Restaurant;integrated security=true;TrustServerCertificate=True");
@@ -52,15 +60,6 @@ namespace RestaurantChargoon.Infrastructure.EF.Context
 				.Property(f => f.UserType)
 				.HasConversion(new EnumToStringConverter<UserType>());
 
-		//	modelBuilder.Entity<Factor>()
-		//.HasOne(f => f.Restaurant)
-		//.WithMany()
-		//.HasForeignKey(f => f.RestaurantId);
-
-		//	modelBuilder.Entity<Factor>()
-		//		.HasMany(f => f.FactorDetails)
-		//		.WithOne(fd => fd.Factor)
-		//		.HasForeignKey(fd => fd.FactorId);
 
 			modelBuilder.Entity<Factor>()
 		.HasOne(f => f.User)

@@ -1,21 +1,18 @@
-﻿using FluentResults;
-using Microsoft.VisualBasic.ApplicationServices;
-using Restaurant_Chargoon.UI.WinForm;
-using RestaurantChargoon.Domain.Entities;
-using RestaurantChargoon.Services.ExtensionMethods;
-using RestaurantChargoon.Services.Restaurants;
+﻿using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Domain.Contracts;
+using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
 {
 	public partial class SignUpRestaurantForm : Form
 	{
-		private readonly RestaurantService restaurantService;
+		private readonly IUnitOfWork _unit;
 
-		public SignUpRestaurantForm()
+		public SignUpRestaurantForm(IUnitOfWork unit)
 		{
 			InitializeComponent();
-			this.restaurantService = new RestaurantService();
+			_unit = unit;
 		}
 
 		#region Events
@@ -26,7 +23,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 				return;
 
 			restaurant.UserId = Program.userLogin.Id;
-			var addResult = await restaurantService.AddAsync(restaurant);
+			var addResult = await _unit.Restaurant.CreateAsync(restaurant);
 			addResult.PrintResultMessages();
 			if (addResult.IsSuccess)
 				this.Close();
@@ -56,7 +53,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			return restaurant;
 		}
 
-		
+
 		#endregion
 	}
 }

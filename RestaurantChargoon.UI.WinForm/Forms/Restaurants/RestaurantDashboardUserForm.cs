@@ -1,7 +1,7 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
-using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Domain.Contracts;
+using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.Services.ExtensionMethods;
-using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.UI.WinForm.Forms.Foods;
 using RestaurantChargoon.UI.WinForm.Forms.Users;
 using RestaurantChargoon.UI.WinForm.Resources;
@@ -11,12 +11,12 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 {
 	public partial class RestaurantDashboardUserForm : Form
 	{
-		private readonly RestaurantService restaurantService;
+		private readonly IUnitOfWork _unit;
 
-		public RestaurantDashboardUserForm()
+		public RestaurantDashboardUserForm(IUnitOfWork unit)
 		{
 			InitializeComponent();
-			this.restaurantService = new RestaurantService();
+			_unit = unit;
 		}
 
 		#region Events
@@ -36,14 +36,14 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 			if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.Select].Index)
 			{
 				Program.RestaurantId = RestaurantDataGridView.GetRowClickedIdValue(e);
-				Restaurant restaurant=restaurantService.GetById(Program.RestaurantId);
+				Restaurant restaurant = _unit.Restaurant.GetById(Program.RestaurantId);
 				bool isTimeToOrder = restaurant.CheckTimeToOrder();
-				if(!isTimeToOrder) 
+				if (!isTimeToOrder)
 				{
 					FormService.ShowErrorMessageBox("در حال حاضر در ساعت کاری رستوران قرار نداریم. لطفا رستوران دیگری انتخاب کنید");
 					return;
 				}
-				typeof(FoodDashboardUserForm).ShowDialog();
+				typeof(FoodDashboardUserForm).ShowDialog(_unit);
 			}
 		}
 		#endregion
@@ -51,7 +51,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 		#region Methods
 		public void FillGridView()
 		{
-			var factordetails = restaurantService.GetAll()
+			var factordetails = _unit.Restaurant.GetAll()
 				.Select(c => new { c.Id, c.Name, c.StartTime, c.EndTime, c.Address })
 				.ToList();
 			if (factordetails.Any())

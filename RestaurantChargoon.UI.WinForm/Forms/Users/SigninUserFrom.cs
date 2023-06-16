@@ -1,6 +1,6 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Domain.Contracts;
 using RestaurantChargoon.Domain.Enums;
-using RestaurantChargoon.Services.Users;
 using RestaurantChargoon.UI.WinForm.Forms.Users;
 using RestaurantChargoon.UI.WinForm.Services;
 
@@ -8,17 +8,17 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 {
 	public partial class SigninUserFrom : Form
 	{
-		private readonly UserService userService;
-		public SigninUserFrom()
+		private readonly IUnitOfWork _unit;
+		public SigninUserFrom(IUnitOfWork unit)
 		{
 			InitializeComponent();
-			this.userService = new UserService();
+			_unit = unit;
 		}
 
 		#region Events
 		private void enter_Click(object sender, EventArgs e)
 		{
-			var user = userService.CheckUserPassword(NationalCodeTextBox.Text.Trim(), PasswordTextBox.Text.Trim());
+			var user = _unit.User.CheckUserPassword(NationalCodeTextBox.Text.Trim(), PasswordTextBox.Text.Trim());
 			if (user == null)
 			{
 				FormService.ShowErrorMessageBox("نام کاربری یا پسورد اشتباه هست");
@@ -27,11 +27,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 			Program.userLogin = user;
 			if (user.UserType == UserType.RestaurantManager)
 			{
-				typeof(RestaurantDashboardForm).ShowDialog();
+				typeof(RestaurantDashboardForm).ShowDialog(_unit);
 			}
 			else if (user.UserType == UserType.User)
 			{
-				typeof(UserDashboardForm).ShowDialog();
+				typeof(UserDashboardForm).ShowDialog(_unit);
 			}
 		}
 
@@ -64,7 +64,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 		private void FillTextBox()
 		{
-			var user = userService.Get(c => c.UserType == UserType.User).FirstOrDefault();
+			var user = _unit.User.Get(c => c.UserType == UserType.RestaurantManager).FirstOrDefault();
 			if (user != null)
 			{
 				NationalCodeTextBox.Text = user.NationalCode;

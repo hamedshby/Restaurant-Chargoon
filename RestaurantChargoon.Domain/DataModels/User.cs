@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RestaurantChargoon.Domain.Entities
+namespace RestaurantChargoon.Domain.DataModels
 {
 	public class User : BaseEntity, IDataModel
 	{

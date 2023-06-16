@@ -1,17 +1,17 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
-using RestaurantChargoon.Domain.Entities;
-using RestaurantChargoon.Services.Restaurants;
+using RestaurantChargoon.Domain.Contracts;
+using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 {
 	public partial class RestaurantInfoForm : Form
 	{
-		private readonly RestaurantService restaurantService;
-		public RestaurantInfoForm()
+		private readonly IUnitOfWork _unit;
+		public RestaurantInfoForm(IUnitOfWork unit)
 		{
 			InitializeComponent();
-			this.restaurantService = new RestaurantService();
+			_unit = unit;
 		}
 
 		#region Events
@@ -45,7 +45,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 			restaurant.UserId = Program.userLogin.Id;
 			restaurant.Id = Program.RestaurantId;
 
-			var editResult = await restaurantService.UpdateAsync(restaurant);
+			var editResult = await _unit.Restaurant.UpdateAsync(restaurant);
 			editResult.PrintResultMessages();
 			if (editResult.IsSuccess)
 				EnableTextBox(false);
@@ -55,7 +55,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 		#region Methods
 		private void FillTextBox()
 		{
-			var restaurant = restaurantService.Get(c => c.Id == Program.RestaurantId).FirstOrDefault();
+			var restaurant = _unit.Restaurant.Get(c => c.Id == Program.RestaurantId).FirstOrDefault();
 
 			if (restaurant != null)
 			{
@@ -66,20 +66,20 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 			}
 		}
 
-        private Restaurant GetRes ()
-        {
-            var restaurant = restaurantService.Get(c => c.Id == Program.RestaurantId).FirstOrDefault();
-            if (restaurant != null)
-            {
-                restaurant.Name = ResturantNameTextBox.Text;
-                restaurant.StartTime = FromTimePicker.Text;
-                restaurant.EndTime = ToTimePicker.Text;
-                restaurant.Address = AddressTextBox.Text;
-            }
-            return restaurant;
-        }
+		private Restaurant GetRes()
+		{
+			var restaurant = _unit.Restaurant.Get(c => c.Id == Program.RestaurantId).FirstOrDefault();
+			if (restaurant != null)
+			{
+				restaurant.Name = ResturantNameTextBox.Text;
+				restaurant.StartTime = FromTimePicker.Text;
+				restaurant.EndTime = ToTimePicker.Text;
+				restaurant.Address = AddressTextBox.Text;
+			}
+			return restaurant;
+		}
 
-        private void EnableTextBox(bool enableTextBox)
+		private void EnableTextBox(bool enableTextBox)
 		{
 			ResturantNameTextBox.Enabled = enableTextBox;
 			FromTimePicker.Enabled = enableTextBox;

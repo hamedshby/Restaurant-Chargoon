@@ -1,4 +1,5 @@
 ﻿using FluentResults;
+using RestaurantChargoon.Domain.Contracts;
 using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Services.ExtensionMethods;
 
@@ -77,9 +78,10 @@ namespace RestaurantChargoon.UI.WinForm.Services
 			dataGridView.DataSource = bindingSource;
 		}
 
-		public static void ShowDialog(this Type formType)
+		public static void ShowDialog(this Type formType, IUnitOfWork _unit)
 		{
-			Form form = (Form)Activator.CreateInstance(formType);
+			//object[] args = new object[] { typeof(IFactorDetailRepository) };
+			Form form = (Form)Activator.CreateInstance(formType, _unit);
 			form.ShowDialog();
 		}
 

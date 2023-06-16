@@ -1,5 +1,5 @@
 ﻿using FluentResults;
-using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.Infrastructure.EF.Repositories;
 
 namespace RestaurantChargoon.Services.CommonServices
@@ -10,19 +10,19 @@ namespace RestaurantChargoon.Services.CommonServices
 
 		public BaseService()
 		{
-			repository = new GenericRepository<T>();
+			this.repository = new GenericRepository<T>();
 		}
 
 
-		public async Task<Result<int>> AddAsync(T entity)
+		public async Task<Result<int>> CreateAsync(T entity)
 		{
-			var result = await repository.Create(entity);
+			var result = await repository.CreateAsync(entity);
 			return result;
 		}
 
 		public async Task<Result<int>> UpdateAsync(T entity)
 		{
-			var result = await repository.Update(entity);
+			var result = await repository.UpdateAsync(entity);
 			return result;
 		}
 		//public async Task<Result<int>> DeleteAsync(T entity)

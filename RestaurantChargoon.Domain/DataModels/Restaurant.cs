@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RestaurantChargoon.Domain.Entities
+namespace RestaurantChargoon.Domain.DataModels
 {
 	public class Restaurant : BaseEntity, IDataModel
 	{

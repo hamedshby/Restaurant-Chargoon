@@ -1,6 +1,6 @@
 ﻿using FluentResults;
 using Newtonsoft.Json.Linq;
-using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Domain.DataModels;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text.RegularExpressions;

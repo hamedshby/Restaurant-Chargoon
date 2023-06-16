@@ -1,7 +1,5 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
-using RestaurantChargoon.Services.Factors;
-using RestaurantChargoon.Services.Restaurants;
-using RestaurantChargoon.Services.Users;
+using RestaurantChargoon.Domain.Contracts;
 using RestaurantChargoon.UI.WinForm.Forms.Users;
 using RestaurantChargoon.UI.WinForm.Resources;
 using RestaurantChargoon.UI.WinForm.Services;
@@ -11,18 +9,12 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 {
 	public partial class RestaurantFactorsForm : Form
 	{
-		private readonly FactorService factorService;
-		private readonly FactorDetailService factorDetailService;
-		private readonly RestaurantService restaurantService;
-		private readonly UserService userService;
+		private readonly IUnitOfWork _unit;
 
-		public RestaurantFactorsForm()
+		public RestaurantFactorsForm(IUnitOfWork unit)
 		{
 			InitializeComponent();
-			factorService = new FactorService();
-			this.restaurantService = new RestaurantService();
-			this.factorDetailService = new FactorDetailService();
-			this.userService = new UserService();
+			_unit = unit;
 		}
 
 		private void RestaurantFactorsForm_Load(object sender, EventArgs e)
@@ -41,20 +33,20 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 			if (e.ColumnIndex == UserFactorDataGridView.Columns[Resource.Detail].Index)
 			{
 				int factorId = UserFactorDataGridView.GetRowClickedIdValue(e);
-				UserFactorDetailForm form = new UserFactorDetailForm(factorId);
+				UserFactorDetailForm form = new UserFactorDetailForm(factorId,_unit);
 				form.ShowDialog();
 			}
 		}
 
 		public void FillGridView()
 		{
-			var factors = factorService.Get(c => c.RestaurantId == Program.RestaurantId)
+			var factors = _unit.Factor.Get(c => c.RestaurantId == Program.RestaurantId)
 			.Select(c => new
 			{
 				c.Id,
-				UserName = userService.GetById(c.UserId).Name,
-				RestaurantName = restaurantService.GetById(c.RestaurantId).Name,
-				TotalPrice = factorDetailService.SumOfFactor(c)
+				UserName = _unit.User.GetById(c.UserId).Name,
+				RestaurantName = _unit.Restaurant.GetById(c.RestaurantId).Name,
+				TotalPrice = _unit.FactorDetail.SumOfFactor(c)
 			})
 				.OrderByDescending(c => c.Id)
 				.ToList();

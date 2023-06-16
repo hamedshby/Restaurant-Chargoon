@@ -1,9 +1,7 @@
 ﻿using FluentResults;
 using Restaurant_Chargoon.UI.WinForm;
-using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Domain.Contracts;
 using RestaurantChargoon.Services.ExtensionMethods;
-using RestaurantChargoon.Services.Foods;
-using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.UI.WinForm.Forms.Foods;
 using RestaurantChargoon.UI.WinForm.Resources;
 using RestaurantChargoon.UI.WinForm.Services;
@@ -12,28 +10,26 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 {
 	public partial class FoodForm : Form
 	{
-		private readonly FoodService foodService;
-		private readonly RestaurantService restaurantService;
+		private readonly IUnitOfWork _unit;
 
 		private int cellCount = 0;
-		public FoodForm()
+		public FoodForm(IUnitOfWork unit)
 		{
 			InitializeComponent();
-			this.foodService = new FoodService();
-			this.restaurantService = new RestaurantService();
+			_unit = unit;
 		}
 
 		#region Events
 		private void FoodForm_Load(object sender, EventArgs e)
 		{
-			var restaurantName = restaurantService.Get(c => c.Id == Program.RestaurantId).FirstOrDefault();
+			var restaurantName = _unit.Restaurant.Get(c => c.Id == Program.RestaurantId).FirstOrDefault();
 			this.Text = restaurantName == null ? string.Empty : restaurantName.Name;
 			nameof(RestaurantDashboardForm).HideParentForm();
 		}
 
 		private void AddFoodButton_Click(object sender, EventArgs e)
 		{
-			typeof(AddFoodForm).ShowDialog();
+			typeof(AddFoodForm).ShowDialog(_unit);
 		}
 
 		private void FoodForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -52,7 +48,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 			if (e.ColumnIndex == FoodDataGridView.Columns[Resource.Edit].Index)
 			{
-				EditFoodForm editFoodForm = new EditFoodForm(foodid);
+				EditFoodForm editFoodForm = new EditFoodForm(foodid,_unit);
 				editFoodForm.ShowDialog();
 			}
 			if (e.ColumnIndex == FoodDataGridView.Columns[Resource.Delete].Index)
@@ -75,7 +71,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		#region Methods
 		public void FillgridView()
 		{
-			var foods = foodService.Get(c => c.RestaurantId == Program.RestaurantId)
+			var foods = _unit.Food.Get(c => c.RestaurantId == Program.RestaurantId)
 				.Select(c => new { c.Name, c.Id, c.Price, FoodType = c.FoodType.GetDisplayName() })
 				.ToList();
 			if (foods.Any())
@@ -85,16 +81,16 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		}
 		public async Task<Result<int>> DeleteFoodAsync(int foodid)
 		{
-			var food = foodService.GetById(foodid);
+			var food = _unit.Food.GetById(foodid);
 			food.IsDeleted = true;
-			var result = await foodService.UpdateAsync(food);			
+			var result = await _unit.Food.UpdateAsync(food);
 			return result;
 		}
 
-        #endregion
+		#endregion
 
 
 
 
-    }
+	}
 }

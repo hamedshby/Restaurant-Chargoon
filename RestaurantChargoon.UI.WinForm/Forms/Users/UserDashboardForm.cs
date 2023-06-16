@@ -1,18 +1,22 @@
-﻿using RestaurantChargoon.UI.WinForm.Forms.Restaurants;
+﻿using RestaurantChargoon.Domain.Contracts;
+using RestaurantChargoon.UI.WinForm.Forms.Restaurants;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms.Users
 {
 	public partial class UserDashboardForm : Form
 	{
-		public UserDashboardForm()
+		private readonly IUnitOfWork _unit;
+
+		public UserDashboardForm(IUnitOfWork unit)
 		{
 			InitializeComponent();
+			_unit = unit;
 		}
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			typeof(RestaurantDashboardUserForm).ShowDialog();
+			typeof(RestaurantDashboardUserForm).ShowDialog(_unit);
 		}
 
 		private void UserDashboardForm_Load(object sender, EventArgs e)
@@ -27,12 +31,12 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 
 		private void ShowOrdersButton_Click(object sender, EventArgs e)
 		{
-			typeof(UserFactorsForm).ShowDialog();
+			typeof(UserFactorsForm).ShowDialog(_unit);
 		}
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			typeof(UserInfoForm).ShowDialog();
+			typeof(UserInfoForm).ShowDialog(_unit);
 		}
 	}
 }

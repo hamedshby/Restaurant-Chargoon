@@ -1,7 +1,7 @@
-﻿using RestaurantChargoon.Domain.Entities;
+﻿using RestaurantChargoon.Domain.Contracts;
+using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.ExtensionMethods;
-using RestaurantChargoon.Services.Foods;
 using RestaurantChargoon.UI.WinForm.Services;
 using System.Data;
 
@@ -9,15 +9,14 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 {
 	public partial class EditFoodForm : Form
 	{
-		private readonly FoodService foodService;
+		private readonly IUnitOfWork _unit;
 		private int foodid;
 
-		public EditFoodForm(int FoodId)
+		public EditFoodForm(int FoodId, IUnitOfWork unit)
 		{
 			InitializeComponent();
-			this.foodService = new FoodService();
 			foodid = FoodId;
-
+			_unit = unit;
 		}
 
 		private async void SaveButton_Click(object sender, EventArgs e)
@@ -25,7 +24,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 			var food = GetFood();
 			if (!food.CheckModelState())
 				return;
-			var result = await foodService.UpdateAsync(food);
+			var result = await _unit.Food.UpdateAsync(food);
 			result.PrintResultMessages();
 		}
 		private void SetFoodTypeComboBox()
@@ -40,7 +39,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 
 		private Food GetFood()
 		{
-			var food = foodService.GetById(foodid);
+			var food = _unit.Food.GetById(foodid);
 			food.Name = NameTextBox.Text.Trim();
 			food.Price = decimal.Parse(PricetextBox.Text.Trim());
 			food.FoodType = (FoodType)FoodTypeComboBox.SelectedIndex + 1;
@@ -48,7 +47,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Foods
 		}
 		private void EditFoodForm_Load(object sender, EventArgs e)
 		{
-			Food food = foodService.GetById(foodid);
+			Food food = _unit.Food.GetById(foodid);
 			nameof(FoodForm).HideParentForm();
 			SetFoodTypeComboBox();
 			NameTextBox.Text = food.Name;
