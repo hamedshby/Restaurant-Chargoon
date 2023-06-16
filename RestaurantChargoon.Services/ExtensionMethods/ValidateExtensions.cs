@@ -121,8 +121,8 @@ namespace RestaurantChargoon.Services.ExtensionMethods
 				string displayName = property.Name;
 				if (display != null)
 					displayName = display.Name;
-
-				if (string.IsNullOrEmpty(((string)property.GetValue(obj))))
+				string value = (property.GetValue(obj).ToString());
+				if (string.IsNullOrEmpty(value) || value == "0")
 				{
 					string msg = propertyLength.ErrorMessage;
 					msg = msg.Replace("{0}", displayName);
