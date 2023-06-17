@@ -9,6 +9,7 @@ namespace RestaurantChargoon.Domain.Contracts
 		Cart RemoveFactorDetail(Cart cart, int factorDetailId);
 		Cart Get();
 	}
+
 }
 
 
