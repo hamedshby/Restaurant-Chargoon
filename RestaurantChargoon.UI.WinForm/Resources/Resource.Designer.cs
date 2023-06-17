@@ -97,7 +97,7 @@ namespace RestaurantChargoon.UI.WinForm.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to عملیات با خطا مواجه گردید.
+        ///   Looks up a localized string similar to عملیات با خطا مواجه گردید. لطفا به مدیر سیستم تماس بگیرید.
         /// </summary>
         internal static string ErrorMessage {
             get {
