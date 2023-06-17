@@ -30,6 +30,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 		private void CancelButton_Click(object sender, EventArgs e)
 		{
 			EnableTextBox(false);
+			this.Close();
 		}
 
 		private void EditButton_Click(object sender, EventArgs e)

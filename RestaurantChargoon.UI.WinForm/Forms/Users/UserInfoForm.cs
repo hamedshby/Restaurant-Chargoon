@@ -36,6 +36,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 		private void CancelButton_Click(object sender, EventArgs e)
 		{
 			ChangeEnableStatus(false);
+			this.Close();
 		}
 
 		private async void SaveButton_Click(object sender, EventArgs e)
