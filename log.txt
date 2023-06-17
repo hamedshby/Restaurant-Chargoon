@@ -1,2 +1,3 @@
 6/17/2023	3:33 PM	Cannot open database "Restaurantw" requested by the login. The login failed.
 Login failed for user 'DESKTOP-12BF9LQ\H.Shoeybi'.
+6/17/2023	5:36 PM	Cannot insert explicit value for identity column in table 'FactorDetails' when IDENTITY_INSERT is set to OFF.

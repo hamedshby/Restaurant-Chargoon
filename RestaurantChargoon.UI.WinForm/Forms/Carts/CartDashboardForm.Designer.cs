@@ -33,15 +33,15 @@
 			UserNameTextBox = new TextBox();
 			label2 = new Label();
 			factorDetailsDataGridView = new DataGridView();
-			IdColumn = new DataGridViewTextBoxColumn();
+			SaveFactorButton = new Button();
+			TotalTextBox = new TextBox();
+			label3 = new Label();
+			Id = new DataGridViewTextBoxColumn();
 			FoodName = new DataGridViewTextBoxColumn();
 			Price = new DataGridViewTextBoxColumn();
 			FoodType = new DataGridViewTextBoxColumn();
 			Count = new DataGridViewTextBoxColumn();
 			Delete = new DataGridViewButtonColumn();
-			SaveFactorButton = new Button();
-			TotalTextBox = new TextBox();
-			label3 = new Label();
 			((System.ComponentModel.ISupportInitialize)factorDetailsDataGridView).BeginInit();
 			SuspendLayout();
 			// 
@@ -91,7 +91,7 @@
 			factorDetailsDataGridView.AllowUserToDeleteRows = false;
 			factorDetailsDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 			factorDetailsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			factorDetailsDataGridView.Columns.AddRange(new DataGridViewColumn[] { IdColumn, FoodName, Price, FoodType, Count, Delete });
+			factorDetailsDataGridView.Columns.AddRange(new DataGridViewColumn[] { Id, FoodName, Price, FoodType, Count, Delete });
 			factorDetailsDataGridView.Location = new Point(-1, 123);
 			factorDetailsDataGridView.Name = "factorDetailsDataGridView";
 			factorDetailsDataGridView.ReadOnly = true;
@@ -102,15 +102,45 @@
 			factorDetailsDataGridView.TabIndex = 5;
 			factorDetailsDataGridView.CellContentClick += factorDetailsDataGridView_CellContentClick;
 			// 
-			// IdColumn
+			// SaveFactorButton
 			// 
-			IdColumn.DataPropertyName = "Id";
-			IdColumn.HeaderText = "Id";
-			IdColumn.MinimumWidth = 6;
-			IdColumn.Name = "IdColumn";
-			IdColumn.ReadOnly = true;
-			IdColumn.Visible = false;
-			IdColumn.Width = 125;
+			SaveFactorButton.Location = new Point(11, 69);
+			SaveFactorButton.Name = "SaveFactorButton";
+			SaveFactorButton.Size = new Size(142, 29);
+			SaveFactorButton.TabIndex = 6;
+			SaveFactorButton.Text = "تایید نهایی";
+			SaveFactorButton.UseVisualStyleBackColor = true;
+			SaveFactorButton.Click += SaveFactorButton_Click;
+			// 
+			// TotalTextBox
+			// 
+			TotalTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			TotalTextBox.Enabled = false;
+			TotalTextBox.Location = new Point(154, 22);
+			TotalTextBox.Name = "TotalTextBox";
+			TotalTextBox.ReadOnly = true;
+			TotalTextBox.Size = new Size(171, 27);
+			TotalTextBox.TabIndex = 8;
+			// 
+			// label3
+			// 
+			label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			label3.AutoSize = true;
+			label3.Location = new Point(348, 29);
+			label3.Name = "label3";
+			label3.Size = new Size(79, 20);
+			label3.TabIndex = 7;
+			label3.Text = "جمع فاکتور";
+			// 
+			// Id
+			// 
+			Id.DataPropertyName = "Id";
+			Id.HeaderText = "Id";
+			Id.MinimumWidth = 6;
+			Id.Name = "Id";
+			Id.ReadOnly = true;
+			Id.Visible = false;
+			Id.Width = 125;
 			// 
 			// FoodName
 			// 
@@ -160,36 +190,6 @@
 			Delete.UseColumnTextForButtonValue = true;
 			Delete.Width = 125;
 			// 
-			// SaveFactorButton
-			// 
-			SaveFactorButton.Location = new Point(11, 69);
-			SaveFactorButton.Name = "SaveFactorButton";
-			SaveFactorButton.Size = new Size(142, 29);
-			SaveFactorButton.TabIndex = 6;
-			SaveFactorButton.Text = "تایید نهایی";
-			SaveFactorButton.UseVisualStyleBackColor = true;
-			SaveFactorButton.Click += SaveFactorButton_Click;
-			// 
-			// TotalTextBox
-			// 
-			TotalTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-			TotalTextBox.Enabled = false;
-			TotalTextBox.Location = new Point(154, 22);
-			TotalTextBox.Name = "TotalTextBox";
-			TotalTextBox.ReadOnly = true;
-			TotalTextBox.Size = new Size(171, 27);
-			TotalTextBox.TabIndex = 8;
-			// 
-			// label3
-			// 
-			label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-			label3.AutoSize = true;
-			label3.Location = new Point(348, 29);
-			label3.Name = "label3";
-			label3.Size = new Size(79, 20);
-			label3.TabIndex = 7;
-			label3.Text = "جمع فاکتور";
-			// 
 			// CartDashboardForm
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
@@ -220,13 +220,13 @@
 		private Label label2;
 		public DataGridView factorDetailsDataGridView;
 		private Button SaveFactorButton;
-		private DataGridViewTextBoxColumn IdColumn;
+		private TextBox TotalTextBox;
+		private Label label3;
+		private DataGridViewTextBoxColumn Id;
 		private DataGridViewTextBoxColumn FoodName;
 		private DataGridViewTextBoxColumn Price;
 		private DataGridViewTextBoxColumn FoodType;
 		private DataGridViewTextBoxColumn Count;
 		private DataGridViewButtonColumn Delete;
-		private TextBox TotalTextBox;
-		private Label label3;
 	}
 }

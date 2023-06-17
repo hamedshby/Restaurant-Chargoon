@@ -23,12 +23,15 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 		private void RestaurantDashboardUserForm_Load(object sender, EventArgs e)
 		{
 			nameof(UserDashboardForm).HideParentForm();
+			nameof(RestaurantDashboardForm).HideParentForm();
 			FillGridView();
 		}
 
 		private void RestaurantDashboardUserForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			nameof(UserDashboardForm).ShowParentForm();
+			nameof(RestaurantDashboardForm).ShowParentForm();
+
 		}
 
 		private void RestaurantDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)

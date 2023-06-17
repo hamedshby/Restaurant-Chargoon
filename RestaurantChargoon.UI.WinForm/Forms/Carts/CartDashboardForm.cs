@@ -48,13 +48,23 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Carts
 				int factorDetailId = factorDetailsDataGridView.GetRowClickedIdValue(e);
 				cart = cartService.RemoveFactorDetail(cart, factorDetailId);
 				factorDetailsDataGridView.Rows.RemoveAt(e.RowIndex);
+				FillTextBox();
 			}
 		}
 
 		private async void SaveFactorButton_Click(object sender, EventArgs e)
 		{
 			cart.RestaurantName = restaurantService.GetById(cart.RestaurantId).Name;
-			var result = await factorService.AddAsync(cart);
+			if (!cart.FactorDetails.Any())
+			{
+				FormService.ShowErrorMessageBox("سبد خرید خالی می باشد");
+				return;
+			}
+            foreach (var itm in cart.FactorDetails)
+            {
+				itm.Id = 0;
+            }
+            var result = await factorService.AddAsync(cart);
 			result.PrintResultMessages();
 			if (result.IsSuccess)
 			{

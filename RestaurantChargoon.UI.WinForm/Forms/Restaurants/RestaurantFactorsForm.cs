@@ -1,4 +1,5 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Services.ExtensionMethods;
 using RestaurantChargoon.Services.Factors;
 using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.Services.Users;
@@ -54,6 +55,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
 				c.Id,
 				UserName = userService.GetById(c.UserId).Name,
 				RestaurantName = restaurantService.GetById(c.RestaurantId).Name,
+				OrderDate = c.CreateDate.ToPersianDate(),
 				TotalPrice = factorDetailService.SumOfFactor(c)
 			})
 				.OrderByDescending(c => c.Id)
