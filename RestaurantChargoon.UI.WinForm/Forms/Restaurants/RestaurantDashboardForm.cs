@@ -102,6 +102,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 		{
 			typeof(UserFactorsForm).ShowDialog();
 		}
-	}
+
+        private void AddtoBasketButton_Click(object sender, EventArgs e)
+        {
+			typeof(RestaurantDashboardUserForm).ShowDialog();
+		}
+    }
 
 }
