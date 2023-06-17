@@ -1,0 +1,2 @@
+6/17/2023	3:33 PM	Cannot open database "Restaurantw" requested by the login. The login failed.
+Login failed for user 'DESKTOP-12BF9LQ\H.Shoeybi'.

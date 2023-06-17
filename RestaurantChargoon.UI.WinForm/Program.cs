@@ -33,7 +33,7 @@ namespace Restaurant_Chargoon.UI.WinForm
 		static void ExceptionHandler(object sender, ThreadExceptionEventArgs e)
 		{
 			FormService.ShowErrorMessageBox(Resource.ErrorMessage);
-			using var writer = new StreamWriter(@"..\..\..\log.txt", true);
+			using var writer = new StreamWriter(@"..\..\..\..\log.txt", true);
 			writer.WriteLine(DateTime.Now.ToShortDateString() + "\t"
 				+ DateTime.Now.ToShortTimeString() + "\t"
 				+ e.Exception.Message);

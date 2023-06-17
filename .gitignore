@@ -364,3 +364,5 @@ FodyWeavers.xsd
 /RestaurantChargoon.Infrastructure.EF/Migrations/20230610121351_init.cs
 /RestaurantChargoon.Infrastructure.EF/Migrations/20230610121351_init.Designer.cs
 *.cs
+/RestaurantChargoon.UI.WinForm/log.txt
+/RestaurantChargoon.UI.WinForm/log.txt
