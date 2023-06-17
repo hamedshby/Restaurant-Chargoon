@@ -1,7 +1,10 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RestaurantChargoon.Domain.Contracts;
 using RestaurantChargoon.Domain.DataModels;
-using System.Reflection;
+using RestaurantChargoon.Infrastructure.EF.Context;
+using RestaurantChargoon.Infrastructure.EF.Repositories;
+using RestaurantChargoon.Services.CommonServices;
 
 namespace Restaurant_Chargoon.UI.WinForm
 {
@@ -22,30 +25,47 @@ namespace Restaurant_Chargoon.UI.WinForm
 			userLogin = new User();
 
 
-			var types = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")
-				.SelectMany(s => Assembly.LoadFrom(s).GetTypes())
-				.Where(p => typeof(IDependencyRegistrar).IsAssignableFrom(p) && !p.IsInterface);
+			//var types = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")
+			//	.SelectMany(s => Assembly.LoadFrom(s).GetTypes())
+			//	.Where(p => typeof(IDependencyRegistrar).IsAssignableFrom(p) && !p.IsInterface);
 
-
-			var services = new ServiceCollection();
-			foreach (var type in types)
-				((IDependencyRegistrar)Activator.CreateInstance(type)).ConfigureServices(services);
-
-			using (ServiceProvider serviceProvider = services.BuildServiceProvider())
-			{
-				var mainForm = serviceProvider.GetRequiredService<MainForm>();
-				Application.Run(mainForm);
-			}
 
 			//var services = new ServiceCollection();
-
-			//ConfigureServices(services);
+			//foreach (var type in types)
+			//	((IDependencyRegistrar)Activator.CreateInstance(type)).ConfigureServices(services);
 
 			//using (ServiceProvider serviceProvider = services.BuildServiceProvider())
 			//{
-			//	var form1 = serviceProvider.GetRequiredService<MainForm>();
-			//	Application.Run(form1);
+			//	var mainForm = serviceProvider.GetRequiredService<MainForm>();
+			//	Application.Run(mainForm);
 			//}
+
+			var services = new ServiceCollection();
+
+			ConfigureServices(services);
+
+			using (ServiceProvider serviceProvider = services.BuildServiceProvider())
+			{
+				var form1 = serviceProvider.GetRequiredService<MainForm>();
+				Application.Run(form1);
+			}
+		}
+
+		public static void ConfigureServices(ServiceCollection services)
+		{
+			services.AddDbContext<RestaurantDbContext>(c =>
+			{
+				c.UseSqlServer("server=.;initial catalog=Restaurant;integrated security=true;TrustServerCertificate=True");
+				c.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+			});
+			services.AddScoped<IUnitOfWork, UnitOfWork>();
+			services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+			services.AddScoped(typeof(IFactorDetailRepository), typeof(FactorDetailRepository));
+			services.AddScoped(typeof(IFactorRepository), typeof(FactorRepository));
+			services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
+			services.AddScoped(typeof(IRestaurantRepository), typeof(RestaurantRepository));
+			services.AddScoped(typeof(IFoodRepository), typeof(FoodRepository));
+			services.AddScoped<MainForm>();
 		}
 	}
 }
