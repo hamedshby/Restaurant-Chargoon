@@ -93,20 +93,16 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 		#endregion
 
-		private void RestaurantListBtn_Click(object sender, EventArgs e)
-		{
-			typeof(RestaurantDashboardUserForm).ShowDialog();
-		}
 
 		private void ShowOrdersButton_Click(object sender, EventArgs e)
 		{
 			typeof(UserFactorsForm).ShowDialog();
 		}
 
-        private void AddtoBasketButton_Click(object sender, EventArgs e)
-        {
+		private void AddtoBasketButton_Click(object sender, EventArgs e)
+		{
 			typeof(RestaurantDashboardUserForm).ShowDialog();
 		}
-    }
+	}
 
 }
