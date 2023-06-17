@@ -129,6 +129,9 @@
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>عملیات با خطا مواجه گردید</value>
+  </data>
   <data name="MaxLengthError" xml:space="preserve">
     <value>تعداد کاراکترهای ورودی باید حداکثر {0} حرف باشد</value>
   </data>

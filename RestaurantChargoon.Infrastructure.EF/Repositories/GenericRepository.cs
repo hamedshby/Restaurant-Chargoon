@@ -1,5 +1,4 @@
 ﻿using FluentResults;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Domain.Repositories;
@@ -77,17 +76,9 @@ namespace RestaurantChargoon.Infrastructure.EF.Repositories
 		public async Task<Result<int>> Save()
 		{
 			Result<int> result = new Result<int>();
-			try
-			{
-
-				result = await _context.SaveChangesAsync();
-				result.WithSuccess("عملیات با موفقیت انجام گردید");
-				return result;
-			}
-			catch (SqlException ex)
-			{
-				return result.WithError("عملیات با خطا مواجه گردید");
-			}
+			result = await _context.SaveChangesAsync();
+			result.WithSuccess("عملیات با موفقیت انجام گردید");
+			return result;
 		}
 
 

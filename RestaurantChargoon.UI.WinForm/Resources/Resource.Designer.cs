@@ -97,6 +97,15 @@ namespace RestaurantChargoon.UI.WinForm.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to عملیات با خطا مواجه گردید.
+        /// </summary>
+        internal static string ErrorMessage {
+            get {
+                return ResourceManager.GetString("ErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تعداد کاراکترهای ورودی باید حداکثر {0} حرف باشد.
         /// </summary>
         internal static string MaxLengthError {

@@ -1,5 +1,7 @@
 using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.ExtensionMethods;
+using RestaurantChargoon.Services.Users;
 using RestaurantChargoon.UI.WinForm.Forms;
 using RestaurantChargoon.UI.WinForm.Services;
 
@@ -7,9 +9,11 @@ namespace Restaurant_Chargoon.UI.WinForm
 {
 	public partial class MainForm : Form
 	{
+		private readonly UserService userService;
 		public MainForm()
 		{
 			InitializeComponent();
+			this.userService = new UserService();
 		}
 
 		private void signinUser_Click(object sender, EventArgs e)
@@ -34,7 +38,7 @@ namespace Restaurant_Chargoon.UI.WinForm
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			
+			//var user = userService.Get(c => c.UserType == UserType.User).FirstOrDefault();			
 		}
 
 		private void TestAttr()
