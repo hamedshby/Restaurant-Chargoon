@@ -1,7 +1,6 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Domain.Contracts;
 using RestaurantChargoon.Domain.DataModels;
-using RestaurantChargoon.Services.Restaurants;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms

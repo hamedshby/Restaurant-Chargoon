@@ -1,18 +1,18 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Domain.Contracts;
 using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.Domain.Enums;
-using RestaurantChargoon.Services.Users;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms.Users
 {
     public partial class UserInfoForm : Form
     {
-        private readonly UserService userService;
-        public UserInfoForm()
+        private readonly IUnitOfWork _unit;
+        public UserInfoForm(IUnitOfWork unit)
         {
             InitializeComponent();
-            this.userService = new UserService();
+            _unit = unit;
         }
 
         #region Events
@@ -45,7 +45,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
             if (!user.CheckModelState())
                 return;
 
-            var editResult = await userService.UpdateAsync(user);
+            var editResult = await _unit.User.UpdateAsync(user);
             editResult.PrintResultMessages();
             if (editResult.IsSuccess)
                 ChangeEnableStatus(false);
@@ -57,7 +57,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
         #region Methods
         private void FillTextBox()
         {
-            var user = userService.GetById(Program.userLogin.Id);
+            var user = _unit.User.GetById(Program.userLogin.Id);
             if (user != null)
             {
                 NameTetxtBox.Text = user.Name;
@@ -81,7 +81,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Users
 
         public User GetUser()
         {
-            User user = userService.GetById(Program.userLogin.Id);
+            User user = _unit.User.GetById(Program.userLogin.Id);
             user.Name = NameTetxtBox.Text;
             user.LastName = LastNameTetxtBox.Text;
             user.Address = AddressTetxtBox.Text;

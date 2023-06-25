@@ -15,4 +15,11 @@
     <ProjectReference Include="..\RestaurantChargoon.Infrastructure.EF\RestaurantChargoon.Infrastructure.EF.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Factors\" />
+    <Folder Include="Foods\" />
+    <Folder Include="Restaurants\" />
+    <Folder Include="Users\" />
+  </ItemGroup>
+
 </Project>
