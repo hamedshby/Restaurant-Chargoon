@@ -8,7 +8,7 @@ namespace RestaurantChargoon.Services.CommonServices
 {
     public class DependencyRegitrar : IDependencyRegistrar
     {
-        public void ConfigureServices(ServiceCollection services)
+        public  void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<RestaurantDbContext>(c =>
             {
