@@ -25,8 +25,8 @@ namespace Restaurant_Chargoon.UI.WinForm
 
             userLogin = new User();
 
-            var optionsBuilder = new DbContextOptionsBuilder<RestaurantDbContext>();
-            optionsBuilder.UseSqlServer("server=.;initial catalog=Restaurant;integrated security=true;TrustServerCertificate=True");
+            //var optionsBuilder = new DbContextOptionsBuilder<RestaurantDbContext>();
+            //optionsBuilder.UseSqlServer("server=.;initial catalog=Restaurant;integrated security=true;TrustServerCertificate=True");
 
             Application.ThreadException += new ThreadExceptionEventHandler(ExceptionHandler);
 
@@ -39,7 +39,7 @@ namespace Restaurant_Chargoon.UI.WinForm
             foreach (var type in types)
                 ((IDependencyRegistrar)Activator.CreateInstance(type)).ConfigureServices(services);
 
-            //services.AddScoped<MainForm>();
+           services.AddScoped<MainForm>();
             using (ServiceProvider serviceProvider = services.BuildServiceProvider())
             {
                 var mainForm = serviceProvider.GetRequiredService<MainForm>();
