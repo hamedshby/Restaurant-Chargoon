@@ -27,11 +27,11 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             Program.userLogin = user;
             if (user.UserType == UserType.RestaurantManager)
             {
-                typeof(RestaurantDashboardForm).ShowDialog();
+                typeof(RestaurantDashboardForm).ShowDialog(_unit);
             }
             else if (user.UserType == UserType.User)
             {
-                typeof(UserDashboardForm).ShowDialog();
+                typeof(UserDashboardForm).ShowDialog(_unit);
             }
         }
 

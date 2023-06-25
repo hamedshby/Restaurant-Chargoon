@@ -1,4 +1,5 @@
-﻿using Restaurant_Chargoon.UI.WinForm;
+﻿using Ninject;
+using Restaurant_Chargoon.UI.WinForm;
 using RestaurantChargoon.Domain.Contracts;
 using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.Domain.Enums;

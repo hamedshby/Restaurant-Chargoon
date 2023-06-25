@@ -1,8 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RestaurantChargoon.Domain.Contracts;
 using RestaurantChargoon.Domain.DataModels;
-using RestaurantChargoon.Infrastructure.EF.Context;
 using RestaurantChargoon.UI.WinForm.Resources;
 using RestaurantChargoon.UI.WinForm.Services;
 using System.Reflection;
@@ -39,7 +37,7 @@ namespace Restaurant_Chargoon.UI.WinForm
             foreach (var type in types)
                 ((IDependencyRegistrar)Activator.CreateInstance(type)).ConfigureServices(services);
 
-           services.AddScoped<MainForm>();
+            services.AddScoped<MainForm>();
             using (ServiceProvider serviceProvider = services.BuildServiceProvider())
             {
                 var mainForm = serviceProvider.GetRequiredService<MainForm>();

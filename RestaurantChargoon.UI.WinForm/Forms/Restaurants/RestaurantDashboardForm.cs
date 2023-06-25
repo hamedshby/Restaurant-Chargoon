@@ -20,7 +20,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
         #region Events
         private void AddRestaurantButton_Click(object sender, EventArgs e)
         {
-            typeof(SignUpRestaurantForm).ShowDialog();
+            typeof(SignUpRestaurantForm).ShowDialog(_unit);
         }
 
         private void RestaurantDashboardForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -39,15 +39,15 @@ namespace RestaurantChargoon.UI.WinForm.Forms
             int restaurantid = RestaurantDataGridView.GetRowClickedIdValue(e);
             if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.ShowMenu].Index)
             {
-                typeof(FoodForm).ShowDialog();
+                typeof(FoodForm).ShowDialog(_unit);
             }
             else if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.Edit].Index)
             {
-                typeof(RestaurantInfoForm).ShowDialog();
+                typeof(RestaurantInfoForm).ShowDialog(_unit);
             }
             else if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.ShowFactors].Index)
             {
-                typeof(RestaurantFactorsForm).ShowDialog();
+                typeof(RestaurantFactorsForm).ShowDialog(_unit);
             }
             else if (e.ColumnIndex == RestaurantDataGridView.Columns[Resource.Delete].Index)
             {
@@ -95,12 +95,12 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
         private void ShowOrdersButton_Click(object sender, EventArgs e)
         {
-            typeof(UserFactorsForm).ShowDialog();
+            typeof(UserFactorsForm).ShowDialog(_unit);
         }
 
         private void AddtoBasketButton_Click(object sender, EventArgs e)
         {
-            typeof(RestaurantDashboardUserForm).ShowDialog();
+            typeof(RestaurantDashboardUserForm).ShowDialog(_unit);
         }
     }
 

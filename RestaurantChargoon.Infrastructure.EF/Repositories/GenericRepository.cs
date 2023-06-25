@@ -27,7 +27,7 @@ namespace RestaurantChargoon.Infrastructure.EF.Repositories
 
 		public IEnumerable<T> Get(Func<T, bool> predicate = null)
 		{
-			var query = _context.Set<T>().AsNoTracking().AsQueryable();
+			var query = _context.Set<T>().AsQueryable();
 			if (predicate != null)
 			{
 				query = query.Where(predicate).AsQueryable();

@@ -29,7 +29,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
         private void AddFoodButton_Click(object sender, EventArgs e)
         {
-            typeof(AddFoodForm).ShowDialog();
+            typeof(AddFoodForm).ShowDialog(_unit);
         }
 
         private void FoodForm_FormClosed(object sender, FormClosedEventArgs e)

@@ -46,7 +46,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms.Restaurants
                     FormService.ShowErrorMessageBox("در حال حاضر در ساعت کاری رستوران قرار نداریم. لطفا رستوران دیگری انتخاب کنید");
                     return;
                 }
-                typeof(FoodDashboardUserForm).ShowDialog();
+                typeof(FoodDashboardUserForm).ShowDialog(_unit);
             }
         }
         #endregion
