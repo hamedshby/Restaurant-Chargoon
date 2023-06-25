@@ -1,9 +1,9 @@
-﻿using RestaurantChargoon.Domain.Entities;
+﻿using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.Services.CommonServices;
 
 namespace RestaurantChargoon.Services.Factors
 {
-	public class FactorDetailService : BaseService<FactorDetail>
+    public class FactorDetailService : BaseService<FactorDetail>
 	{
 		public decimal SumOfFactor(Factor factor)
 		{

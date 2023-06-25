@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.Domain.Enums;
 using System;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantChargoon.Infrastructure.EF.Context
 {
-	public class RestaurantDbContext : DbContext
+    public class RestaurantDbContext : DbContext
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder options)
 		{

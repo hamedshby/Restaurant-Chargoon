@@ -1,6 +1,8 @@
-﻿namespace RestaurantChargoon.Domain.Entities
+﻿using RestaurantChargoon.Domain.DataModels;
+
+namespace RestaurantChargoon.Domain.Entities
 {
-	public class Cart : Factor
+    public class Cart : Factor
 	{
 
 	}

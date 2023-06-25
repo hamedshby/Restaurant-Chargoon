@@ -1,10 +1,10 @@
 ﻿using FluentResults;
-using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.Infrastructure.EF.Repositories;
 
 namespace RestaurantChargoon.Services.CommonServices
 {
-	public class BaseService<T> where T : BaseEntity
+    public class BaseService<T> where T : BaseEntity
 	{
 		protected GenericRepository<T> repository;
 
@@ -16,13 +16,13 @@ namespace RestaurantChargoon.Services.CommonServices
 
 		public async Task<Result<int>> AddAsync(T entity)
 		{
-			var result = await repository.Create(entity);
+			var result = await repository.CreateAsync(entity);
 			return result;
 		}
 
 		public async Task<Result<int>> UpdateAsync(T entity)
 		{
-			var result = await repository.Update(entity);
+			var result = await repository.UpdateAsync(entity);
 			return result;
 		}
 		//public async Task<Result<int>> DeleteAsync(T entity)

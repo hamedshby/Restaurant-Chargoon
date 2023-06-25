@@ -1,13 +1,13 @@
 ﻿using FluentResults;
 using Newtonsoft.Json.Linq;
-using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Domain.DataModels;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
 namespace RestaurantChargoon.Services.ExtensionMethods
 {
-	public static class ValidateExtensions
+    public static class ValidateExtensions
 	{
 		public static Result<T> ModelState<T>(this T obj) where T : class
 		{

@@ -1,10 +1,11 @@
-﻿using RestaurantChargoon.Domain.Entities;
+﻿using RestaurantChargoon.Domain.DataModels;
+using RestaurantChargoon.Domain.Entities;
 using RestaurantChargoon.Services.Foods;
 using RestaurantChargoon.Services.Restaurants;
 
 namespace RestaurantChargoon.Services.Carts
 {
-	public class CartService
+    public class CartService
 	{
 		private readonly FoodService foodService;
 		private readonly RestaurantService restaurantService;

@@ -1,4 +1,5 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
+using RestaurantChargoon.Domain.Contracts;
 using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.Users;
 using RestaurantChargoon.UI.WinForm.Forms.Users;
@@ -8,17 +9,17 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 {
 	public partial class SigninUserFrom : Form
 	{
-		private readonly UserService userService;
-		public SigninUserFrom()
-		{
-			InitializeComponent();
-			this.userService = new UserService();
-		}
+        private readonly IUnitOfWork _unit;
+        public SigninUserFrom(IUnitOfWork unit)
+        {
+            InitializeComponent();
+            _unit = unit;
+        }
 
-		#region Events
-		private void enter_Click(object sender, EventArgs e)
+        #region Events
+        private void enter_Click(object sender, EventArgs e)
 		{
-			var user = userService.CheckUserPassword(NationalCodeTextBox.Text.Trim(), PasswordTextBox.Text.Trim());
+			var user = _unit.User.CheckUserPassword(NationalCodeTextBox.Text.Trim(), PasswordTextBox.Text.Trim());
 			if (user == null)
 			{
 				FormService.ShowErrorMessageBox("نام کاربری یا پسورد اشتباه هست");
@@ -64,7 +65,7 @@ namespace RestaurantChargoon.UI.WinForm.Forms
 
 		private void FillTextBox()
 		{
-			var user = userService.GetById(7);
+			var user = _unit.User.GetById(7);
 			if (user != null)
 			{
 				NationalCodeTextBox.Text = user.NationalCode;

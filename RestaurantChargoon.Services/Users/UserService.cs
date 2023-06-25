@@ -1,9 +1,9 @@
-﻿using RestaurantChargoon.Domain.Entities;
+﻿using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.Services.CommonServices;
 
 namespace RestaurantChargoon.Services.Users
 {
-	public class UserService: BaseService<User>
+    public class UserService: BaseService<User>
 	{
 		
 		public User GetByNationalCode(string nationalCode)

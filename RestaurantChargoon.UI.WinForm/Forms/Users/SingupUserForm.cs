@@ -1,33 +1,34 @@
 ﻿using Restaurant_Chargoon.UI.WinForm;
-using RestaurantChargoon.Domain.Entities;
+using RestaurantChargoon.Domain.Contracts;
+using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.Domain.Enums;
 using RestaurantChargoon.Services.Users;
 using RestaurantChargoon.UI.WinForm.Services;
 
 namespace RestaurantChargoon.UI.WinForm.Forms
 {
-	public partial class SingupUserForm : Form
+    public partial class SingupUserForm : Form
 	{
-		private readonly UserService userService;
+        private readonly IUnitOfWork _unit;
 
-		public SingupUserForm()
-		{
-			InitializeComponent();
-			this.userService = new UserService();
-		}
+        public SingupUserForm(IUnitOfWork unit)
+        {
+            InitializeComponent();
+            _unit = unit;
+        }
 
-		#region Events
-		private async void singup_Click(object sender, EventArgs e)
+        #region Events
+        private async void singup_Click(object sender, EventArgs e)
 		{
 			var user = GetUser();
 			if (!user.CheckModelState())
 				return;
-			if (userService.GetByNationalCode(user.NationalCode) != null)
+			if (_unit.User.GetByNationalCode(user.NationalCode) != null)
 			{
 				FormService.ShowErrorMessageBox("این کاربر قبلا ثبت نام کرده است");
 				return;
 			}
-			var addResult = await userService.AddAsync(user);
+			var addResult = await _unit.User.CreateAsync(user);
 			addResult.PrintResultMessages();
 			if (addResult.IsSuccess)
 			{
