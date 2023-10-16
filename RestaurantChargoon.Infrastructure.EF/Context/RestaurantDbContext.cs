@@ -12,6 +12,7 @@ namespace RestaurantChargoon.Infrastructure.EF.Context
 {
 	// Add 2
 	//add3
+	//add4
     public class RestaurantDbContext : DbContext
 	{
         public RestaurantDbContext()
