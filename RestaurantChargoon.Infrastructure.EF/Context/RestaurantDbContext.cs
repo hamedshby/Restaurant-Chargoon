@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantChargoon.Infrastructure.EF.Context
 {
+	// Add 1
     public class RestaurantDbContext : DbContext
 	{
         public RestaurantDbContext()
