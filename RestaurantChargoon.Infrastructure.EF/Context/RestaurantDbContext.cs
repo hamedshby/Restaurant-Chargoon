@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantChargoon.Infrastructure.EF.Context
 {
-	public class RestaurantDbContext : DbContext
+    public class RestaurantDbContext : DbContext
 	{
 		public RestaurantDbContext()
 		{
@@ -31,11 +31,19 @@ namespace RestaurantChargoon.Infrastructure.EF.Context
 		public DbSet<Factor> Factors { get; set; }
 		public DbSet<FactorDetail> FactorDetails { get; set; }
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		public DbSet<PurchaseRequest> PurchaseRequests { get; set; }
+		public DbSet<PaymentAdditionalInfo> PaymentAdditionalInfo { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
 
-			foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            modelBuilder.ApplyConfiguration(new TransferAdditionalInfoMap());
+            modelBuilder.ApplyConfiguration(new PaymentAdditionalInfoMap());
+            modelBuilder.ApplyConfiguration(new PurchaseRequestConfiguration());
+
+
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
 			{
 				if (entityType.ClrType.GetProperty("IsDeleted") != null)
 				{
@@ -51,6 +59,8 @@ namespace RestaurantChargoon.Infrastructure.EF.Context
 					modelBuilder.Entity(entityType.ClrType).HasQueryFilter(Expression.Lambda(body, param));
 				}
 			}
+
+			modelBuilder.Entity<Factor>().Property(c => c.test2).IsRequired();
 
 			modelBuilder.Entity<Food>()
 				.Property(f => f.FoodType)

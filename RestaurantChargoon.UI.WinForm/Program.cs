@@ -5,6 +5,7 @@ using RestaurantChargoon.Domain.DataModels;
 using RestaurantChargoon.Infrastructure.EF.Context;
 using RestaurantChargoon.Infrastructure.EF.Repositories;
 using RestaurantChargoon.Services.CommonServices;
+using System.Reflection;
 
 namespace Restaurant_Chargoon.UI.WinForm
 {
@@ -25,30 +26,31 @@ namespace Restaurant_Chargoon.UI.WinForm
 			userLogin = new User();
 
 
-			//var types = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")
-			//	.SelectMany(s => Assembly.LoadFrom(s).GetTypes())
-			//	.Where(p => typeof(IDependencyRegistrar).IsAssignableFrom(p) && !p.IsInterface);
+			var types = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")
+				.SelectMany(s => Assembly.LoadFrom(s).GetTypes())
+				.Where(p => typeof(IDependencyRegistrar).IsAssignableFrom(p) && !p.IsInterface);
 
+
+			var services = new ServiceCollection();
+			foreach (var type in types)
+				((IDependencyRegistrar)Activator.CreateInstance(type)).ConfigureServices(services);
+
+			services.AddScoped<MainForm>();
+			using (ServiceProvider serviceProvider = services.BuildServiceProvider())
+			{
+				var mainForm = serviceProvider.GetRequiredService<MainForm>();
+				Application.Run(mainForm);
+			}
 
 			//var services = new ServiceCollection();
-			//foreach (var type in types)
-			//	((IDependencyRegistrar)Activator.CreateInstance(type)).ConfigureServices(services);
+
+			//ConfigureServices(services);
 
 			//using (ServiceProvider serviceProvider = services.BuildServiceProvider())
 			//{
-			//	var mainForm = serviceProvider.GetRequiredService<MainForm>();
-			//	Application.Run(mainForm);
+			//	var form1 = serviceProvider.GetRequiredService<MainForm>();
+			//	Application.Run(form1);
 			//}
-
-			var services = new ServiceCollection();
-
-			ConfigureServices(services);
-
-			using (ServiceProvider serviceProvider = services.BuildServiceProvider())
-			{
-				var form1 = serviceProvider.GetRequiredService<MainForm>();
-				Application.Run(form1);
-			}
 		}
 
 		public static void ConfigureServices(ServiceCollection services)

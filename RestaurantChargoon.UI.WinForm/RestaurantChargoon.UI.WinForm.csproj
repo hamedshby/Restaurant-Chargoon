@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RestaurantChargoon.Domain\RestaurantChargoon.Domain.csproj" />
+    <ProjectReference Include="..\RestaurantChargoon.Infrastructure.EF\RestaurantChargoon.Infrastructure.EF.csproj" />
     <ProjectReference Include="..\RestaurantChargoon.Services\RestaurantChargoon.Services.csproj" />
   </ItemGroup>
 

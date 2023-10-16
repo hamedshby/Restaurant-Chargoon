@@ -1,4 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using RestaurantChargoon.Domain.Contracts;
+using RestaurantChargoon.Domain.DataModels;
+using RestaurantChargoon.Infrastructure.EF.Context;
 using RestaurantChargoon.UI.WinForm.Forms;
 using RestaurantChargoon.UI.WinForm.Services;
 
@@ -30,7 +33,28 @@ namespace Restaurant_Chargoon.UI.WinForm
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
+            RestaurantDbContext dbContext= new RestaurantDbContext();
+			PurchaseRequest purchaseRequest = new PurchaseRequest()
+			{
+				PaymentAdditionalInfo = new PaymentAdditionalInfo()
+				{
+					PortId = 20
+				},
+				TransferAdditionalInfo = new TransferAdditionalInfo()
+				{
+					ReceiverClientId = 30
+				}
+			};
+			dbContext.PurchaseRequests.Add(purchaseRequest);
+			dbContext.SaveChanges();
 
-		}
+			var tst1=dbContext.PaymentAdditionalInfo.Include(c=>c.PurchaseRequest).ToList();
+
+			var tst= dbContext.PurchaseRequests
+				.Include(c => c.TransferAdditionalInfo)
+				.Include(c => c.PaymentAdditionalInfo)
+				.ToList();
+
+        }
 	}
 }

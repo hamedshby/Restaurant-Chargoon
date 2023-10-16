@@ -19,7 +19,7 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("RestaurantChargoon.Domain.Entities.Factor", b =>
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.Factor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,6 +41,13 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("test")
+                        .HasColumnType("int");
+
+                    b.Property<string>("test2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
@@ -48,7 +55,7 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     b.ToTable("Factors");
                 });
 
-            modelBuilder.Entity("RestaurantChargoon.Domain.Entities.FactorDetail", b =>
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.FactorDetail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,7 +94,7 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     b.ToTable("FactorDetails");
                 });
 
-            modelBuilder.Entity("RestaurantChargoon.Domain.Entities.Food", b =>
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.Food", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -127,7 +134,32 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     b.ToTable("Foods");
                 });
 
-            modelBuilder.Entity("RestaurantChargoon.Domain.Entities.Restaurant", b =>
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.PaymentAdditionalInfo", b =>
+                {
+                    b.Property<long>("TransactionRequestId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("PortId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TransactionRequestId");
+
+                    b.ToTable("PaymentAdditionalInfo");
+                });
+
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.PurchaseRequest", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PurchaseRequests");
+                });
+
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.Restaurant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -174,7 +206,20 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     b.ToTable("Restaurants");
                 });
 
-            modelBuilder.Entity("RestaurantChargoon.Domain.Entities.User", b =>
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.TransferAdditionalInfo", b =>
+                {
+                    b.Property<long>("TransactionRequestId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("ReceiverClientId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TransactionRequestId");
+
+                    b.ToTable("TransferAdditionalInfo");
+                });
+
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -224,9 +269,9 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("RestaurantChargoon.Domain.Entities.Factor", b =>
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.Factor", b =>
                 {
-                    b.HasOne("RestaurantChargoon.Domain.Entities.User", "User")
+                    b.HasOne("RestaurantChargoon.Domain.DataModels.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -235,9 +280,9 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("RestaurantChargoon.Domain.Entities.FactorDetail", b =>
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.FactorDetail", b =>
                 {
-                    b.HasOne("RestaurantChargoon.Domain.Entities.Factor", "Factor")
+                    b.HasOne("RestaurantChargoon.Domain.DataModels.Factor", "Factor")
                         .WithMany("FactorDetails")
                         .HasForeignKey("FactorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -246,9 +291,9 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     b.Navigation("Factor");
                 });
 
-            modelBuilder.Entity("RestaurantChargoon.Domain.Entities.Food", b =>
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.Food", b =>
                 {
-                    b.HasOne("RestaurantChargoon.Domain.Entities.Restaurant", "Restaurant")
+                    b.HasOne("RestaurantChargoon.Domain.DataModels.Restaurant", "Restaurant")
                         .WithMany()
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -257,9 +302,20 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     b.Navigation("Restaurant");
                 });
 
-            modelBuilder.Entity("RestaurantChargoon.Domain.Entities.Restaurant", b =>
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.PaymentAdditionalInfo", b =>
                 {
-                    b.HasOne("RestaurantChargoon.Domain.Entities.User", "User")
+                    b.HasOne("RestaurantChargoon.Domain.DataModels.PurchaseRequest", "PurchaseRequest")
+                        .WithOne("PaymentAdditionalInfo")
+                        .HasForeignKey("RestaurantChargoon.Domain.DataModels.PaymentAdditionalInfo", "TransactionRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PurchaseRequest");
+                });
+
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.Restaurant", b =>
+                {
+                    b.HasOne("RestaurantChargoon.Domain.DataModels.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -268,9 +324,27 @@ namespace RestaurantChargoon.Infrastructure.EF.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("RestaurantChargoon.Domain.Entities.Factor", b =>
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.TransferAdditionalInfo", b =>
+                {
+                    b.HasOne("RestaurantChargoon.Domain.DataModels.PurchaseRequest", "PurchaseRequest")
+                        .WithOne("TransferAdditionalInfo")
+                        .HasForeignKey("RestaurantChargoon.Domain.DataModels.TransferAdditionalInfo", "TransactionRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PurchaseRequest");
+                });
+
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.Factor", b =>
                 {
                     b.Navigation("FactorDetails");
+                });
+
+            modelBuilder.Entity("RestaurantChargoon.Domain.DataModels.PurchaseRequest", b =>
+                {
+                    b.Navigation("PaymentAdditionalInfo");
+
+                    b.Navigation("TransferAdditionalInfo");
                 });
 #pragma warning restore 612, 618
         }
