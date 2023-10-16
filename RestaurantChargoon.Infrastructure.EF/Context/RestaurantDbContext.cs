@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace RestaurantChargoon.Infrastructure.EF.Context
 {
 	// Add 2
+	//add3
     public class RestaurantDbContext : DbContext
 	{
         public RestaurantDbContext()
